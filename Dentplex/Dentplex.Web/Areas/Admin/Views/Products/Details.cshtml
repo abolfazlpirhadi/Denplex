@@ -1,0 +1,66 @@
+﻿@model Dentplex.Data.Model.Product
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Product</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ProductTitle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProductTitle)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ProductShortText)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProductShortText)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ProductText)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProductText)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ProductImage)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProductImage)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ProductGroup.ProductGroupTitle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProductGroup.ProductGroupTitle)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ProductGroup1.ProductGroupTitle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProductGroup1.ProductGroupTitle)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ProductID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
