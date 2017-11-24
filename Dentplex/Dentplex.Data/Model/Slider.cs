@@ -14,11 +14,19 @@ namespace Dentplex.Data.Model
     
     public partial class Slider
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Slider()
+        {
+            this.SliderItems = new HashSet<SliderItem>();
+        }
+    
         public int SlideID { get; set; }
         public string SlideTitle { get; set; }
-        public string SlideLink { get; set; }
-        public Nullable<bool> SlideIsActive { get; set; }
-        public System.DateTime SlideStartDate { get; set; }
-        public System.DateTime SlideExpireDate { get; set; }
+        public string SlideImage { get; set; }
+        public bool SlideIsActive { get; set; }
+        public string SlideDesc { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<SliderItem> SliderItems { get; set; }
     }
 }

@@ -1,0 +1,23 @@
+﻿@model IEnumerable<Dentplex.Data.Model.SliderItem>
+
+@if (Model.Any())
+{
+    <div class="wrapp-slider">
+        <div class="swiper-container s1">
+            <div class="swiper-wrapper">
+                @foreach (var item in Model)
+                {
+                    <div class="swiper-slide">
+                        <a href="#">
+                            <img class="img-responsive" src="~/Images/SliderItemImages/@item.SlideItemImage" alt="p2 cosmetics Logo">
+                        </a>
+                    </div>
+                }
+                
+            </div>
+            <div class="swiper-pagination"></div>
+        </div>
+    </div>
+}
+
+

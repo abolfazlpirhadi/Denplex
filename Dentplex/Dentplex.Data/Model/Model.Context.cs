@@ -27,6 +27,7 @@ namespace Dentplex.Data.Model
     
         public virtual DbSet<ProductGroup> ProductGroups { get; set; }
         public virtual DbSet<Product> Products { get; set; }
+        public virtual DbSet<SliderItem> SliderItems { get; set; }
         public virtual DbSet<Slider> Sliders { get; set; }
     }
 }
