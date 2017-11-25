@@ -12,6 +12,7 @@ namespace Dentplex.Web.Areas.Admin.Controllers
 {
     public class ProductsController : Controller
     {
+
         private DentplexDBEntities db = new DentplexDBEntities();
 
         // GET: Admin/Products
