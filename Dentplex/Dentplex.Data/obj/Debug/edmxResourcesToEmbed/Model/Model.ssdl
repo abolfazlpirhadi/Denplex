@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DentplexDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="ProductGroups">
+    <Key>
+      <PropertyRef Name="ProductGroupID" />
+    </Key>
+    <Property Name="ProductGroupID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ProductParentGroupID" Type="int" Nullable="false" />
+    <Property Name="ProductGroupTitle" Type="nvarchar" MaxLength="150" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Products">
+    <Key>
+      <PropertyRef Name="ProductID" />
+    </Key>
+    <Property Name="ProductID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ProductGroupID" Type="int" Nullable="false" />
+    <Property Name="ProductSubGroupID" Type="int" Nullable="false" />
+    <Property Name="ProductTitle" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="ProductShortText" Type="nvarchar" MaxLength="350" Nullable="false" />
+    <Property Name="ProductText" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="ProductImage" Type="varchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Sliders">
+    <Key>
+      <PropertyRef Name="SlideID" />
+    </Key>
+    <Property Name="SlideID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SlideTitle" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="SlideLink" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="SlideIsActive" Type="bit" />
+    <Property Name="SlideStartDate" Type="datetime" Nullable="false" />
+    <Property Name="SlideExpireDate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_ProductGroups_ProductGroups">
+    <End Role="ProductGroups" Type="Self.ProductGroups" Multiplicity="1" />
+    <End Role="ProductGroups1" Type="Self.ProductGroups" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ProductGroups">
+        <PropertyRef Name="ProductGroupID" />
+      </Principal>
+      <Dependent Role="ProductGroups1">
+        <PropertyRef Name="ProductParentGroupID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Products_ProductGroups">
+    <End Role="ProductGroups" Type="Self.ProductGroups" Multiplicity="1" />
+    <End Role="Products" Type="Self.Products" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ProductGroups">
+        <PropertyRef Name="ProductGroupID" />
+      </Principal>
+      <Dependent Role="Products">
+        <PropertyRef Name="ProductGroupID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Products_ProductGroups1">
+    <End Role="ProductGroups" Type="Self.ProductGroups" Multiplicity="1" />
+    <End Role="Products" Type="Self.Products" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ProductGroups">
+        <PropertyRef Name="ProductGroupID" />
+      </Principal>
+      <Dependent Role="Products">
+        <PropertyRef Name="ProductSubGroupID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="DentplexDBModelStoreContainer">
+    <EntitySet Name="ProductGroups" EntityType="Self.ProductGroups" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Products" EntityType="Self.Products" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Sliders" EntityType="Self.Sliders" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_ProductGroups_ProductGroups" Association="Self.FK_ProductGroups_ProductGroups">
+      <End Role="ProductGroups" EntitySet="ProductGroups" />
+      <End Role="ProductGroups1" EntitySet="ProductGroups" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Products_ProductGroups" Association="Self.FK_Products_ProductGroups">
+      <End Role="ProductGroups" EntitySet="ProductGroups" />
+      <End Role="Products" EntitySet="Products" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Products_ProductGroups1" Association="Self.FK_Products_ProductGroups1">
+      <End Role="ProductGroups" EntitySet="ProductGroups" />
+      <End Role="Products" EntitySet="Products" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
