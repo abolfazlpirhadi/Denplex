@@ -14,6 +14,7 @@ namespace Dentplex.Web.Areas.Admin.Controllers
 {
     public class SlidersController : Controller
     {
+
         private DentplexDBEntities db = new DentplexDBEntities();
 
         public ActionResult Index()
