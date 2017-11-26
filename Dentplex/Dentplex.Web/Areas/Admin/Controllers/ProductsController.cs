@@ -7,6 +7,8 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Dentplex.Data.Model;
+using System.IO;
+using Dentplex.Web.Classes;
 
 namespace Dentplex.Web.Areas.Admin.Controllers
 {
@@ -18,9 +20,9 @@ namespace Dentplex.Web.Areas.Admin.Controllers
         // GET: Admin/Products
         public ActionResult Index()
         {
-            var products = db.Products.Include(p => p.ProductGroup).Include(p => p.ProductGroup1);
-            return View(products.ToList());
+            return View(db.Products.ToList());
         }
+
 
         // GET: Admin/Products/Details/5
         public ActionResult Details(int? id)
@@ -40,8 +42,6 @@ namespace Dentplex.Web.Areas.Admin.Controllers
         // GET: Admin/Products/Create
         public ActionResult Create()
         {
-            ViewBag.ProductGroupID = new SelectList(db.ProductGroups, "ProductGroupID", "ProductGroupTitle");
-            ViewBag.ProductSubGroupID = new SelectList(db.ProductGroups, "ProductGroupID", "ProductGroupTitle");
             return View();
         }
 
@@ -50,17 +50,29 @@ namespace Dentplex.Web.Areas.Admin.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ProductID,ProductGroupID,ProductSubGroupID,ProductTitle,ProductShortText,ProductText,ProductImage")] Product product)
+        public ActionResult Create([Bind(Include = "ProductID,ProductGroupID,ProductSubGroupID,ProductTitle,ProductShortText,ProductText,ProductImage")] Product product, HttpPostedFileBase imgProduct)
         {
             if (ModelState.IsValid)
             {
-                db.Products.Add(product);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                if (imgProduct != null && imgProduct.IsImage())
+                {
+                    string imagePath = "/Images/SliderImages/";
+
+                    product.ProductImage = Guid.NewGuid().ToString().Replace("-", "") + Path.GetExtension(imgProduct.FileName);
+                    imgProduct.SaveAs(Server.MapPath(imagePath + product.ProductImage));
+                    product.ProductGroupID = -1;
+                    product.ProductSubGroupID = -1;
+                    db.Products.Add(product);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    ModelState.AddModelError("SlideImage", "تصویر را انتخاب کنید!");
+                    return View(product);
+                }
             }
 
-            ViewBag.ProductGroupID = new SelectList(db.ProductGroups, "ProductGroupID", "ProductGroupTitle", product.ProductGroupID);
-            ViewBag.ProductSubGroupID = new SelectList(db.ProductGroups, "ProductGroupID", "ProductGroupTitle", product.ProductSubGroupID);
             return View(product);
         }
 
@@ -86,16 +98,30 @@ namespace Dentplex.Web.Areas.Admin.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ProductID,ProductGroupID,ProductSubGroupID,ProductTitle,ProductShortText,ProductText,ProductImage")] Product product)
+        public ActionResult Edit([Bind(Include = "ProductID,ProductGroupID,ProductSubGroupID,ProductTitle,ProductShortText,ProductText,ProductImage")] Product product, HttpPostedFileBase imgProduct)
         {
             if (ModelState.IsValid)
             {
+                if (imgProduct != null && imgProduct.IsImage())
+                {
+
+                        string imagePath = "/Images/SliderImages/";
+                    if (product.ProductImage != null)
+                    {
+                        if (System.IO.File.Exists(Server.MapPath(imagePath + product.ProductImage)))
+                            System.IO.File.Delete(Server.MapPath(imagePath + product.ProductImage));
+                    }
+
+                    product.ProductImage = Guid.NewGuid().ToString().Replace("-", "") + Path.GetExtension(imgProduct.FileName);
+                    imgProduct.SaveAs(Server.MapPath(imagePath + product.ProductImage));
+                }
+
+                product.ProductGroupID = -1;
+                product.ProductSubGroupID = -1;
                 db.Entry(product).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.ProductGroupID = new SelectList(db.ProductGroups, "ProductGroupID", "ProductGroupTitle", product.ProductGroupID);
-            ViewBag.ProductSubGroupID = new SelectList(db.ProductGroups, "ProductGroupID", "ProductGroupTitle", product.ProductSubGroupID);
             return View(product);
         }
 
