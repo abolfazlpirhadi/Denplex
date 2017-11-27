@@ -1274,11 +1274,6 @@
     <Content Include="Content\theme\fonts\FontAwesome.otf" />
     <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_Layout.cshtml" />
-    <Content Include="Areas\Admin\Views\Products\Create.cshtml" />
-    <Content Include="Areas\Admin\Views\Products\Delete.cshtml" />
-    <Content Include="Areas\Admin\Views\Products\Details.cshtml" />
-    <Content Include="Areas\Admin\Views\Products\Edit.cshtml" />
-    <Content Include="Areas\Admin\Views\Products\Index.cshtml" />
     <Content Include="Content\ckeditor\.htaccess" />
     <Content Include="Content\ckeditor\CHANGES.md" />
     <Content Include="Content\ckeditor\ckeditor.pack" />
@@ -1318,7 +1313,14 @@
     <Content Include="Areas\Admin\Views\SliderItems\Details.cshtml" />
     <Content Include="Areas\Admin\Views\SliderItems\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\SliderItems\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Products\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Products\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Products\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Products\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Products\Index.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Images\ProductImages\MainImage\96ccd8e2-95ee-4ad5-8648-a62738aaf1db.jpg" />
+    <Content Include="Images\ProductImages\ThumbImage\96ccd8e2-95ee-4ad5-8648-a62738aaf1db.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -1339,6 +1341,7 @@
     <Compile Include="Areas\Admin\Controllers\SliderItemsController.cs" />
     <Compile Include="Areas\Admin\Controllers\SlidersController.cs" />
     <Compile Include="Classes\CheckContentImage.cs" />
+    <Compile Include="Classes\ImageResizer.cs" />
     <Compile Include="Classes\PersianCulture.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">

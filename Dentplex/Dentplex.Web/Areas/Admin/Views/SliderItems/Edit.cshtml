@@ -77,3 +77,29 @@
 <script src="~/Scripts/jquery-1.10.2.min.js"></script>
 <script src="~/Scripts/jquery.validate.min.js"></script>
 <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+<script type="text/javascript">
+
+    $(function () {
+        $('#ProductText').ckeditor();
+
+        $("#ProductGroupID").change(function () {
+            $("#ProductSubGroupID").empty();
+            $.ajax({
+                type: 'Get',
+                url: '/Admin/Products/GetSubGroups',
+                dataType: 'json',
+                data: { id: $("#ProductGroupID").val() },
+                success: function (subs) {
+                    $.each(subs, function (i, sub) {
+                        $("#ProductSubGroupID").append('<option value="' + sub.Value + '">' + sub.Text + '</option>');
+                    });
+                },
+                error: function (ex) {
+                    alert('Failed to retrieve states.' + ex);
+                }
+            });
+            return false;
+        });
+    });
+</script>

@@ -12,29 +12,32 @@
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
+        <h4>Product</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.ProductID)
-        @Html.HiddenFor(model=>model.ProductImage)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ProductGroupID, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("ProductGroupID", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.ProductGroupID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ProductSubGroupID, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("ProductSubGroupID", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.ProductSubGroupID, "", new { @class = "text-danger" })
+            </div>
+        </div>
 
         <div class="form-group">
             @Html.LabelFor(model => model.ProductTitle, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.ProductTitle, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.ProductTitle, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.ProductImage, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <input type="file" name="imgProduct" />
-                @Html.ValidationMessageFor(model => model.ProductImage, "", new { @class = "text-danger" })
-                <br />
-                @if (Model.ProductImage != null)
-                {
-                    <img src="/Images/SliderImages/@Model.ProductImage" class="thumbnail" style="max-width: 150px" />
-                }
             </div>
         </div>
 
@@ -54,18 +57,23 @@
             </div>
         </div>
 
-        @*<div class="form-group">
-            @Html.LabelFor(model => model.SlideIsActive, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.ProductImage, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.SlideIsActive)
-                @Html.ValidationMessageFor(model => model.SlideIsActive, "", new { @class = "text-danger" })
+                <input type="file" name="imgProduct" />
+                @Html.ValidationMessageFor(model => model.ProductImage, "", new { @class = "text-danger" })
+                <br />
+                @if (Model.ProductImage != null)
+                {
+                    <img src="~/Images/ProductImages/ThumbImage/@Model.ProductImage" class="thumbnail" style="max-width: 100px" />
+                }
             </div>
-        </div>*@
+        </div>
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="ویرایش" class="btn btn-info" />
-                @Html.ActionLink("بازگشت به لیست", "Index")
+                @Html.ActionLink("بازگشت به فهرست", "Index")
             </div>
         </div>
     </div>
@@ -75,3 +83,29 @@
 <script src="~/Scripts/jquery-1.10.2.min.js"></script>
 <script src="~/Scripts/jquery.validate.min.js"></script>
 <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+<script type="text/javascript">
+
+    $(function () {
+        //$('#ProductText').ckeditor();
+
+        $("#ProductGroupID").change(function () {
+            $("#ProductSubGroupID").empty();
+            $.ajax({
+                type: 'Get',
+                url: '/Admin/Products/GetSubGroups',
+                dataType: 'json',
+                data: { id: $("#ProductGroupID").val() },
+                success: function (subs) {
+                    $.each(subs, function (i, sub) {
+                        $("#ProductSubGroupID").append('<option value="' + sub.Value + '">' + sub.Text + '</option>');
+                    });
+                },
+                error: function (ex) {
+                    alert('Failed to retrieve states.' + ex);
+                }
+            });
+            return false;
+        });
+    });
+</script>

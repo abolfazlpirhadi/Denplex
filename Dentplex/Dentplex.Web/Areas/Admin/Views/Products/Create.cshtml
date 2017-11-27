@@ -6,13 +6,31 @@
 
 <h2>Create</h2>
 
+
 @using (Html.BeginForm("Create", "Products", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal">
+        <h4>Product</h4>
         <hr />
-        @Html.ValidationSummary(true)
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.ProductGroupID, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("ProductGroupID", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.ProductGroupID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ProductSubGroupID, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("ProductSubGroupID", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.ProductSubGroupID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
         <div class="form-group">
             @Html.LabelFor(model => model.ProductTitle, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
@@ -20,14 +38,7 @@
                 @Html.ValidationMessageFor(model => model.ProductTitle, "", new { @class = "text-danger" })
             </div>
         </div>
-        <div class="form-group">
-            @Html.LabelFor(model => model.ProductImage, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <input type="file" name="imgProduct" />
-                @Html.ValidationMessageFor(model => model.ProductImage, "", new { @class = "text-danger" })
 
-            </div>
-        </div>
         <div class="form-group">
             @Html.LabelFor(model => model.ProductShortText, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
@@ -35,6 +46,7 @@
                 @Html.ValidationMessageFor(model => model.ProductShortText, "", new { @class = "text-danger" })
             </div>
         </div>
+
         <div class="form-group">
             @Html.LabelFor(model => model.ProductText, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
@@ -43,22 +55,53 @@
             </div>
         </div>
 
-        @*<div class="form-group">
-            @html.labelfor(model => model.productisactive, htmlattributes: new { @class = "control-label col-md-2" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.ProductImage, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @html.editorfor(model => model.productisactive)
-                @html.validationmessagefor(model => model.productisactive, "", new { @class = "text-danger" })
+                <input type="file" name="imgProduct" />
+                @Html.ValidationMessageFor(model => model.ProductImage, "", new { @class = "text-danger" })
             </div>
-        </div>*@
+        </div>
+
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="ثبت" class="btn btn-info" />
-                @Html.ActionLink("بازگشت به لیست", "Index")
+                <input type="submit" value="ذخیره" class="btn btn-info" />
+                @Html.ActionLink("بازگشت به فهرست", "Index")
             </div>
         </div>
     </div>
 }
 
+
 <script src="~/Scripts/jquery-1.10.2.min.js"></script>
 <script src="~/Scripts/jquery.validate.min.js"></script>
 <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+<script src="~/Content/ckeditor/ckeditor.js"></script>
+<script src="~/Content/ckeditor/adapters/jquery.js"></script>
+
+<script type="text/javascript">
+
+    $(function () {
+        //$('#ProductText').ckeditor(); 
+
+        $("#ProductGroupID").change(function () {
+            $("#ProductSubGroupID").empty();
+            $.ajax({
+                type: 'Get',
+                url: '/Admin/Products/GetSubGroups',
+                dataType: 'json',
+                data: { id: $("#ProductGroupID").val() },
+                success: function (subs) {
+                    $.each(subs, function (i, sub) {
+                        $("#ProductSubGroupID").append('<option value="' + sub.Value + '">' + sub.Text + '</option>');
+                    });
+                },
+                error: function (ex) {
+                    alert('Failed to retrieve states.' + ex);
+                }
+            });
+            return false;
+        });
+    });
+</script>
