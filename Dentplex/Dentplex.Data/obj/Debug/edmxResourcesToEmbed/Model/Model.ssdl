@@ -17,8 +17,8 @@
     <Property Name="ProductSubGroupID" Type="int" Nullable="false" />
     <Property Name="ProductTitle" Type="nvarchar" MaxLength="250" Nullable="false" />
     <Property Name="ProductShortText" Type="nvarchar" MaxLength="350" Nullable="false" />
-    <Property Name="ProductText" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="ProductImage" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="ProductText" Type="nvarchar(max)" />
+    <Property Name="ProductImage" Type="varchar" MaxLength="100" />
   </EntityType>
   <EntityType Name="SliderItems">
     <Key>

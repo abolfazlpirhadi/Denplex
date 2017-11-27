@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="DentplexDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="DentplexDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="ProductGroups">
           <Key>
             <PropertyRef Name="ProductGroupID" />
@@ -22,8 +22,8 @@
           <Property Name="ProductSubGroupID" Type="int" Nullable="false" />
           <Property Name="ProductTitle" Type="nvarchar" MaxLength="250" Nullable="false" />
           <Property Name="ProductShortText" Type="nvarchar" MaxLength="350" Nullable="false" />
-          <Property Name="ProductText" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="ProductImage" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="ProductText" Type="nvarchar(max)" />
+          <Property Name="ProductImage" Type="varchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="SliderItems">
           <Key>
@@ -116,8 +116,7 @@
             <End Role="SliderItems" EntitySet="SliderItems" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="DentplexDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -142,8 +141,8 @@
           <Property Name="ProductSubGroupID" Type="Int32" Nullable="false" />
           <Property Name="ProductTitle" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="ProductShortText" Type="String" MaxLength="350" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="ProductText" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="ProductImage" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ProductText" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ProductImage" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="ProductGroup" Relationship="Self.FK_Products_ProductGroups" FromRole="Products" ToRole="ProductGroups" />
           <NavigationProperty Name="ProductGroup1" Relationship="Self.FK_Products_ProductGroups1" FromRole="Products" ToRole="ProductGroups" />
         </EntityType>

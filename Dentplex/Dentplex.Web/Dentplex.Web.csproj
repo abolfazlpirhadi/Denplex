@@ -1318,6 +1318,12 @@
     <Content Include="Areas\Admin\Views\Products\Details.cshtml" />
     <Content Include="Areas\Admin\Views\Products\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Products\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\ProductGroups\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\ProductGroups\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\ProductGroups\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\ProductGroups\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\ProductGroups\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\ProductGroups\List.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Images\ProductImages\MainImage\96ccd8e2-95ee-4ad5-8648-a62738aaf1db.jpg" />
     <Content Include="Images\ProductImages\ThumbImage\96ccd8e2-95ee-4ad5-8648-a62738aaf1db.jpg" />
@@ -1326,10 +1332,12 @@
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\modal.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Web.config" />
     <Content Include="Views\Home\Index.cshtml" />
@@ -1337,6 +1345,7 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\ProductGroupsController.cs" />
     <Compile Include="Areas\Admin\Controllers\ProductsController.cs" />
     <Compile Include="Areas\Admin\Controllers\SliderItemsController.cs" />
     <Compile Include="Areas\Admin\Controllers\SlidersController.cs" />
