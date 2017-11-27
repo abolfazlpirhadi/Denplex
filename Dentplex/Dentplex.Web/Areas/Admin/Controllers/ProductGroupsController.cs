@@ -90,16 +90,20 @@ namespace Dentplex.Web.Areas.Admin.Controllers
         }
         public ActionResult Delete(int? id)
         {
-            if (id == null)
+            var group = db.ProductGroups.Find(id);
+            if (group.ProductGroups1.Any())
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                foreach (var group2 in db.ProductGroups.Where(p => p.ProductParentGroupID == id))
+                {
+                    db.ProductGroups.Remove(group2);
+                }
             }
-            ProductGroup productGroup = db.ProductGroups.Find(id);
-            if (productGroup == null)
-            {
-                return HttpNotFound();
-            }
-            return View(productGroup);
+
+            db.ProductGroups.Remove(group);
+            db.SaveChanges();
+
+            return PartialView("List", db.ProductGroups.Where(g => g.ProductParentGroupID == null));
+
         }
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]

@@ -4,7 +4,6 @@
     ViewBag.Title = "ویرایش " + Server.HtmlDecode(Html.DisplayNameFor(model => model).ToString());
 }
 
-
 @using (Ajax.BeginForm("Edit", "ProductGroups", FormMethod.Post, new AjaxOptions(){ UpdateTargetId = "ShowList", OnSuccess = "Success" }))
 {
     @Html.AntiForgeryToken()
