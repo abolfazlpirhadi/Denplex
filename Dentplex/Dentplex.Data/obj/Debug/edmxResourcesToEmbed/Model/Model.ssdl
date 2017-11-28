@@ -20,16 +20,26 @@
     <Property Name="ProductText" Type="nvarchar(max)" Nullable="false" />
     <Property Name="ProductImage" Type="varchar" MaxLength="100" Nullable="false" />
   </EntityType>
+  <EntityType Name="SliderItems">
+    <Key>
+      <PropertyRef Name="SlideItemID" />
+    </Key>
+    <Property Name="SlideItemID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SlideID" Type="int" Nullable="false" />
+    <Property Name="SlideItemTitle" Type="nvarchar" MaxLength="150" Nullable="false" />
+    <Property Name="SlideItemImage" Type="varchar" MaxLength="250" />
+    <Property Name="SlideItemLink" Type="varchar" MaxLength="150" />
+    <Property Name="SlideItemOrder" Type="int" Nullable="false" />
+  </EntityType>
   <EntityType Name="Sliders">
     <Key>
       <PropertyRef Name="SlideID" />
     </Key>
     <Property Name="SlideID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="SlideTitle" Type="nvarchar" MaxLength="250" Nullable="false" />
-    <Property Name="SlideLink" Type="nvarchar" MaxLength="250" Nullable="false" />
-    <Property Name="SlideIsActive" Type="bit" />
-    <Property Name="SlideStartDate" Type="datetime" Nullable="false" />
-    <Property Name="SlideExpireDate" Type="datetime" Nullable="false" />
+    <Property Name="SlideImage" Type="varchar" MaxLength="150" />
+    <Property Name="SlideIsActive" Type="bit" Nullable="false" />
+    <Property Name="SlideDesc" Type="nvarchar(max)" />
   </EntityType>
   <Association Name="FK_ProductGroups_ProductGroups">
     <End Role="ProductGroups" Type="Self.ProductGroups" Multiplicity="1" />
@@ -67,9 +77,22 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_SliderItems_Sliders">
+    <End Role="Sliders" Type="Self.Sliders" Multiplicity="1" />
+    <End Role="SliderItems" Type="Self.SliderItems" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Sliders">
+        <PropertyRef Name="SlideID" />
+      </Principal>
+      <Dependent Role="SliderItems">
+        <PropertyRef Name="SlideID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <EntityContainer Name="DentplexDBModelStoreContainer">
     <EntitySet Name="ProductGroups" EntityType="Self.ProductGroups" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Products" EntityType="Self.Products" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SliderItems" EntityType="Self.SliderItems" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Sliders" EntityType="Self.Sliders" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="FK_ProductGroups_ProductGroups" Association="Self.FK_ProductGroups_ProductGroups">
       <End Role="ProductGroups" EntitySet="ProductGroups" />
@@ -82,6 +105,10 @@
     <AssociationSet Name="FK_Products_ProductGroups1" Association="Self.FK_Products_ProductGroups1">
       <End Role="ProductGroups" EntitySet="ProductGroups" />
       <End Role="Products" EntitySet="Products" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SliderItems_Sliders" Association="Self.FK_SliderItems_Sliders">
+      <End Role="Sliders" EntitySet="Sliders" />
+      <End Role="SliderItems" EntitySet="SliderItems" />
     </AssociationSet>
   </EntityContainer>
 </Schema>
