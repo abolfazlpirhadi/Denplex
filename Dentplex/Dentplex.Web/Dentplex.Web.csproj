@@ -1235,6 +1235,9 @@
     <Content Include="Content\ckeditor\_source\skins\v2\templates.css" />
     <Content Include="Content\ckeditor\_source\skins\v2\toolbar.css" />
     <Content Include="Content\ckeditor\_source\themes\default\theme.js" />
+    <Content Include="Content\sidebarnav\css\SidebarNav.min.css" />
+    <Content Include="Content\sidebarnav\index.html" />
+    <Content Include="Content\sidebarnav\js\SidebarNav.min.js" />
     <Content Include="Content\theme\css\bootstrap.css" />
     <Content Include="Content\theme\css\font-awesome.min.css" />
     <Content Include="Content\theme\css\style3.css" />
@@ -1258,6 +1261,11 @@
     <Content Include="Content\theme\js\swiper.min.js" />
     <Content Include="Content\MyStyle.css" />
     <Content Include="Content\Site.css" />
+    <Content Include="fonts\font-awesome\css\font-awesome-ie7.css" />
+    <Content Include="fonts\font-awesome\css\font-awesome-ie7.min.css" />
+    <Content Include="fonts\font-awesome\css\font-awesome.css" />
+    <Content Include="fonts\font-awesome\css\font-awesome.min.css" />
+    <Content Include="fonts\font-awesome\font\fontawesome-webfont.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -1274,11 +1282,6 @@
     <Content Include="Content\theme\fonts\FontAwesome.otf" />
     <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_Layout.cshtml" />
-    <Content Include="Areas\Admin\Views\Products\Create.cshtml" />
-    <Content Include="Areas\Admin\Views\Products\Delete.cshtml" />
-    <Content Include="Areas\Admin\Views\Products\Details.cshtml" />
-    <Content Include="Areas\Admin\Views\Products\Edit.cshtml" />
-    <Content Include="Areas\Admin\Views\Products\Index.cshtml" />
     <Content Include="Content\ckeditor\.htaccess" />
     <Content Include="Content\ckeditor\CHANGES.md" />
     <Content Include="Content\ckeditor\ckeditor.pack" />
@@ -1318,16 +1321,35 @@
     <Content Include="Areas\Admin\Views\SliderItems\Details.cshtml" />
     <Content Include="Areas\Admin\Views\SliderItems\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\SliderItems\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Products\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Products\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Products\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Products\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Products\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\ProductGroups\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\ProductGroups\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\ProductGroups\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\ProductGroups\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\ProductGroups\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\ProductGroups\List.cshtml" />
+    <Content Include="fonts\font-awesome\font\fontawesome-webfont.eot" />
+    <Content Include="fonts\font-awesome\font\fontawesome-webfont.ttf" />
+    <Content Include="fonts\font-awesome\font\fontawesome-webfont.woff" />
+    <Content Include="fonts\font-awesome\font\FontAwesome.otf" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Images\ProductImages\MainImage\96ccd8e2-95ee-4ad5-8648-a62738aaf1db.jpg" />
+    <Content Include="Images\ProductImages\ThumbImage\96ccd8e2-95ee-4ad5-8648-a62738aaf1db.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\modal.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Web.config" />
     <Content Include="Views\Home\Index.cshtml" />
@@ -1335,10 +1357,12 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\ProductGroupsController.cs" />
     <Compile Include="Areas\Admin\Controllers\ProductsController.cs" />
     <Compile Include="Areas\Admin\Controllers\SliderItemsController.cs" />
     <Compile Include="Areas\Admin\Controllers\SlidersController.cs" />
     <Compile Include="Classes\CheckContentImage.cs" />
+    <Compile Include="Classes\ImageResizer.cs" />
     <Compile Include="Classes\PersianCulture.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
@@ -1387,7 +1411,7 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>True</UseIIS>
+          <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>12911</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>

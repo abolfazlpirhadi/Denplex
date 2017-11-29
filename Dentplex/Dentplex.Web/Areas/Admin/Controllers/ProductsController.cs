@@ -7,24 +7,31 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Dentplex.Data.Model;
-using System.IO;
 using Dentplex.Web.Classes;
+using System.IO;
 
 namespace Dentplex.Web.Areas.Admin.Controllers
 {
     public class ProductsController : Controller
     {
-
         private DentplexDBEntities db = new DentplexDBEntities();
 
-        // GET: Admin/Products
         public ActionResult Index()
         {
-            return View(db.Products.ToList());
+            var products = db.Products.Include(p => p.ProductGroup).Include(p => p.ProductGroup1);
+            return View(products.ToList());
         }
+        public JsonResult GetSubGroups(int id)
+        {
+            List<SelectListItem> list = db.ProductGroups.Where(g => g.ProductParentGroupID == id)
+                    .Select(g => new SelectListItem()
+                    {
+                        Value = g.ProductGroupID.ToString(),
+                        Text = g.ProductGroupTitle
+                    }).ToList();
 
-
-        // GET: Admin/Products/Details/5
+            return Json(new SelectList(list, "Value", "Text"), JsonRequestBehavior.AllowGet);
+        }
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -38,45 +45,58 @@ namespace Dentplex.Web.Areas.Admin.Controllers
             }
             return View(product);
         }
-
-        // GET: Admin/Products/Create
         public ActionResult Create()
         {
+            ViewBag.ProductGroupID = new SelectList(db.ProductGroups.Where(g => g.ProductParentGroupID == null), "ProductGroupID", "ProductGroupTitle");
+            List<ProductGroup> list = new List<ProductGroup>()
+            {
+                new ProductGroup() { ProductGroupID = 0,ProductGroupTitle = " --- انتخاب کنید ---"}
+            };
+            ViewBag.ProductSubGroupID = new SelectList(list, "ProductGroupID", "ProductGroupTitle", 0);
             return View();
         }
-
-        // POST: Admin/Products/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "ProductID,ProductGroupID,ProductSubGroupID,ProductTitle,ProductShortText,ProductText,ProductImage")] Product product, HttpPostedFileBase imgProduct)
         {
             if (ModelState.IsValid)
             {
+                product.ProductImage = "";
+
                 if (imgProduct != null && imgProduct.IsImage())
                 {
-                    string imagePath = "/Images/SliderImages/";
+                    string mainImagePath = "/Images/ProductImages/MainImage/";
+                    string thumbImagePath = "/Images/ProductImages/ThumbImage/";
 
-                    product.ProductImage = Guid.NewGuid().ToString().Replace("-", "") + Path.GetExtension(imgProduct.FileName);
-                    imgProduct.SaveAs(Server.MapPath(imagePath + product.ProductImage));
-                    product.ProductGroupID = -1;
-                    product.ProductSubGroupID = -1;
+                    if (!Directory.Exists(thumbImagePath))
+                        Directory.CreateDirectory(Server.MapPath(thumbImagePath));
+
+                    if (!Directory.Exists(mainImagePath))
+                        Directory.CreateDirectory(Server.MapPath(mainImagePath));
+
+                    string imageName = Guid.NewGuid().ToString().Replace("-", "") + Path.GetExtension(imgProduct.FileName);
+                    product.ProductImage = imageName;
+                    imgProduct.SaveAs(Server.MapPath(mainImagePath + imageName));
+
+                    ImageResizer img = new ImageResizer();
+                    img.Resize(Server.MapPath(mainImagePath + imageName),
+                        Server.MapPath(thumbImagePath + imageName));
+
                     db.Products.Add(product);
                     db.SaveChanges();
                     return RedirectToAction("Index");
                 }
                 else
                 {
-                    ModelState.AddModelError("SlideImage", "تصویر را انتخاب کنید!");
-                    return View(product);
+                    ModelState.AddModelError("ProductImage", "تصویر را انتخاب کنید!");
+                    return View(imgProduct);
                 }
             }
 
+            ViewBag.ProductGroupID = new SelectList(db.ProductGroups, "ProductGroupID", "ProductGroupTitle", product.ProductGroupID);
+            ViewBag.ProductSubGroupID = new SelectList(db.ProductGroups, "ProductGroupID", "ProductGroupTitle", product.ProductSubGroupID);
             return View(product);
         }
-
-        // GET: Admin/Products/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -88,44 +108,44 @@ namespace Dentplex.Web.Areas.Admin.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.ProductGroupID = new SelectList(db.ProductGroups, "ProductGroupID", "ProductGroupTitle", product.ProductGroupID);
-            ViewBag.ProductSubGroupID = new SelectList(db.ProductGroups, "ProductGroupID", "ProductGroupTitle", product.ProductSubGroupID);
+            ViewBag.ProductGroupID = new SelectList(db.ProductGroups.Where(g => g.ProductParentGroupID == null), "ProductGroupID", "ProductGroupTitle", product.ProductGroupID);
+            ViewBag.ProductSubGroupID = new SelectList(db.ProductGroups.Where(g => g.ProductParentGroupID == product.ProductGroupID), "ProductGroupID", "ProductGroupTitle", product.ProductSubGroupID);
             return View(product);
         }
-
-        // POST: Admin/Products/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "ProductID,ProductGroupID,ProductSubGroupID,ProductTitle,ProductShortText,ProductText,ProductImage")] Product product, HttpPostedFileBase imgProduct)
         {
             if (ModelState.IsValid)
             {
+                string mainImagePath = "/Images/ProductImages/MainImage/";
+                string thumbImagePath = "/Images/ProductImages/ThumbImage/";
+
                 if (imgProduct != null && imgProduct.IsImage())
                 {
+                    if (System.IO.File.Exists(Server.MapPath(mainImagePath + product.ProductImage)))
+                        System.IO.File.Delete(Server.MapPath(mainImagePath + product.ProductImage));
 
-                        string imagePath = "/Images/SliderImages/";
-                    if (product.ProductImage != null)
-                    {
-                        if (System.IO.File.Exists(Server.MapPath(imagePath + product.ProductImage)))
-                            System.IO.File.Delete(Server.MapPath(imagePath + product.ProductImage));
-                    }
+                    if (System.IO.File.Exists(Server.MapPath(thumbImagePath + product.ProductImage)))
+                        System.IO.File.Delete(Server.MapPath(thumbImagePath + product.ProductImage));
 
-                    product.ProductImage = Guid.NewGuid().ToString().Replace("-", "") + Path.GetExtension(imgProduct.FileName);
-                    imgProduct.SaveAs(Server.MapPath(imagePath + product.ProductImage));
+                    string imageName = Guid.NewGuid() + Path.GetExtension(imgProduct.FileName);
+                    product.ProductImage = imageName;
+                    imgProduct.SaveAs(Server.MapPath(mainImagePath + imageName));
+
+                    ImageResizer img = new ImageResizer();
+                    img.Resize(Server.MapPath(mainImagePath + imageName),
+                        Server.MapPath(thumbImagePath + imageName));
                 }
 
-                product.ProductGroupID = -1;
-                product.ProductSubGroupID = -1;
                 db.Entry(product).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            ViewBag.ProductGroupID = new SelectList(db.ProductGroups, "ProductGroupID", "ProductGroupTitle", product.ProductGroupID);
+            ViewBag.ProductSubGroupID = new SelectList(db.ProductGroups, "ProductGroupID", "ProductGroupTitle", product.ProductSubGroupID);
             return View(product);
         }
-
-        // GET: Admin/Products/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -139,8 +159,6 @@ namespace Dentplex.Web.Areas.Admin.Controllers
             }
             return View(product);
         }
-
-        // POST: Admin/Products/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
@@ -150,7 +168,6 @@ namespace Dentplex.Web.Areas.Admin.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
-
         protected override void Dispose(bool disposing)
         {
             if (disposing)

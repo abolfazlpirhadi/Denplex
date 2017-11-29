@@ -1,0 +1,37 @@
+﻿@model Dentplex.Data.Model.ProductGroup
+
+@{
+    ViewBag.Title = "افزودن " + Server.HtmlDecode(Html.DisplayNameFor(model => model).ToString());
+}
+
+
+
+@using (Ajax.BeginForm("Create", "ProductGroups", FormMethod.Post, new AjaxOptions(){ UpdateTargetId = "ShowList", OnSuccess = "Success"}))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        @Html.ValidationSummary(true)
+        @Html.HiddenFor(m => m.ProductParentGroupID)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ProductGroupTitle, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ProductGroupTitle, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.ProductGroupTitle)
+            </div>
+        </div>
+
+        <div class="form-group" id="buttons">
+            <div class="col-md-offset-2 col-md-10">
+                <button type="submit" class="btn btn-info">@*<span class="glyphicon glyphicon-ad"></span>*@ایجاد</button>
+                @*<input type="submit" value="ایجاد" class="btn btn-info" />*@
+            </div>
+        </div>
+    </div>
+}
+
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>

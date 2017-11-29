@@ -4,13 +4,13 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="DentplexDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="DentplexDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="ProductGroups">
           <Key>
             <PropertyRef Name="ProductGroupID" />
           </Key>
           <Property Name="ProductGroupID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="ProductParentGroupID" Type="int" Nullable="false" />
+          <Property Name="ProductParentGroupID" Type="int" />
           <Property Name="ProductGroupTitle" Type="nvarchar" MaxLength="150" Nullable="false" />
         </EntityType>
         <EntityType Name="Products">
@@ -22,8 +22,8 @@
           <Property Name="ProductSubGroupID" Type="int" Nullable="false" />
           <Property Name="ProductTitle" Type="nvarchar" MaxLength="250" Nullable="false" />
           <Property Name="ProductShortText" Type="nvarchar" MaxLength="350" Nullable="false" />
-          <Property Name="ProductText" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="ProductImage" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="ProductText" Type="nvarchar(max)" />
+          <Property Name="ProductImage" Type="varchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="SliderItems">
           <Key>
@@ -47,7 +47,7 @@
           <Property Name="SlideDesc" Type="nvarchar(max)" />
         </EntityType>
         <Association Name="FK_ProductGroups_ProductGroups">
-          <End Role="ProductGroups" Type="Self.ProductGroups" Multiplicity="1" />
+          <End Role="ProductGroups" Type="Self.ProductGroups" Multiplicity="0..1" />
           <End Role="ProductGroups1" Type="Self.ProductGroups" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="ProductGroups">
@@ -116,8 +116,7 @@
             <End Role="SliderItems" EntitySet="SliderItems" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="DentplexDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -126,7 +125,7 @@
             <PropertyRef Name="ProductGroupID" />
           </Key>
           <Property Name="ProductGroupID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ProductParentGroupID" Type="Int32" Nullable="false" />
+          <Property Name="ProductParentGroupID" Type="Int32" />
           <Property Name="ProductGroupTitle" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="ProductGroups1" Relationship="Self.FK_ProductGroups_ProductGroups" FromRole="ProductGroups" ToRole="ProductGroups1" />
           <NavigationProperty Name="ProductGroup1" Relationship="Self.FK_ProductGroups_ProductGroups" FromRole="ProductGroups1" ToRole="ProductGroups" />
@@ -142,8 +141,8 @@
           <Property Name="ProductSubGroupID" Type="Int32" Nullable="false" />
           <Property Name="ProductTitle" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="ProductShortText" Type="String" MaxLength="350" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="ProductText" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="ProductImage" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ProductText" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ProductImage" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="ProductGroup" Relationship="Self.FK_Products_ProductGroups" FromRole="Products" ToRole="ProductGroups" />
           <NavigationProperty Name="ProductGroup1" Relationship="Self.FK_Products_ProductGroups1" FromRole="Products" ToRole="ProductGroups" />
         </EntityType>
@@ -171,7 +170,7 @@
           <NavigationProperty Name="SliderItems" Relationship="Self.FK_SliderItems_Sliders" FromRole="Sliders" ToRole="SliderItems" />
         </EntityType>
         <Association Name="FK_ProductGroups_ProductGroups">
-          <End Role="ProductGroups" Type="Self.ProductGroup" Multiplicity="1" />
+          <End Role="ProductGroups" Type="Self.ProductGroup" Multiplicity="0..1" />
           <End Role="ProductGroups1" Type="Self.ProductGroup" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="ProductGroups">

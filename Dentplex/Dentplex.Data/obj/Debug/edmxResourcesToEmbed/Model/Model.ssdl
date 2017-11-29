@@ -5,7 +5,7 @@
       <PropertyRef Name="ProductGroupID" />
     </Key>
     <Property Name="ProductGroupID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="ProductParentGroupID" Type="int" Nullable="false" />
+    <Property Name="ProductParentGroupID" Type="int" />
     <Property Name="ProductGroupTitle" Type="nvarchar" MaxLength="150" Nullable="false" />
   </EntityType>
   <EntityType Name="Products">
@@ -17,8 +17,8 @@
     <Property Name="ProductSubGroupID" Type="int" Nullable="false" />
     <Property Name="ProductTitle" Type="nvarchar" MaxLength="250" Nullable="false" />
     <Property Name="ProductShortText" Type="nvarchar" MaxLength="350" Nullable="false" />
-    <Property Name="ProductText" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="ProductImage" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="ProductText" Type="nvarchar(max)" />
+    <Property Name="ProductImage" Type="varchar" MaxLength="100" />
   </EntityType>
   <EntityType Name="SliderItems">
     <Key>
@@ -42,7 +42,7 @@
     <Property Name="SlideDesc" Type="nvarchar(max)" />
   </EntityType>
   <Association Name="FK_ProductGroups_ProductGroups">
-    <End Role="ProductGroups" Type="Self.ProductGroups" Multiplicity="1" />
+    <End Role="ProductGroups" Type="Self.ProductGroups" Multiplicity="0..1" />
     <End Role="ProductGroups1" Type="Self.ProductGroups" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="ProductGroups">

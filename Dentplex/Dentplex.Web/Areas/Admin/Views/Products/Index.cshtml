@@ -6,44 +6,56 @@
 
 <h2>Index</h2>
 
-<p>
-    <a href="@Url.Action("Create","Products")" class="btn btn-sm btn-primary"><i class="glyphicon glyphicon-plus"></i> افزودن</a>
-</p>
-<table class="table table-striped table-bordered">
+
+<p><a href="@Url.Action("Create","Products")" class="btn btn-sm btn-primary"><i class="glyphicon glyphicon-plus"></i> افزودن</a></p>
+
+<table class="table table-bordered table-striped">
     <tr>
+        <th>
+            @*@Html.DisplayNameFor(model => model.ProductGroup.ProductGroupTitle)*@
+            عنوان گروه
+        </th>
+        <th>
+            @*@Html.DisplayNameFor(model => model.ProductGroup1.ProductGroupTitle)*@
+            زیرگروه
+        </th>
         <th>
             @Html.DisplayNameFor(model => model.ProductTitle)
         </th>
         <th>
+            @Html.DisplayNameFor(model => model.ProductShortText)
+        </th>
+
+        <th>
             @Html.DisplayNameFor(model => model.ProductImage)
         </th>
-        @*<th>
-            @Html.DisplayNameFor(model => model.SlideIsActive)
-        </th>*@
-        @*<th>
-                @Html.DisplayNameFor(model => model.SlideDesc)
-            </th>*@
         <th></th>
     </tr>
+
     @foreach (var item in Model)
     {
         <tr>
             <td>
+                @Html.DisplayFor(modelItem => item.ProductGroup.ProductGroupTitle)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductGroup1.ProductGroupTitle)
+            </td>
+            <td>
                 @Html.DisplayFor(modelItem => item.ProductTitle)
             </td>
             <td>
-                <img src="/Images/SliderImages/@item.ProductImage" class="thumbnail" style="max-width: 100px" />
+                @Html.DisplayFor(modelItem => item.ProductShortText)
             </td>
-            @*<td>
-                @Html.DisplayFor(modelItem => item.SlideIsActive)
-            </td>*@
-            @*<td>
-                    @Html.DisplayFor(modelItem => item.SlideDesc)
-                </td>*@
+            <td>
+                <img src="/Images/ProductImages/ThumbImage/@item.ProductImage" class="thumbnail" style="max-width: 50px" />
+            </td>
+
             <td>
                 <a href="@Url.Action("Edit","Products",new { id = @item.ProductID})" class="btn btn-sm btn-success"><i class="glyphicon glyphicon-edit"></i>ویرایش</a>
                 <a href="@Url.Action("Delete","Products",new { id = @item.ProductID})" class="btn btn-sm btn-danger"><i class="glyphicon glyphicon-trash"></i>حذف</a>
             </td>
         </tr>
     }
+
 </table>

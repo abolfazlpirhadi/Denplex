@@ -23,7 +23,7 @@ namespace Dentplex.Data.Model
         }
     
         public int ProductGroupID { get; set; }
-        public int ProductParentGroupID { get; set; }
+        public Nullable<int> ProductParentGroupID { get; set; }
         public string ProductGroupTitle { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
