@@ -5,29 +5,33 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="/Content/theme/css/bootstrap.css">
     <link rel="stylesheet" href="/Content/theme/css/style3.css">
     <link rel="stylesheet" href="/Content/theme/css/font-awesome.min.css">
     <link rel="stylesheet" href="/Content/theme/css/swiper.min.css">
+
+    <link href="/Content/theme/css/jquery-ui.min.css" rel="stylesheet">
+    <link href="/Content/theme/css/view.min.css" rel="stylesheet">
+    <link href="/Content/theme/css/banner-rotator.min.css" rel="stylesheet">
+
     <script src="/Content/theme/js/jquery.min.js" type="text/javascript"></script>
     <script type="text/javascript">
         $( document ).ready(function() {
 
-            var swiper1 = new Swiper('.s1', {
-                slidesPerView: 'auto',
-                spaceBetween: 30,
-                loop: true,
-                effect: 'fade',
-                autoplay: {
-                    delay: 4000,
-                    disableOnInteraction: false,
-                },
-                pagination: {
-                    el: '.main-swiper-pagination',
-                    clickable: true,
-                },
-            });
+            //<!-- var swiper1 = new Swiper('.s1', { -->
+            //  <!-- slidesPerView: 'auto', -->
+            //  <!-- spaceBetween: 30, -->
+            //  <!-- loop: true, -->
+            //  <!-- effect: 'fade', -->
+            //  <!-- autoplay: { -->
+            //	<!-- delay: 4000, -->
+            //	<!-- disableOnInteraction: false, -->
+            //  <!-- }, -->
+            //  <!-- pagination: { -->
+            //	<!-- el: '.main-swiper-pagination', -->
+            //	<!-- clickable: true, -->
+            //  <!-- }, -->
+            //<!-- }); -->
 
 
 
@@ -35,41 +39,41 @@
 
 
             //<!-- var swiper2 = new Swiper('.s2', { -->
-            //      <!-- slidesPerView: 5, -->
-            //      <!-- centeredSlides: true, -->
-            //      <!-- spaceBetween: 50, -->
-            //      <!-- loop: true, -->
+            //	  <!-- slidesPerView: 5, -->
+            //	  <!-- centeredSlides: true, -->
+            //	  <!-- spaceBetween: 50, -->
+            //	  <!-- loop: true, -->
 
-            //      <!-- pagination: { -->
-            //        <!-- el: '.swiper-pagination', -->
-            //        <!-- clickable: true, -->
-            //      <!-- }, -->
-            //            <!-- navigation: { -->
-            //        <!-- nextEl: '.swiper-button-next', -->
-            //        <!-- prevEl: '.swiper-button-prev', -->
-            //      <!-- }, -->
+            //	  <!-- pagination: { -->
+            //		<!-- el: '.swiper-pagination', -->
+            //		<!-- clickable: true, -->
+            //	  <!-- }, -->
+            //	        <!-- navigation: { -->
+            //		<!-- nextEl: '.swiper-button-next', -->
+            //		<!-- prevEl: '.swiper-button-prev', -->
+            //	  <!-- }, -->
 
-            //            <!-- breakpoints: { -->
-            //                <!-- 1024: { -->
-            //                    <!-- slidesPerView: 5, -->
-            //                    <!-- spaceBetween: 50 -->
-            //                <!-- }, -->
-            //                <!-- 768: { -->
-            //                    <!-- slidesPerView: 4, -->
-            //                    <!-- spaceBetween: 10 -->
-            //                <!-- }, -->
-            //                <!-- 640: { -->
-            //                    <!-- slidesPerView: 2, -->
-            //                    <!-- spaceBetween: 10 -->
-            //                <!-- }, -->
-            //                <!-- 320: { -->
-            //                    <!-- slidesPerView: 1, -->
-            //                    <!-- spaceBetween: 10 -->
-            //                <!-- } -->
-            //            <!-- }, -->
+            //	  		<!-- breakpoints: { -->
+            //				<!-- 1024: { -->
+            //					<!-- slidesPerView: 5, -->
+            //					<!-- spaceBetween: 50 -->
+            //				<!-- }, -->
+            //				<!-- 768: { -->
+            //					<!-- slidesPerView: 4, -->
+            //					<!-- spaceBetween: 10 -->
+            //				<!-- }, -->
+            //				<!-- 640: { -->
+            //					<!-- slidesPerView: 2, -->
+            //					<!-- spaceBetween: 10 -->
+            //				<!-- }, -->
+            //				<!-- 320: { -->
+            //					<!-- slidesPerView: 1, -->
+            //					<!-- spaceBetween: 10 -->
+            //				<!-- } -->
+            //			<!-- }, -->
 
 
-            //    <!-- });	 -->
+            //	<!-- });	 -->
 
 
 
@@ -124,41 +128,41 @@
 
 
 
-            <!-- $(window).resize(function(){ -->
-              <!-- var ww = $(window).width() -->
-              <!-- if (ww>1000) LoadSwiper2(4); -->
-              <!-- if (ww>468 && ww<=1000) LoadSwiper2(2); -->
-              <!-- if (ww<=468) LoadSwiper2(2); -->
-            <!-- }) -->
-            <!-- $(window).trigger('resize') -->
+            //<!-- $(window).resize(function(){ -->
+            //  <!-- var ww = $(window).width() -->
+            //  <!-- if (ww>1000) LoadSwiper2(4); -->
+            //  <!-- if (ww>468 && ww<=1000) LoadSwiper2(2); -->
+            //  <!-- if (ww<=468) LoadSwiper2(2); -->
+            //<!-- }) -->
+            //<!-- $(window).trigger('resize') -->
 
 
 
-            });
+        });
 
 
 
-        <!-- function LoadSwiper2( sCount ){ -->
+        //<!-- function LoadSwiper2( sCount ){ -->
 
-        <!-- var swiper2 = new Swiper('.s2', { -->
-              <!-- slidesPerView: sCount, -->
-              <!-- centeredSlides: true, -->
-              <!-- spaceBetween: 30, -->
-              <!-- loop: true, -->
+        //<!-- var swiper2 = new Swiper('.s2', { -->
+        //	  <!-- slidesPerView: sCount, -->
+        //	  <!-- centeredSlides: true, -->
+        //	  <!-- spaceBetween: 30, -->
+        //	  <!-- loop: true, -->
 
-              <!-- pagination: { -->
-                <!-- el: '.swiper-pagination', -->
-                <!-- clickable: true, -->
-              <!-- }, -->
-                    <!-- navigation: { -->
-                <!-- nextEl: '.swiper-button-next', -->
-                <!-- prevEl: '.swiper-button-prev', -->
-              <!-- }, -->
+        //	  <!-- pagination: { -->
+        //		<!-- el: '.swiper-pagination', -->
+        //		<!-- clickable: true, -->
+        //	  <!-- }, -->
+        //	        <!-- navigation: { -->
+        //		<!-- nextEl: '.swiper-button-next', -->
+        //		<!-- prevEl: '.swiper-button-prev', -->
+        //	  <!-- }, -->
 
 
-            <!-- });	 -->
+        //	<!-- });	 -->
 
-        <!-- } -->
+        //<!-- } -->
 
 
 
@@ -170,289 +174,179 @@
 </head>
 <body>
     <div class="main">
-        <div class="header">
 
+        <div class="row">
+            <div class="header">
+                <div class="top-header">
+                    <div class="container">
+                        <ul class="top-menu col-lg-3 col-md-4 col-sm-5 col-xs-6">
+                            <li><a href="#">تماس</a></li>
+                            <li class="hidden-xs"><a href="#">مشترک شوید</a></li>
+                            <li><a href="#">علاقه مندی ها<span class="fcount">0</span></a></li>
+                        </ul>
 
-            <div class="top-header">
+                        <ul class="site-search col-lg-1 col-md-1 col-sm-1 col-xs-2">
+                            <li>
+                                <a class="search-btn"><i class="icon-search"></i></a>
+                                <div class="search-hide-wrapp"></div>
+                            </li>
+                        </ul>
 
+                        <ul class="lang col-lg-2 col-md-2 col-sm-2 col-xs-4">
+                            <li><i class="icon-globe"></i></li>
+                            <li><a href="#">Fa</a></li>
+                            <li><a href="#">Ar</a></li>
+                        </ul>
+
+                        <!-- <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar"> -->
+                        <!-- <span class="icon-bar"></span> -->
+                        <!-- <span class="icon-bar"></span> -->
+                        <!-- <span class="icon-bar"></span>  -->
+                        <!-- </button> -->
+                    </div>
+                </div>
+                <div class="main-header">
+                    <div class="border">
+                        <div class="container">
+                            <nav class="navbar navbar-mycustom">
+                                <div class="container-fluid">
+                                    <div class="navbar-header col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                                            <span class="icon-bar"></span>
+                                            <span class="icon-bar"></span>
+                                            <span class="icon-bar"></span>
+                                        </button>
+                                        <a class="navbar-brand" href="#"><img class="img-responsive" src="/Content/theme/img/logo@2x.png" alt="p2 cosmetics Logo"></a>
+                                    </div>
+                                    <div class="collapse navbar-collapse col-lg-9 col-md-9 col-sm-9 col-xs-12" id="myNavbar">
+                                        <ul class="nav navbar-nav">
+                                            <li><a href="#">درباره ما</a></li>
+                                            <li><a href="#">محصولات</a></li>
+                                            <li><a href="#">تعداد محدود</a></li>
+                                            <li><a href="#">ویژه ها</a></li>
+                                            <!-- <li class="active"><a href="#">تازه ها</a></li> -->
+                                        </ul>
+                                        <!-- <ul class="nav navbar-nav navbar-right"> -->
+                                        <!-- <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li> -->
+                                        <!-- <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li> -->
+                                        <!-- </ul> -->
+                                    </div>
+                                </div>
+                            </nav>
+
+                        </div>
+
+                    </div>
+
+                </div>
+                <div class="bottom-header">
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="p2-Container">
                 <div class="container">
-                    <ul class="col-lg-3 col-md-4 col-sm-5 col-xs-12 top-menu">
+                   @RenderBody()
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 hidden-sm hidden-xs main-footer">
+                <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12 center-block" style="float:none;">
+                    <ul class="col-lg-2 col-md-2 col-sm-2 col-xs-0 fmenu">
+                        <li class="fmenu-title"><a href="#">تازه ها</a></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                    </ul>
+                    <ul class="col-lg-2 col-md-2 col-sm-2 col-xs-0 fmenu">
+                        <li class="fmenu-title"><a href="#">محصولات</a></li>
+                        <li><a href="#">چشم ها</a></li>
+                        <li><a href="#">لب ها</a></li>
+                        <li><a href="#">صورت</a></li>
+                        <li><a href="#">مراقبت ناخن</a></li>
+                        <li><a href="#">زیبایی</a></li>
+                    </ul>
+                    <ul class="col-lg-2 col-md-2 col-sm-2 col-xs-0 fmenu">
+                        <li class="fmenu-title"><a href="#">تعداد محدود</a></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                    </ul>
+                    <ul class="col-lg-2 col-md-2 col-sm-2 col-xs-0 fmenu">
+                        <li class="fmenu-title"><a href="#">ویژه ها</a></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                    </ul>
+                    <ul class="col-lg-2 col-md-2 col-sm-2 col-xs-0 fmenu">
+                        <li class="fmenu-title"><a href="#">درباره ما</a></li>
+                        <li>هدف اصلی ما</li>
+                        <li>........</li>
+                        <li>........</li>
+                        <li>........</li>
+                    </ul>
+                    <ul class="col-lg-2 col-md-2 col-sm-2 col-xs-0 footer-menu-licence">
                         <li>
-                            <a href="#">تماس</a>
+                            <a href="#" target="_blank" class="qualityLogo">
+                                <img src="/Content/theme/img/wessling_en.png" alt="WESSLING - kontrollierte Qualität und Sicherheit">
+                            </a>
                         </li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 bottom-footer">
+                <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12 center-block" style="float:none;">
+                    <ul class="col-lg-2 col-md-2 col-sm-12 col-xs-12 site-copyright">
                         <li>
-                            <a href="#">مشترک شوید</a>
+                            ©
+                            نام سایت
+                            2017
+                        </li>
+                    </ul>
+                    <ul class="col-lg-3 col-md-3 col-sm-12 col-xs-12 footer-menu">
+                        <li>
+                            <a href="#">
+                                امضا
+                            </a>
                         </li>
                         <li>
                             <a href="#">
-                                علاقه مندی ها
-                                <span class="fcount"></span>
+                                امنیت اطلاعات
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                تماس
                             </a>
                         </li>
                     </ul>
-
-                    <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 site-search">
-                        <a class="search-btn">
-                            <i class="icon-search"></i>
-                        </a>
-                        <div class="search-hide-wrapp">
-                        </div>
-                    </div>
-
-                    <ul class="col-lg-2 col-md-2 col-sm-2 col-xs-6 lang">
+                    <ul class="col-lg-2 col-md-3 col-sm-12 col-xs-12 so-menu">
                         <li>
-                            <i class="icon-globe"></i>
+                            <a href="#">
+                                <i class="icon-instagram"></i>
+                            </a>
                         </li>
                         <li>
-                            <a href="#">Fa</a>
-                        </li>
-                        <li>
-                            <a href="#">Ar</a>
+                            <a href="#">
+                                <i class="icon-facebook"></i>
+                            </a>
                         </li>
                     </ul>
                 </div>
-
-            </div>
-
-
-
-
-            <div class="main-header">
-
-                <div class="border">
-                    <div class="container">
-                        <nav class="navbar navbar-mycustom">
-                            <div class="container-fluid">
-                                <div class="navbar-header">
-                                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-                                        <span class="icon-bar"></span>
-                                        <span class="icon-bar"></span>
-                                        <span class="icon-bar"></span>
-                                    </button>
-                                    <a class="navbar-brand" href="#"><img class="img-responsive" src="/Content/theme/img/logo@2x.png" alt="p2 cosmetics Logo"></a>
-                                </div>
-                                <div class="collapse navbar-collapse" id="myNavbar">
-                                    <ul class="nav navbar-nav">
-                                        <li class="active"><a href="#">تازه ها</a></li>
-                                        <li><a href="#">محصولات</a></li>
-                                        <li><a href="#">تعداد محدود</a></li>
-                                        <li><a href="#">ویژه ها</a></li>
-                                        <li><a href="#">درباره ما</a></li>
-                                    </ul>
-                                    <!-- <ul class="nav navbar-nav navbar-right"> -->
-                                    <!-- <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li> -->
-                                    <!-- <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li> -->
-                                    <!-- </ul> -->
-                                </div>
-                            </div>
-                        </nav>
-
-                    </div>
-
-                </div>
-
-            </div>
-            <div class="bottom-header">
             </div>
         </div>
-
-
-
-
-        <div class="p2-Container">
-            @RenderBody()
-
-             @*----wrapp-slider----*@
-            @Html.Action("TopSlider", "Home")
-
-            <div class="container">
-                <div class="row big-title text-center">
-                    <h2>انواع محصولات ما</h2>
-                </div>
-
-                @*----SwipSlider----*@
-                @Html.Action("SwipSlider", "Home")
-
-
-                <div class="clearfix"></div>
-
-
-                <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12 center-block wrapp-product-group" style="float:none;">
-
-                    <div class="row big-title text-center">
-                        <h2>محصولاتی برای شما</h2>
-                    </div>
-
-
-                    <a href="Groups.html" class="col-lg-4 col-md-4 col-sm-6 col-xs-6 pr-cate">
-                        <div class="frame">
-                            <img class="img-responsive" src="/Content/theme/img/cat-pic.jpg" alt="صورت">
-                        </div>
-                        <span>صورت</span>
-                    </a>
-                    <a href="Groups.html" class="col-lg-4 col-md-4 col-sm-6 col-xs-6 pr-cate">
-                        <div class="frame">
-                            <img class="img-responsive" src="/Content/theme/img/cat-pic.jpg" alt="لب ها">
-                        </div>
-                        <span>لب ها</span>
-                    </a>
-                    <a href="Groups.html" class="col-lg-4 col-md-4 col-sm-6 col-xs-6 pr-cate">
-                        <div class="frame">
-                            <img class="img-responsive" src="/Content/theme/img/cat-pic.jpg" alt="چشم ها">
-                        </div>
-                        <span>چشم ها</span>
-                    </a>
-                    <a href="Groups.html" class="col-lg-4 col-md-4 col-sm-6 col-xs-6 pr-cate">
-                        <div class="frame">
-                            <img class="img-responsive" src="/Content/theme/img/cat-pic.jpg" alt="ناخن ها">
-                        </div>
-                        <span>ناخن ها</span>
-                    </a>
-                    <a href="Groups.html" class="col-lg-4 col-md-4 col-sm-6 col-xs-6 pr-cate">
-                        <div class="frame">
-                            <img class="img-responsive" src="/Content/theme/img/cat-pic.jpg" alt="زیبایی">
-                        </div>
-                        <span>زیبایی</span>
-                    </a>
-                    <a href="Groups.html" class="col-lg-4 col-md-4 col-sm-6 col-xs-6 pr-cate">
-                        <div class="frame">
-                            <img class="img-responsive" src="/Content/theme/img/cat-pic.jpg" alt="مراقبت ناخن">
-                        </div>
-                        <span>مراقبت ناخن</span>
-                    </a>
-
-
-                </div>
-
-                <div class="clearfix"></div>
-
-                <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12 center-block wrapp-update" style="float:none;">
-                    <div class="row big-title text-center">
-                        <h2>با ما همیشه بروز باشید</h2>
-                    </div>
-
-                    <a href="#" class="col-lg-6 col-md-6 col-sm-12 col-xs-12 pr-update">
-                        <div class="frame">
-                            <img class="img-responsive" src="/Content/theme/img/update2.png" alt="">
-                        </div>
-                        <span>طرح محدود</span>
-                    </a>
-                    <a href="#" class="col-lg-6 col-md-6 col-sm-12 col-xs-12 pr-update">
-                        <div class="frame">
-                            <img class="img-responsive" src="/Content/theme/img/update1.jpg" alt="">
-                        </div>
-                        <span>درباره ما</span>
-                    </a>
-
-                </div>
-
-            </div>
-
-
-            <div class="footer">
-
-                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 hidden-sm hidden-xs main-footer">
-
-                    <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12 center-block" style="float:none;">
-
-                        <ul class="col-lg-2 col-md-2 col-sm-2 col-xs-0 fmenu">
-                            <li class="fmenu-title"><a href="#">تازه ها</a></li>
-                            <li></li>
-                            <li></li>
-                            <li></li>
-                            <li></li>
-                        </ul>
-                        <ul class="col-lg-2 col-md-2 col-sm-2 col-xs-0 fmenu">
-                            <li class="fmenu-title"><a href="#">محصولات</a></li>
-                            <li><a href="#">چشم ها</a></li>
-                            <li><a href="#">لب ها</a></li>
-                            <li><a href="#">صورت</a></li>
-                            <li><a href="#">مراقبت ناخن</a></li>
-                            <li><a href="#">زیبایی</a></li>
-                        </ul>
-                        <ul class="col-lg-2 col-md-2 col-sm-2 col-xs-0 fmenu">
-                            <li class="fmenu-title"><a href="#">تعداد محدود</a></li>
-                            <li></li>
-                            <li></li>
-                            <li></li>
-                            <li></li>
-                        </ul>
-                        <ul class="col-lg-2 col-md-2 col-sm-2 col-xs-0 fmenu">
-                            <li class="fmenu-title"><a href="#">ویژه ها</a></li>
-                            <li></li>
-                            <li></li>
-                            <li></li>
-                            <li></li>
-                        </ul>
-                        <ul class="col-lg-2 col-md-2 col-sm-2 col-xs-0 fmenu">
-                            <li class="fmenu-title"><a href="#">درباره ما</a></li>
-                            <li>هدف اصلی ما</li>
-                            <li>........</li>
-                            <li>........</li>
-                            <li>........</li>
-                        </ul>
-                        <ul class="col-lg-2 col-md-2 col-sm-2 col-xs-0 footer-menu-licence">
-                            <li>
-                                <a href="#" target="_blank" class="qualityLogo">
-                                    <img src="/Content/theme/img/wessling_en.png" alt="WESSLING - kontrollierte Qualität und Sicherheit">
-                                </a>
-                            </li>
-                            <li></li>
-                            <li></li>
-                            <li></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 bottom-footer">
-                    <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12 center-block" style="float:none;">
-                        <ul class="col-lg-2 col-md-2 col-sm-12 col-xs-12 site-copyright">
-                            <li>
-                                ©
-                                نام سایت
-                                2017
-                            </li>
-                        </ul>
-                        <ul class="col-lg-3 col-md-3 col-sm-12 col-xs-12 footer-menu">
-                            <li>
-                                <a href="#">
-                                    امضا
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    امنیت اطلاعات
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    تماس
-                                </a>
-                            </li>
-                        </ul>
-                        <ul class="col-lg-2 col-md-3 col-sm-12 col-xs-12 so-menu">
-                            <li>
-                                <a href="#">
-                                    <i class="icon-instagram"></i>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <i class="icon-facebook"></i>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-
     </div>
 
-
-    <!-- <script src="js/popper.min.js" type="text-javascript"></script>  -->
     <script src="/Content/theme/js/bootstrap.min.js" type="text/javascript"></script>
     <script src="/Content/theme/js/swiper.min.js" type="text/javascript"></script>
-
 </body>
 </html>

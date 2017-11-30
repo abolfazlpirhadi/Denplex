@@ -12,6 +12,9 @@
           <Property Name="ProductGroupID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ProductParentGroupID" Type="int" />
           <Property Name="ProductGroupTitle" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="ProductGroupName" Type="varchar" MaxLength="150" />
+          <Property Name="ProductGroupImage" Type="varchar" MaxLength="250" />
+          <Property Name="ProductGroupBanner" Type="varchar" MaxLength="250" />
         </EntityType>
         <EntityType Name="Products">
           <Key>
@@ -45,6 +48,16 @@
           <Property Name="SlideImage" Type="varchar" MaxLength="150" />
           <Property Name="SlideIsActive" Type="bit" Nullable="false" />
           <Property Name="SlideDesc" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserName" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="UserPassword" Type="nvarchar" MaxLength="350" Nullable="false" />
+          <Property Name="UserEmail" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="UserIsActive" Type="bit" Nullable="false" />
         </EntityType>
         <Association Name="FK_ProductGroups_ProductGroups">
           <End Role="ProductGroups" Type="Self.ProductGroups" Multiplicity="0..1" />
@@ -99,6 +112,7 @@
           <EntitySet Name="Products" EntityType="Self.Products" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SliderItems" EntityType="Self.SliderItems" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Sliders" EntityType="Self.Sliders" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_ProductGroups_ProductGroups" Association="Self.FK_ProductGroups_ProductGroups">
             <End Role="ProductGroups" EntitySet="ProductGroups" />
             <End Role="ProductGroups1" EntitySet="ProductGroups" />
@@ -131,6 +145,9 @@
           <NavigationProperty Name="ProductGroup1" Relationship="Self.FK_ProductGroups_ProductGroups" FromRole="ProductGroups1" ToRole="ProductGroups" />
           <NavigationProperty Name="Products" Relationship="Self.FK_Products_ProductGroups" FromRole="ProductGroups" ToRole="Products" />
           <NavigationProperty Name="Products1" Relationship="Self.FK_Products_ProductGroups1" FromRole="ProductGroups" ToRole="Products" />
+          <Property Name="ProductGroupName" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="ProductGroupImage" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="ProductGroupBanner" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="Product">
           <Key>
@@ -238,7 +255,18 @@
             <End Role="Sliders" EntitySet="Sliders" />
             <End Role="SliderItems" EntitySet="SliderItems" />
           </AssociationSet>
+          <EntitySet Name="Users" EntityType="DentplexDBModel.User" />
         </EntityContainer>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="UserPassword" Type="String" Nullable="false" MaxLength="350" FixedLength="false" Unicode="true" />
+          <Property Name="UserEmail" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="UserIsActive" Type="Boolean" Nullable="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -248,6 +276,9 @@
           <EntitySetMapping Name="ProductGroups">
             <EntityTypeMapping TypeName="DentplexDBModel.ProductGroup">
               <MappingFragment StoreEntitySet="ProductGroups">
+                <ScalarProperty Name="ProductGroupBanner" ColumnName="ProductGroupBanner" />
+                <ScalarProperty Name="ProductGroupImage" ColumnName="ProductGroupImage" />
+                <ScalarProperty Name="ProductGroupName" ColumnName="ProductGroupName" />
                 <ScalarProperty Name="ProductGroupID" ColumnName="ProductGroupID" />
                 <ScalarProperty Name="ProductParentGroupID" ColumnName="ProductParentGroupID" />
                 <ScalarProperty Name="ProductGroupTitle" ColumnName="ProductGroupTitle" />
@@ -287,6 +318,17 @@
                 <ScalarProperty Name="SlideImage" ColumnName="SlideImage" />
                 <ScalarProperty Name="SlideIsActive" ColumnName="SlideIsActive" />
                 <ScalarProperty Name="SlideDesc" ColumnName="SlideDesc" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="DentplexDBModel.User">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="UserIsActive" ColumnName="UserIsActive" />
+                <ScalarProperty Name="UserEmail" ColumnName="UserEmail" />
+                <ScalarProperty Name="UserPassword" ColumnName="UserPassword" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

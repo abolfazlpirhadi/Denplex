@@ -6,7 +6,7 @@ using System.Web;
 
 namespace Dentplex.Web.ViewModels
 {
-    public class UserViewModel
+    public class LoginViewModel
     {
         [Display(Name = "نام کاربری")]
         [Required(ErrorMessage = "لطفا {0} را وارد نمایید.")]

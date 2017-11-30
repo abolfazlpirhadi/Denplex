@@ -15,28 +15,18 @@ namespace Dentplex.Data.Model
 using System;
     using System.Collections.Generic;
     
-public partial class Product
+public partial class User
 {
 
-    public int ProductID { get; set; }
+    public int UserID { get; set; }
 
-    public int ProductGroupID { get; set; }
+    public string UserName { get; set; }
 
-    public int ProductSubGroupID { get; set; }
+    public string UserPassword { get; set; }
 
-    public string ProductTitle { get; set; }
+    public string UserEmail { get; set; }
 
-    public string ProductShortText { get; set; }
-
-    public string ProductText { get; set; }
-
-    public string ProductImage { get; set; }
-
-
-
-    public virtual ProductGroup ProductGroup { get; set; }
-
-    public virtual ProductGroup ProductGroup1 { get; set; }
+    public bool UserIsActive { get; set; }
 
 }
 

@@ -39,6 +39,43 @@ a,img {
 }
 
 
+@media (max-width: 480px) { 
+             
+
+
+
+
+ }
+ 
+ 
+ 
+ 
+@media only screen and (max-width: 480px) {
+	.col-xs-auto{width:auto !important}
+	.top-header .container{padding:0 !important;}
+	.wrapp-slider iframe {height:230px}
+}
+@media only screen and (min-width: 480px) and (max-width: 768px) {
+	.col-sm-auto{width:auto !important}
+    .wrapp-slider iframe {height:330px}
+}
+@media only screen and (min-width: 768px) and (max-width: 959px) {
+	.col-md-auto{width:auto !important}
+    .wrapp-slider iframe {height:460px}
+}
+@media only screen and (min-width: 959px) {
+	.col-lg-auto{width:auto !important}
+    .wrapp-slider iframe {height:550px}
+}
+
+ 
+.top-header ul{
+    padding:0;
+}
+
+.navbar-header {
+    float: left !important;
+}
     
 
 
@@ -75,8 +112,11 @@ a.navbar-brand>img {
 .top-header i {
     color: #fff !important;
     font-size: 15px;
-    padding: 9px;
     display: block !important;
+}
+
+.top-header li>i {
+    padding: 9px;
 }
 
 
@@ -86,7 +126,7 @@ a.navbar-brand>img {
     margin: 0;
 }
 
-.main-header ul.nav.navbar-nav{float:left}
+
 
 .main-header {
         /* border-bottom: 2px solid #cb023e; */
@@ -96,15 +136,17 @@ a.navbar-brand>img {
 }
 
 
-.lang {
-    float: left;
+span.fcount {
+    background: #fff;
+    color: #000;
+    display: inline-block;
+    padding: 0px 4px;
+    border-radius: 50%;
+    margin-right: 5px;
 }
 
-.lang>li {
-    float: left;
-}
 
-
+.top-menu, .site-search, .lang{float: right;}
 
 .top-header {
     font-size: 11px;
@@ -115,9 +157,9 @@ a.navbar-brand>img {
 	    margin: 0px;
 }
 
-.top-header ul.top-menu {
-    margin-right: 15px;
-}
+/* .top-header ul.top-menu { */
+    /* margin-right: 15px; */
+/* } */
 
 .top-header ul li a {
 	color:#fff !important;
@@ -144,7 +186,7 @@ a.navbar-brand>img {
 
 
 .main-header .navbar-mycustom .navbar-toggle .icon-bar {
-    background-color: #888;
+    background-color: #fff;
 }
 
 .main-header .navbar-mycustom .navbar-nav > li > a {
@@ -154,6 +196,10 @@ a.navbar-brand>img {
     margin-left: 2px;
     color: #bf2348 !important;
 	border: 1px solid #fff;
+}
+
+.main-header .navbar-mycustom .navbar-nav > li{
+	padding:0
 }
 
 
@@ -329,6 +375,11 @@ font-size:22px;
 
 .grid-product span{width:100%; text-align:center; display:block}
 
+
+
+
+
+
 .grid-product li{margin-bottom:15px}
 
 .grid-product.product{padding:60px;}
@@ -339,3 +390,25 @@ font-size:22px;
 
 .swiper-button-prev {left: -55px !important;}
 .swiper-button-next{right: -55px !important;}
+
+
+
+
+
+
+.navbar-brand {
+    float: left !important;
+}
+
+.main-header .navbar-toggle {
+    position: relative;
+    float: right !important;
+    padding: 9px 10px;
+    margin-top: 8px;
+    margin-left: 15px;
+    margin-bottom: 8px;
+    background-color: transparent;
+    background-image: none;
+    border: 1px solid transparent;
+    border-radius: 4px;
+}

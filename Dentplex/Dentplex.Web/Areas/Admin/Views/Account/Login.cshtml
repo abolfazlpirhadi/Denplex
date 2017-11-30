@@ -1,10 +1,16 @@
-﻿@model Dentplex.Web.ViewModels.UserViewModel
+﻿@model Dentplex.Web.ViewModels.LoginViewModel
 
+@{
+    Layout = null;
+}
 
-@using (Html.BeginForm()) 
+<link href="~/Content/bootstrap.css" rel="stylesheet" />
+<link href="~/Content/bootstrap-rtl.min.css" rel="stylesheet" />
+
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>UserViewModel</h4>
         <hr />
@@ -27,15 +33,11 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input type="submit" value="Login" class="btn btn-default" />
             </div>
         </div>
     </div>
 }
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
 
 <script src="~/Scripts/jquery-1.10.2.min.js"></script>
 <script src="~/Scripts/jquery.validate.min.js"></script>

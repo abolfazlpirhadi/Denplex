@@ -15,14 +15,19 @@ namespace Dentplex.Web.Controllers
         {
             return View();
         }
-
         public PartialViewResult TopSlider()
         {
-            return PartialView(db.SliderItems.Where(s => s.SlideID == 1).OrderBy(s => s.SlideItemOrder).ToList());
+            var list = db.SliderItems.Where(s => s.SlideID == 1).OrderBy(s => s.SlideItemOrder).ToList();
+            return PartialView(list);
         }
         public PartialViewResult SwipSlider()
         {
-            return PartialView(db.SliderItems.Where(s => s.SlideID == 3).OrderBy(s=>s.SlideItemOrder).ToList());
+            return PartialView(db.SliderItems.Where(s => s.SlideID == 3).OrderBy(s => s.SlideItemOrder).ToList());
+        }
+        public ActionResult ProductGroups()
+        {
+            var list = db.ProductGroups.Where(g => g.ProductParentGroupID == null);
+            return PartialView(list);
         }
 
     }

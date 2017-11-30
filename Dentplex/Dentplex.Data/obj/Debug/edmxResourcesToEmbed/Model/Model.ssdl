@@ -7,6 +7,9 @@
     <Property Name="ProductGroupID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="ProductParentGroupID" Type="int" />
     <Property Name="ProductGroupTitle" Type="nvarchar" MaxLength="150" Nullable="false" />
+    <Property Name="ProductGroupName" Type="varchar" MaxLength="150" />
+    <Property Name="ProductGroupImage" Type="varchar" MaxLength="250" />
+    <Property Name="ProductGroupBanner" Type="varchar" MaxLength="250" />
   </EntityType>
   <EntityType Name="Products">
     <Key>
@@ -40,6 +43,16 @@
     <Property Name="SlideImage" Type="varchar" MaxLength="150" />
     <Property Name="SlideIsActive" Type="bit" Nullable="false" />
     <Property Name="SlideDesc" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="UserID" />
+    </Key>
+    <Property Name="UserID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserName" Type="varchar" MaxLength="250" Nullable="false" />
+    <Property Name="UserPassword" Type="nvarchar" MaxLength="350" Nullable="false" />
+    <Property Name="UserEmail" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="UserIsActive" Type="bit" Nullable="false" />
   </EntityType>
   <Association Name="FK_ProductGroups_ProductGroups">
     <End Role="ProductGroups" Type="Self.ProductGroups" Multiplicity="0..1" />
@@ -94,6 +107,7 @@
     <EntitySet Name="Products" EntityType="Self.Products" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="SliderItems" EntityType="Self.SliderItems" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Sliders" EntityType="Self.Sliders" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="FK_ProductGroups_ProductGroups" Association="Self.FK_ProductGroups_ProductGroups">
       <End Role="ProductGroups" EntitySet="ProductGroups" />
       <End Role="ProductGroups1" EntitySet="ProductGroups" />

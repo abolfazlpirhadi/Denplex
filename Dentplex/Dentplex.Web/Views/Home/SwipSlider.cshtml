@@ -2,63 +2,24 @@
 
 @if (Model.Any())
 {
-    <div class="wrapp-our-pr ">
-        <div class="swiper-container3">
-            <div class="swiper-wrapper">
-                @foreach (var item in Model)
-                {
-                    <a href="@item.SlideItemLink" class="swiper-slide">
-                        <img src="~/Images/SliderItemImages/@item.SlideItemImage" alt="HERO LASH MASCARA" class="img-responsive">
-                        <span>@item.SlideItemTitle</span>
-                    </a>
-                }
-
-            </div>
-            <!-- Add Pagination -->
-            <div class="swiper-pagination hide"></div>
-
+    <div class="container">
+        <div class="row big-title text-center">
+            <h2>انواع محصولات ما</h2>
         </div>
-
-
-        <!-- Add Arrows -->
-        <!-- <div class="swiper-button-next"></div> -->
-        <!-- <div class="swiper-button-prev"></div> -->
-
-
-
+        <div class="wrapp-our-pr">
+            <div class="swiper-container3">
+                <div class="swiper-wrapper">
+                    @foreach (var item in Model)
+                    {
+                        <a href="@item.SlideItemLink" class="swiper-slide">
+                            <img src="~/Images/SliderItemImages/@item.SlideItemImage" alt="HERO LASH MASCARA" class="img-responsive">
+                            <span>@item.SlideItemTitle</span>
+                        </a>
+                    }
+                </div>
+                <div class="swiper-pagination hide"></div>
+            </div>
+        </div>
     </div>
 }
 
-
-    @*<a href="product.html" class="swiper-slide">
-            <img src="/Content/theme/img/sample2.jpg" alt="HERO LASH MASCARA" class="img-responsive">
-            <span>صورت</span>
-        </a>
-        <a href="product.html" class="swiper-slide">
-            <img src="/Content/theme/img/sample3.jpg" alt="HERO LASH MASCARA" class="img-responsive">
-            <span>صورت</span>
-        </a>
-        <a href="product.html" class="swiper-slide">
-            <img src="/Content/theme/img/sample1.jpg" alt="HERO LASH MASCARA" class="img-responsive">
-            <span>صورت</span>
-        </a>
-        <a href="product.html" class="swiper-slide">
-            <img src="/Content/theme/img/sample2.jpg" alt="HERO LASH MASCARA" class="img-responsive">
-            <span>صورت</span>
-        </a>
-        <a href="product.html" class="swiper-slide">
-            <img src="/Content/theme/img/sample3.jpg" alt="HERO LASH MASCARA" class="img-responsive">
-            <span>صورت</span>
-        </a>
-        <a href="product.html" class="swiper-slide">
-            <img src="/Content/theme/img/sample1.jpg" alt="HERO LASH MASCARA" class="img-responsive">
-            <span>صورت</span>
-        </a>
-        <a href="product.html" class="swiper-slide">
-            <img src="/Content/theme/img/sample2.jpg" alt="HERO LASH MASCARA" class="img-responsive">
-            <span>صورت</span>
-        </a>
-        <a href="product.html" class="swiper-slide">
-            <img src="/Content/theme/img/sample3.jpg" alt="HERO LASH MASCARA" class="img-responsive">
-            <span>صورت</span>
-        </a>*@
