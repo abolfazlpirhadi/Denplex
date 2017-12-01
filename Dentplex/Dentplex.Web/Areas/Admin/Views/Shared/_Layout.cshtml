@@ -4,111 +4,180 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - My ASP.NET Application</title>
-    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
-    <link href="~/Content/bootstrap-rtl.min.css" rel="stylesheet" type="text/css" />
-    <link href="~/Content/sidebarnav/css/SidebarNav.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/bootstrap-rtl.css" rel="stylesheet" type="text/css" />
     <link href="~/fonts/font-awesome/css/font-awesome.css" rel="stylesheet" type="text/css" />
-    
+    <link href="~/Content/ja-menu/css/jquery-accordion-menu.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
     <script src="~/Scripts/modernizr-2.6.2.js"></script>
     <link href="~/Content/MyStyle.css" rel="stylesheet" />
+    <script type="text/javascript">
+        jQuery(document).ready(function () {
+            jQuery("#jquery-accordion-menu").jqueryAccordionMenu();
+
+        });
+
+        $(function () {
+            $("#menu-list li").click(function () {
+                $("#menu-list li.active").removeClass("active")
+                $(this).addClass("active");
+            })
+        })
+    </script>
+
+
+    <script type="text/javascript">
+        (function ($) {
+            $.expr[":"].Contains = function (a, i, m) {
+                return (a.textContent || a.innerText || "").toUpperCase().indexOf(m[3].toUpperCase()) >= 0;
+            };
+            function filterList(header, list) {
+                var form = $("<form>").attr({
+                    "class": "filterform",
+                    action: "#"
+                }), input = $("<input>").attr({
+                    "class": "filterinput",
+                    type: "text"
+                });
+                $(form).append(input).appendTo(header);
+                $(input).change(function () {
+                    var filter = $(this).val();
+                    if (filter) {
+                        $matches = $(list).find("a:Contains(" + filter + ")").parent();
+                        $("li", list).not($matches).slideUp();
+                        $matches.slideDown();
+                    } else {
+                        $(list).find("li").slideDown();
+                    }
+                    return false;
+                }).keyup(function () {
+                    $(this).change();
+                });
+            }
+            $(function () {
+                filterList($("#form"), $("#menu-list"));
+            });
+        })(jQuery);
+    </script>
 </head>
 <body>
 
     @*<div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav"></ul>
-            </div>
-        </div>
-    </div>
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        </footer>
-    </div>*@
-
-
-
-
-    <aside class="sidebar-left">
-        <nav class="navbar navbar-inverse">
-            <div class="container-fluid">
+            <div class="container">
                 <div class="navbar-header">
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".collapse" aria-expanded="false">
-                        <span class="sr-only">Toggle navigation</span>
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="#">p2cosmetics </a>
+                    @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
                 </div>
-                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                    <ul class="sidebar-menu">
-                        <li class="treeview">
-                            <a href="#">
-                                <i class="fa fa-dashboard"></i><i class="icon-gear"></i> <span>مدیریت اسلایدر</span></i>
-                            </a>
-                        </li>
-                        <li class="treeview">
-                            <a href="#">
-                                <i class="fa fa-dashboard"></i>
-                                 <i class="icon-gear"></i>
-                                <span>مدیریت محصولات</span>
-                                <i class="icon-angle-left pull-left"></i>
-                            </a>
-                            <ul class="treeview-menu">
-                                <li><a href="/Admin/ProductGroups"><i class="icon-gift"></i>گروه بندی</a></li>
-                                <li><a href="/Admin/Products"><i class="icon-gift"></i>لیست محصولات</a></li>
-                            </ul>
-                        </li>
-
-                        <li class="treeview">
-                            <a href="@Url.Action("LogOff","Account")">
-                                <i class="fa fa-dashboard"></i><i class="icon-signout"></i> <span>خروج</span></i>
-                            </a>
-                        </li>
-                    </ul>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav"></ul>
                 </div>
-                <!-- /.navbar-collapse -->
             </div>
-            <!-- /.container-fluid -->
-        </nav>
-    </aside>
-
-
-
-
-    <div class='content container-fluid' style="background-color:#fafafa;">
-        <div class="col-sm-12">
-            @RenderBody()
         </div>
-
-        <div class="col-sm-12">
+        <div class="container body-content">
+            @RenderBody()
+            <hr />
             <footer>
                 <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
             </footer>
-        </div>
+        </div>*@
+
+
+    <div class="admin-header col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <a class="avatar"><i class="icon-user"></i></a>
+        <ul class="avatar-name">
+            <li class="date hidden-xs">ابوالفضل پیرهادی</li>
+            <li class="date hidden-xs hidden-sm"><i class="icon-calendar"></i> 1396/9/9</li>
+        </ul>
+        <ul class="admin-top-menu">
+            <li>
+                <a href="@Url.Action("LogOff","Account")">
+                    <i class="icon-off"></i> <span>خروج</span></i>
+                </a>
+            </li>
+        </ul>
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#AdminNavbar">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
     </div>
 
-    
+
+
+    <nav class="navbar navbar-admin col-lg-2 col-md-2 col-sm-2 col-xs-12">
+        <div class="container-fluid">
+            <div class="collapse navbar-collapse" id="AdminNavbar">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <div id="jquery-accordion-menu" class="jquery-accordion-menu red">
+                            <div class="jquery-accordion-menu-header" id="form"></div>
+                            <ul id="menu-list">
+
+                                <li class="active"><a href="#"><i class="icon-home"></i>داشبورد </a></li>
+                                <li><a href="#"><i class="icon-eye-open"></i>مشاهده سایت </a></li>
+                                @*<li>
+                                        <a href="#"><i class="icon-gift"></i>گالری </a><span class="jquery-accordion-menu-label">
+                                            12
+                                        </span>
+                                    </li>*@
+                                <li>
+                                    <a href="#"><i class="icon-gift"></i>مدیریت محصولات </a>
+                                    <ul class="submenu">
+                                        <li><a href="#"><i class="icon-sitemap"></i> گروه بندی </a></li>
+                                        <li><a href="#"><i class="icon-list"></i> لیست محصولات </a></li>
+                                        @*<li>
+                                                <a href="#">زیر منو </a>
+                                                <ul class="submenu">
+                                                    <li><a href="#">زیرمنو1 </a></li>
+                                                    <li><a href="#">زیرمنو 2 </a></li>
+                                                    <li><a href="#">زیر منو 3 </a></li>
+                                                </ul>
+                                            </li>*@
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href="#"><i class="icon-user"></i>کاربری </a>
+                                    <ul class="submenu">
+                                        <li><a href="#"><i class="icon-key"></i> تغییر رمز عبور </a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                            @*<div class="jquery-accordion-menu-footer">
+                                    فوتر منو
+                                </div>*@
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+
+
+
+
+
+        <div class="load-modules col-lg-10 col-md-10 col-sm-10 col-xs-12">
+            @RenderBody()
+        </div>
+
+        @*<div class="admin-footer col-sm-12">
+                <footer>
+                    <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+                </footer>
+            </div>*@
+
+
 
     @RenderSection("Scripts", false)
-    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+
     <script src="~/Scripts/bootstrap.min.js"></script>
-    <script src='~/Content/sidebarnav/js/SidebarNav.min.js' type='text/javascript'></script>
-    <script>
-      $('.sidebar-menu').SidebarNav()
-    </script>
+    <script src="~/Content/ja-menu/js/jquery-accordion-menu.js" type='text/javascript'></script>
+
 
     <script>
         $(function () {
