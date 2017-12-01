@@ -22,7 +22,7 @@ namespace Dentplex.Web.Controllers
         }
         public PartialViewResult SwipSlider()
         {
-            return PartialView(db.SliderItems.Where(s => s.SlideID == 3).OrderBy(s => s.SlideItemOrder).ToList());
+            return PartialView(db.Products.Where(p=>p.ProductIsFavourite==true).ToList());
         }
         public ActionResult ProductGroups()
         {
