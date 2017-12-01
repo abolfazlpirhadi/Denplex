@@ -125,9 +125,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\bootstrap-rtl.min.css" />
-    <Content Include="Content\bootstrap.css" />
-    <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\ckeditor\adapters\jquery.js" />
     <Content Include="Content\ckeditor\build-config.js" />
     <Content Include="Content\ckeditor\CHANGES.html" />
@@ -1235,6 +1232,12 @@
     <Content Include="Content\ckeditor\_source\skins\v2\templates.css" />
     <Content Include="Content\ckeditor\_source\skins\v2\toolbar.css" />
     <Content Include="Content\ckeditor\_source\themes\default\theme.js" />
+    <Content Include="Content\ja-menu\css\font-awesome.css" />
+    <Content Include="Content\ja-menu\css\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Content\ja-menu\css\jquery-accordion-menu.css" />
+    <Content Include="Content\ja-menu\index.html" />
+    <Content Include="Content\ja-menu\js\jquery-1.11.2.min.js" />
+    <Content Include="Content\ja-menu\js\jquery-accordion-menu.js" />
     <Content Include="Content\sidebarnav\css\SidebarNav.min.css" />
     <Content Include="Content\sidebarnav\index.html" />
     <Content Include="Content\sidebarnav\js\SidebarNav.min.js" />
@@ -1345,6 +1348,12 @@
     <Content Include="fonts\font-awesome\font\FontAwesome.otf" />
     <Content Include="Areas\Admin\Views\Account\Login.cshtml" />
     <Content Include="Areas\Admin\Views\Home\Index.cshtml" />
+    <Content Include="Content\ja-menu\css\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Content\ja-menu\css\fonts\fontawesome-webfont.woff" />
+    <Content Include="Content\ja-menu\css\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\ja-menu\css\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Content\ja-menu\css\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Content\ja-menu\css\fonts\weathericons-regular-webfont.ttf" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Images\ProductImages\MainImage\96ccd8e2-95ee-4ad5-8648-a62738aaf1db.jpg" />
     <Content Include="Images\ProductImages\ThumbImage\96ccd8e2-95ee-4ad5-8648-a62738aaf1db.jpg" />
