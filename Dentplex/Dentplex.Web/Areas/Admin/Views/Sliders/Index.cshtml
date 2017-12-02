@@ -4,7 +4,8 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h4>فهرست اسلایدر</h4>
+<hr />
 
 <p>
     <a href="@Url.Action("Create","Sliders")" class="btn btn-sm btn-primary"><i class="glyphicon glyphicon-plus"></i> افزودن</a>
@@ -43,7 +44,7 @@
             </td>*@
             <td>
                 <a href="@Url.Action("Edit","Sliders",new { id = @item.SlideID})" class="btn btn-sm btn-success"><i class="glyphicon glyphicon-edit"></i>ویرایش</a>
-                <a href="@Url.Action("Delete","Sliders",new { id = @item.SlideID})" class="btn btn-sm btn-danger"><i class="glyphicon glyphicon-trash"></i>حذف</a>
+                <a href="@Url.Action("","",new { id = @item.SlideID})" class="btn btn-sm btn-danger"><i class="glyphicon glyphicon-trash"></i>حذف</a>
             </td>
         </tr>
     }

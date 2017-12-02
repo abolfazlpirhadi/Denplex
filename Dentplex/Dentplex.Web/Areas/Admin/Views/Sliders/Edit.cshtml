@@ -4,7 +4,8 @@
     ViewBag.Title = "Edit";
 }
 
-<h2>Edit</h2>
+<h4>ویرایش اسلایدر</h4>
+<hr />
 
 
 @using (Html.BeginForm("Edit", "Sliders", FormMethod.Post, new { enctype = "multipart/form-data" }))
@@ -12,7 +13,6 @@
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.SlideID)
         @Html.HiddenFor(model=>model.SlideImage)

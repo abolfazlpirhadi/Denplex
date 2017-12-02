@@ -4,7 +4,8 @@
     ViewBag.Title = "Create";
 }
 
-<h2>Create</h2>
+<h4>افزدون آیتم های اسلایدر</h4>
+<hr />
 
 
 @using (Html.BeginForm("Create", "SliderItems", FormMethod.Post, new { enctype = "multipart/form-data" })) 
@@ -12,7 +13,6 @@
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
             @Html.LabelFor(model => model.SlideID, htmlAttributes: new { @class = "control-label col-md-2" })

@@ -15,7 +15,7 @@ namespace Dentplex.Data.Model
         [Display(Name = "اسلایدر")]
         public int SlideID { get; set; }
 
-        [Display(Name = "ایتم های اسلایدر")]
+        [Display(Name = "عنوان اسلاید")]
         [Required(ErrorMessage = "لطفا {0} را وارد نمایید.")]
         public string SlideItemTitle { get; set; }
 

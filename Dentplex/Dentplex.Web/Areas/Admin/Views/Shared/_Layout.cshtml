@@ -118,16 +118,18 @@
 
                                 <li class="active"><a href="#"><i class="icon-home"></i>داشبورد </a></li>
                                 <li><a href="#"><i class="icon-eye-open"></i>مشاهده سایت </a></li>
-                                @*<li>
-                                        <a href="#"><i class="icon-gift"></i>گالری </a><span class="jquery-accordion-menu-label">
-                                            12
-                                        </span>
-                                    </li>*@
+                                <li>
+                                    <a href="#"><i class="icon-gift"></i>مدیریت اسلایدر</a>
+                                    <ul class="submenu">
+                                        <li><a href="/Admin/Sliders"><i class="icon-adjust"></i> اسلایدر </a></li>
+                                        <li><a href="/Admin/SliderItems"><i class="icon-adjust"></i> آیتم های اسلایدر </a></li>
+                                    </ul>
+                                </li>
                                 <li>
                                     <a href="#"><i class="icon-gift"></i>مدیریت محصولات </a>
                                     <ul class="submenu">
-                                        <li><a href="#"><i class="icon-sitemap"></i> گروه بندی </a></li>
-                                        <li><a href="#"><i class="icon-list"></i> لیست محصولات </a></li>
+                                        <li><a href="/Admin/ProductGroups"><i class="icon-sitemap"></i> گروه بندی </a></li>
+                                        <li><a href="/Admin/Products"><i class="icon-list"></i> لیست محصولات </a></li>
                                         @*<li>
                                                 <a href="#">زیر منو </a>
                                                 <ul class="submenu">
@@ -161,15 +163,15 @@
 
 
 
-        <div class="load-modules col-lg-10 col-md-10 col-sm-10 col-xs-12">
-            @RenderBody()
-        </div>
+    <div class="load-modules col-lg-10 col-md-10 col-sm-10 col-xs-12">
+        @RenderBody()
+    </div>
 
-        @*<div class="admin-footer col-sm-12">
-                <footer>
-                    <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-                </footer>
-            </div>*@
+    @*<div class="admin-footer col-sm-12">
+            <footer>
+                <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            </footer>
+        </div>*@
 
 
 

@@ -1270,6 +1270,8 @@
     <Content Include="Content\theme\js\jquery.banner-rotator.min.js" />
     <Content Include="Content\theme\js\jquery.easing.1.3.min.js" />
     <Content Include="Content\theme\js\jquery.min.js" />
+    <Content Include="Content\theme\css\osSlider.css" />
+    <Content Include="Content\theme\js\osSlider.js" />
     <Content Include="Content\theme\js\swiper.min.js" />
     <Content Include="Content\MyStyle.css" />
     <Content Include="Content\Site.css" />

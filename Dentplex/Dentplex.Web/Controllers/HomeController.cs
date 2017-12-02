@@ -22,7 +22,8 @@ namespace Dentplex.Web.Controllers
         }
         public PartialViewResult SwipSlider()
         {
-            return PartialView(db.Products.Where(p=>p.ProductIsFavourite==true).ToList());
+            var list = db.Products.Where(p => p.ProductIsFavourite == true).ToList();
+            return PartialView(list);
         }
         public ActionResult ProductGroups()
         {
