@@ -7,6 +7,8 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Dentplex.Data.Model;
+using Dentplex.Web.Classes;
+using System.IO;
 
 namespace Dentplex.Web.Areas.Admin.Controllers
 {
@@ -47,10 +49,27 @@ namespace Dentplex.Web.Areas.Admin.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ProductGroupID,ProductParentGroupID,ProductGroupTitle")] ProductGroup productGroup)
+        public ActionResult Create([Bind(Include = "ProductGroupID,ProductParentGroupID,ProductGroupTitle")] ProductGroup productGroup, HttpPostedFileBase imgBannerProductGroup, HttpPostedFileBase imgProductGroup)
         {
             if (ModelState.IsValid)
             {
+                string mainImagePath = "/Images/ProuctGroups/MainImage/";
+                string bannerImagePath = "/Images/ProuctGroups/BannerImage/";
+
+                if (imgProductGroup != null && imgProductGroup.IsImage())
+                {
+                    string imageName = Guid.NewGuid() + Path.GetExtension(imgProductGroup.FileName);
+                    productGroup.ProductGroupImage = imageName;
+                    imgProductGroup.SaveAs(Server.MapPath(mainImagePath + imageName));
+                }
+
+                if (imgBannerProductGroup != null && imgBannerProductGroup.IsImage())
+                {
+                    string imageName = Guid.NewGuid() + Path.GetExtension(imgBannerProductGroup.FileName);
+                    productGroup.ProductGroupBanner = imageName;
+                    imgBannerProductGroup.SaveAs(Server.MapPath(bannerImagePath + imageName));
+                }
+
                 db.ProductGroups.Add(productGroup);
                 db.SaveChanges();
 
@@ -76,10 +95,28 @@ namespace Dentplex.Web.Areas.Admin.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ProductGroupID,ProductParentGroupID,ProductGroupTitle")] ProductGroup productGroup)
+        public ActionResult Edit([Bind(Include = "ProductGroupID,ProductParentGroupID,ProductGroupTitle")] ProductGroup productGroup, HttpPostedFileBase imgBannerProductGroup, HttpPostedFileBase imgProductGroup)
         {
             if (ModelState.IsValid)
             {
+                string mainImagePath = "/Images/ProuctGroups/MainImage/";
+                string bannerImagePath = "/Images/ProuctGroups/BannerImage/";
+
+                if (imgProductGroup != null && imgProductGroup.IsImage())
+                {
+                    string imageName = Guid.NewGuid() + Path.GetExtension(imgProductGroup.FileName);
+                    productGroup.ProductGroupImage = imageName;
+                    imgProductGroup.SaveAs(Server.MapPath(mainImagePath + imageName));
+                }
+
+                if (imgBannerProductGroup != null && imgBannerProductGroup.IsImage())
+                {
+                    string imageName = Guid.NewGuid() + Path.GetExtension(imgBannerProductGroup.FileName);
+                    productGroup.ProductGroupBanner = imageName;
+                    imgBannerProductGroup.SaveAs(Server.MapPath(bannerImagePath + imageName));
+                }
+
+
                 db.Entry(productGroup).State = EntityState.Modified;
                 db.SaveChanges();
 

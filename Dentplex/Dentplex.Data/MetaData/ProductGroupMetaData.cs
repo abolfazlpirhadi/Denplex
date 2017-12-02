@@ -16,6 +16,14 @@ namespace Dentplex.Data.Model
         [Display(Name = "عنوان گروه")]
         [Required(ErrorMessage = "لطفا {0} را وارد نمایید.")]
         public string ProductGroupTitle { get; set; }
+
+        [Display(Name = "تصویر گروه")]
+        //[Required(ErrorMessage = "لطفا {0} را وارد نمایید.")]
+        public string ProductGroupImage { get; set; }
+
+        [Display(Name = "تصویر بنر")]
+        //[Required(ErrorMessage = "لطفا {0} را وارد نمایید.")]
+        public string ProductGroupBanner { get; set; }
     }
 
     [MetadataType(typeof(ProductGroupMetaData))]
