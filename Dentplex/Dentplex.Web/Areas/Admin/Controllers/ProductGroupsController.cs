@@ -99,11 +99,12 @@ namespace Dentplex.Web.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                string mainImagePath = "/Images/ProuctGroups/MainImage/";
-                string bannerImagePath = "/Images/ProuctGroups/BannerImage/";
-
                 if (imgProductGroup != null && imgProductGroup.IsImage())
                 {
+                    string mainImagePath = "/Images/ProuctGroups/MainImage/";
+                    if (System.IO.File.Exists(Server.MapPath(mainImagePath + productGroup.ProductGroupImage)))
+                        System.IO.File.Delete(Server.MapPath(mainImagePath + productGroup.ProductGroupImage));
+
                     string imageName = Guid.NewGuid() + Path.GetExtension(imgProductGroup.FileName);
                     productGroup.ProductGroupImage = imageName;
                     imgProductGroup.SaveAs(Server.MapPath(mainImagePath + imageName));
@@ -111,6 +112,10 @@ namespace Dentplex.Web.Areas.Admin.Controllers
 
                 if (imgBannerProductGroup != null && imgBannerProductGroup.IsImage())
                 {
+                    string bannerImagePath = "/Images/ProuctGroups/BannerImage/";
+                    if (System.IO.File.Exists(Server.MapPath(bannerImagePath + productGroup.ProductGroupBanner)))
+                        System.IO.File.Delete(Server.MapPath(bannerImagePath + productGroup.ProductGroupBanner));
+
                     string imageName = Guid.NewGuid() + Path.GetExtension(imgBannerProductGroup.FileName);
                     productGroup.ProductGroupBanner = imageName;
                     imgBannerProductGroup.SaveAs(Server.MapPath(bannerImagePath + imageName));
