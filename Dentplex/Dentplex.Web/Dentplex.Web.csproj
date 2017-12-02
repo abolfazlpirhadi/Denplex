@@ -1245,6 +1245,10 @@
     <Content Include="Content\sidebarnav\js\SidebarNav.min.js" />
     <Content Include="Content\theme\css\bootstrap.css" />
     <Content Include="Content\theme\css\font-awesome.min.css" />
+    <Content Include="Content\theme\css\img\039.png" />
+    <Content Include="Content\theme\css\img\040.png" />
+    <Content Include="Content\theme\css\img\next.png" />
+    <Content Include="Content\theme\css\img\prev.png" />
     <Content Include="Content\theme\css\jbr_banner-rotator.min.css" />
     <Content Include="Content\theme\css\jbr_view.min.css" />
     <Content Include="Content\theme\css\jquery-ui.min.css" />
