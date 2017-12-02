@@ -25,7 +25,9 @@
         <th>
             @Html.DisplayNameFor(model => model.ProductShortText)
         </th>
-
+        <th>
+            @Html.DisplayNameFor(model => model.ProductIsFavourite)
+        </th>
         <th>
             @Html.DisplayNameFor(model => model.ProductImage)
         </th>
@@ -46,6 +48,9 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.ProductShortText)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductIsFavourite)
             </td>
             <td>
                 <img src="/Images/ProductImages/ThumbImage/@item.ProductImage" class="thumbnail" style="max-width: 50px" />

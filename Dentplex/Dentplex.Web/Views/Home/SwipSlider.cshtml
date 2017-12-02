@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Dentplex.Data.Model.SliderItem>
+﻿@model IEnumerable<Dentplex.Data.Model.Product>
 
 @if (Model.Any())
 {
@@ -11,9 +11,9 @@
                 <div class="swiper-wrapper">
                     @foreach (var item in Model)
                     {
-                        <a href="@item.SlideItemLink" class="swiper-slide">
-                            <img src="~/Images/SliderItemImages/@item.SlideItemImage" alt="HERO LASH MASCARA" class="img-responsive">
-                            <span>@item.SlideItemTitle</span>
+                        <a href="#" class="swiper-slide">
+                            <img src="~/Images/SliderItemImages/@item.ProductImage" alt="HERO LASH MASCARA" class="img-responsive">
+                            <span>@item.ProductTitle</span>
                         </a>
                     }
                 </div>

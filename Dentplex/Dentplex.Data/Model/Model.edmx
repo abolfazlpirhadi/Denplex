@@ -24,9 +24,11 @@
           <Property Name="ProductGroupID" Type="int" Nullable="false" />
           <Property Name="ProductSubGroupID" Type="int" Nullable="false" />
           <Property Name="ProductTitle" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="ProductName" Type="varchar" MaxLength="250" />
           <Property Name="ProductShortText" Type="nvarchar" MaxLength="350" Nullable="false" />
           <Property Name="ProductText" Type="nvarchar(max)" />
           <Property Name="ProductImage" Type="varchar" MaxLength="100" />
+          <Property Name="ProductIsFavourite" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="SliderItems">
           <Key>
@@ -162,6 +164,8 @@
           <Property Name="ProductImage" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="ProductGroup" Relationship="Self.FK_Products_ProductGroups" FromRole="Products" ToRole="ProductGroups" />
           <NavigationProperty Name="ProductGroup1" Relationship="Self.FK_Products_ProductGroups1" FromRole="Products" ToRole="ProductGroups" />
+          <Property Name="ProductName" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="ProductIsFavourite" Type="Boolean" Nullable="false" />
         </EntityType>
         <EntityType Name="SliderItem">
           <Key>
@@ -288,6 +292,8 @@
           <EntitySetMapping Name="Products">
             <EntityTypeMapping TypeName="DentplexDBModel.Product">
               <MappingFragment StoreEntitySet="Products">
+                <ScalarProperty Name="ProductIsFavourite" ColumnName="ProductIsFavourite" />
+                <ScalarProperty Name="ProductName" ColumnName="ProductName" />
                 <ScalarProperty Name="ProductID" ColumnName="ProductID" />
                 <ScalarProperty Name="ProductGroupID" ColumnName="ProductGroupID" />
                 <ScalarProperty Name="ProductSubGroupID" ColumnName="ProductSubGroupID" />

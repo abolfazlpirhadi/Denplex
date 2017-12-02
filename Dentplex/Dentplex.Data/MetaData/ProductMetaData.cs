@@ -37,6 +37,9 @@ namespace Dentplex.Data.Model
 
         [Display(Name = "تصویر")]
         public string ProductImage { get; set; }
+
+        [Display(Name = "برگزیده")]
+        public bool ProductIsFavourite { get; set; }
     }
 
     [MetadataType(typeof(ProductMetaData))]

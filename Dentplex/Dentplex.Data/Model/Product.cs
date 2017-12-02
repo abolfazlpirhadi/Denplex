@@ -32,6 +32,10 @@ public partial class Product
 
     public string ProductImage { get; set; }
 
+    public string ProductName { get; set; }
+
+    public bool ProductIsFavourite { get; set; }
+
 
 
     public virtual ProductGroup ProductGroup { get; set; }
