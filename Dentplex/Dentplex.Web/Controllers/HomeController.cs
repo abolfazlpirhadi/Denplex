@@ -30,6 +30,10 @@ namespace Dentplex.Web.Controllers
             var list = db.ProductGroups.Where(g => g.ProductParentGroupID == null);
             return PartialView(list);
         }
+        public ActionResult BottomAds()
+        {
+            return PartialView();
+        }
 
     }
 }

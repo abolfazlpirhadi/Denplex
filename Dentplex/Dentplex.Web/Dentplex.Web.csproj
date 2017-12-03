@@ -1458,6 +1458,7 @@
     <Content Include="Views\Product\ProductGroups.cshtml" />
     <Content Include="Views\Product\ProductList.cshtml" />
     <Content Include="Views\Product\ProductBanner.cshtml" />
+    <Content Include="Views\Home\BottomAds.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

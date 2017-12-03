@@ -14,8 +14,16 @@ namespace Dentplex.Web.Controllers
         [Route("Product/{id}")]
         public ActionResult Product(int? id)
         {
-            var product = db.Products.Where(p => p.ProductGroupID == id);
-            return View(product);
+            if (id != -1)
+            {
+                var product = db.Products.Where(p => p.ProductGroupID == id);
+                return View(product);
+            }
+            else
+            {
+                var product = db.Products.ToList();
+                return View(product);
+            }
         }
         public ActionResult ProductBanner(int id)
         {
