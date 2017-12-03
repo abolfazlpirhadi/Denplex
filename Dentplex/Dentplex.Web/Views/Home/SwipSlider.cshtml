@@ -12,7 +12,7 @@
                     @foreach (var item in Model)
                     {
                         <a href="/Product/@item.ProductGroupID" class="swiper-slide">
-                            <img src="~/Images/ProductImages/MainImage/@item.ProductImage" alt="HERO LASH MASCARA" class="img-responsive">
+                            <img src="~/Images/ProductImages/MainImage/@item.ProductImage" alt="" class="img-responsive">
                             <span>@item.ProductTitle</span>
                         </a>
                     }
@@ -20,6 +20,9 @@
                 <div class="swiper-pagination hide"></div>
             </div>
         </div>
+        
+        
+        <div class="clearfix"></div>
     </div>
 }
 

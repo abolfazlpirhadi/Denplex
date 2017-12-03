@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <link rel="stylesheet" href="/Content/theme/css/bootstrap.css">
-    <link rel="stylesheet" href="/Content/theme/css/style3.css">
+    <link rel="stylesheet" href="/Content/theme/css/style9.css">
     <link rel="stylesheet" href="/Content/theme/css/font-awesome.min.css">
     <link rel="stylesheet" href="/Content/theme/css/swiper.min.css">
     <link href="~/Content/theme/css/osSlider.css" rel="stylesheet" />
@@ -14,6 +14,11 @@
     <script src="/Content/theme/js/jquery.min.js" type="text/javascript"></script>
     <script type="text/javascript">
         $(document).ready(function () {
+           
+            $(".wrapp-slider img").css({
+                'width': $(window).width()-30,
+            });
+
 
             var mySlider = new osSlider({
                 pNode: '.slider',
@@ -22,25 +27,27 @@
                 autoPlay: true
             });
 
+
+
             var swiper = new Swiper('.swiper-container3', {
                 effect: 'coverflow',
                 grabCursor: true,
                 centeredSlides: true,
                 slidesPerView: 5,
                 spaceBetween: 25,
-                loopAdditionalSlides: 20,
+                loopAdditionalSlides: 1,
                 loop: true,
                 coverflowEffect: {
                     rotate: 25,
                     stretch: 0,
                     depth: 100,
                     modifier: 1,
-                    slideShadows: true,
+                    slideShadows : true,
                 },
                 pagination: {
                     el: '.swiper-pagination',
                 },
-
+				  
                 breakpoints: {
                     1024: {
                         slidesPerView: 5,
@@ -59,8 +66,10 @@
                         spaceBetween: 10
                     }
                 },
+				  
+            });	
 
-            });
+
         })
     </script>
 </head>

@@ -1252,7 +1252,7 @@
     <Content Include="Content\theme\css\jbr_banner-rotator.min.css" />
     <Content Include="Content\theme\css\jbr_view.min.css" />
     <Content Include="Content\theme\css\jquery-ui.min.css" />
-    <Content Include="Content\theme\css\style3.css" />
+    <Content Include="Content\theme\css\style9.css" />
     <Content Include="Content\theme\css\swiper.min.css" />
     <Content Include="Content\theme\fonts\fontawesome-webfont.svg" />
     <Content Include="Content\theme\img\bg-footer.png" />
@@ -1362,49 +1362,8 @@
     <Content Include="Content\ja-menu\css\fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="Content\ja-menu\css\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="Content\ja-menu\css\fonts\weathericons-regular-webfont.ttf" />
+    <None Include="Properties\PublishProfiles\Dentplex.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
-    <Content Include="Images\ProductImages\MainImage\96ccd8e2-95ee-4ad5-8648-a62738aaf1db.jpg" />
-    <Content Include="Images\ProductImages\MainImage\e7724a28-d08d-4f3f-a0a8-660fb7e35cd5.jpg" />
-    <Content Include="Images\ProductImages\MainImage\e8e24ff2-5b40-43d9-b31e-3b18c874c547.jpg" />
-    <Content Include="Images\ProductImages\MainImage\e9fa9feb-cb38-405e-a4c5-036a10a5629d.jpg" />
-    <Content Include="Images\ProductImages\MainImage\eade68c1-1f79-4b22-a7e4-b919a2aa866f.jpg" />
-    <Content Include="Images\ProductImages\MainImage\f6f5c8d2-c449-40f3-9261-b7b10a6da019.jpg" />
-    <Content Include="Images\ProductImages\ThumbImage\96ccd8e2-95ee-4ad5-8648-a62738aaf1db.jpg" />
-    <Content Include="Images\ProductImages\ThumbImage\e7724a28-d08d-4f3f-a0a8-660fb7e35cd5.jpg" />
-    <Content Include="Images\ProductImages\ThumbImage\e8e24ff2-5b40-43d9-b31e-3b18c874c547.jpg" />
-    <Content Include="Images\ProductImages\ThumbImage\e9fa9feb-cb38-405e-a4c5-036a10a5629d.jpg" />
-    <Content Include="Images\ProductImages\ThumbImage\eade68c1-1f79-4b22-a7e4-b919a2aa866f.jpg" />
-    <Content Include="Images\ProductImages\ThumbImage\f6f5c8d2-c449-40f3-9261-b7b10a6da019.jpg" />
-    <Content Include="Images\ProuctGroups\BannerImage\24cd4ad1-19d3-407f-9643-03762dd96496.jpg" />
-    <Content Include="Images\ProuctGroups\BannerImage\2adb8c77-2c78-43a1-bbb7-74d91d990667.jpg" />
-    <Content Include="Images\ProuctGroups\BannerImage\2b75e024-84dd-4637-8fb2-c72476c854b3.jpg" />
-    <Content Include="Images\ProuctGroups\BannerImage\3a87dc5f-e0d9-4bf5-93af-332998007721.jpg" />
-    <Content Include="Images\ProuctGroups\BannerImage\4b459025-56b1-44d3-a09f-7b6e14f4f0a8.jpg" />
-    <Content Include="Images\ProuctGroups\BannerImage\4edb12cd-2af6-4650-bc84-a02ad927c155.jpg" />
-    <Content Include="Images\ProuctGroups\BannerImage\76f5954a-ecfe-4daa-9ddf-0d829b34d606.jpg" />
-    <Content Include="Images\ProuctGroups\BannerImage\8e6af50b-eebe-4869-8257-0e20fcaca550.jpg" />
-    <Content Include="Images\ProuctGroups\BannerImage\939810b6-e33f-49e0-abf0-be6bdc4dbff1.jpg" />
-    <Content Include="Images\ProuctGroups\BannerImage\b05aefec-530d-4543-af3d-0b1fbad6e5bb.jpg" />
-    <Content Include="Images\ProuctGroups\BannerImage\c136cd7c-fad7-4d68-94f3-8d7cd21b0ad6.jpg" />
-    <Content Include="Images\ProuctGroups\BannerImage\c373f2b2-43fb-423f-a39b-2b06ad613fc4.jpg" />
-    <Content Include="Images\ProuctGroups\BannerImage\d143c69b-889c-4dc1-abf8-18dcb8caa262.jpg" />
-    <Content Include="Images\ProuctGroups\MainImage\2fb5f801-b767-4b51-b6df-f009ca9b345b.jpg" />
-    <Content Include="Images\ProuctGroups\MainImage\3ae6edff-1d95-4a60-b3e1-0aeeee26f785.jpg" />
-    <Content Include="Images\ProuctGroups\MainImage\48ed5976-8ad1-4b13-ae65-aa1d2d4f07d5.jpg" />
-    <Content Include="Images\ProuctGroups\MainImage\49ced20d-0256-4a8a-914c-858f76c20853.jpg" />
-    <Content Include="Images\ProuctGroups\MainImage\5ba7a785-66ce-481f-a811-1bb392f39397.jpg" />
-    <Content Include="Images\ProuctGroups\MainImage\7fddd9a5-b02c-46a4-bc58-49b2e7236879.jpg" />
-    <Content Include="Images\ProuctGroups\MainImage\84266856-2e8a-45c6-9edc-133931056a0e.jpg" />
-    <Content Include="Images\ProuctGroups\MainImage\85bab3f5-9793-462b-b1f9-81ebc8325dab.jpg" />
-    <Content Include="Images\ProuctGroups\MainImage\96ccd8e2-95ee-4ad5-8648-a62738aaf1db.jpg" />
-    <Content Include="Images\ProuctGroups\MainImage\9b445808-ebcd-4317-8e21-434fb871ca74.jpg" />
-    <Content Include="Images\ProuctGroups\MainImage\b293ee38-ce1e-4d88-b0d5-59b17671987e.jpg" />
-    <Content Include="Images\ProuctGroups\MainImage\b4a4e925-149b-448c-995d-2b2d3d2d2eca.jpg" />
-    <Content Include="Images\ProuctGroups\MainImage\c9568e62-5a38-4f73-8c2a-99f438a88f1e.jpg" />
-    <Content Include="Images\ProuctGroups\MainImage\ce5805cc-a8f4-4152-9b0b-e328a2c9cab9.jpg" />
-    <Content Include="Images\SliderItemImages\3e31570e35c4485d84ee4766928d5c25.jpg" />
-    <Content Include="Images\SliderItemImages\6ae87363d5b14bc283cbe0fd8a4bb96c.jpg" />
-    <Content Include="Images\SliderItemImages\d1871a4ae0cc48b2a2b529181bb3b5b5.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -1468,7 +1427,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Images\SliderImages\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Dentplex.Data\Dentplex.Data.csproj">
