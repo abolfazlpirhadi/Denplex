@@ -6,7 +6,7 @@
     <edmx:Diagrams>
       <Diagram DiagramId="d96688cbb62b4883b86ac934ba30cb53" Name="Diagram1">
         <EntityTypeShape EntityType="DentplexDBModel.ProductGroup" Width="1.5" PointX="0.75" PointY="1.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="DentplexDBModel.Product" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="DentplexDBModel.Product" Width="2" PointX="3.5" PointY="1.125" IsExpanded="true" />
         <EntityTypeShape EntityType="DentplexDBModel.SliderItem" Width="1.5" PointX="8" PointY="1.25" IsExpanded="true" />
         <EntityTypeShape EntityType="DentplexDBModel.Slider" Width="1.5" PointX="5.75" PointY="1" IsExpanded="true" />
         <EntityTypeShape EntityType="DentplexDBModel.sysdiagram" Width="1.5" PointX="0.75" PointY="5.75" IsExpanded="true" />

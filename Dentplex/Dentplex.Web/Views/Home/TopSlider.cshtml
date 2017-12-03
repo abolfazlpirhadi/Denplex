@@ -3,15 +3,16 @@
 {
     <div class="wrapp-slider">
         <div class="slider">
-            @foreach (var item in Model)
+            <ul class="slider-main">
+                @foreach (var item in Model)
                 {
-                <ul class="slider-main">
-                    <li>
-                        <a href="@item.SlideItemLink"><img class="img-responsive" src="~/Images/SliderItemImages/@item.SlideItemImage" alt="p2 cosmetics Logo"></a>
-                    </li>
-                </ul>
-            }
 
+                    <li>
+                        <a href="@item.SlideItemLink"><img src="~/Images/SliderItemImages/@item.SlideItemImage" alt=""></a>
+                    </li>
+
+                }
+            </ul>
         </div>
     </div>
 }
