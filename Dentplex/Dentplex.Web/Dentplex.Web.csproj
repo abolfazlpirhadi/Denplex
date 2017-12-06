@@ -1457,13 +1457,13 @@
     <Content Include="Views\Home\TopSlider.cshtml" />
     <Content Include="Views\Home\SwipSlider.cshtml" />
     <Content Include="Views\Home\ProductGroups.cshtml" />
-    <Content Include="Views\Product\ShowProduct.cshtml" />
     <Content Include="Views\Product\Product.cshtml" />
     <Content Include="Views\Product\ProductGroups.cshtml" />
     <Content Include="Views\Product\ProductList.cshtml" />
     <Content Include="Views\Product\ProductBanner.cshtml" />
     <Content Include="Views\Home\BottomAds.cshtml" />
     <Content Include="Views\Product\RelatedProducts.cshtml" />
+    <Content Include="Views\Product\ShowProduct.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
