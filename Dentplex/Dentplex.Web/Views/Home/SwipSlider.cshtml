@@ -11,7 +11,7 @@
                 <div class="swiper-wrapper">
                     @foreach (var item in Model)
                     {
-                        <a href="/Product/@item.ProductGroupID" class="swiper-slide">
+                        <a href="/ShowProduct/@item.ProductID" class="swiper-slide">
                             <img src="~/Images/ProductImages/MainImage/@item.ProductImage" alt="" class="img-responsive">
                             <span>@item.ProductTitle</span>
                         </a>

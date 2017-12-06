@@ -34,13 +34,21 @@ namespace Dentplex.Web.Controllers
         {
             return PartialView(db.ProductGroups.Where(p => p.ProductParentGroupID == null));
         }
-        public ActionResult ShowProducts(int id)
+        [Route("ShowProduct/{id}")]
+        public ActionResult ShowProduct(int id)
         {
             var product = db.Products.Find(id);
             if (product == null)
                 return HttpNotFound();
 
             return View(product);
+        }
+        public PartialViewResult RelatedProducts(int id)
+        {
+            var product = db.Products.Find(id);
+            var listProductRelated = db.Products.Where(p => p.ProductGroupID == product.ProductGroupID);
+
+            return PartialView(listProductRelated);
         }
     }
 }
