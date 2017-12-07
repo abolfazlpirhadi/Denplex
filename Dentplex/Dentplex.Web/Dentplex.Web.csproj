@@ -1252,7 +1252,7 @@
     <Content Include="Content\theme\css\jbr_banner-rotator.min.css" />
     <Content Include="Content\theme\css\jbr_view.min.css" />
     <Content Include="Content\theme\css\jquery-ui.min.css" />
-    <Content Include="Content\theme\css\style9.css" />
+    <Content Include="Content\theme\css\style10.css" />
     <Content Include="Content\theme\css\swiper.min.css" />
     <Content Include="Content\theme\fonts\fontawesome-webfont.svg" />
     <Content Include="Content\theme\img\bg-footer.png" />
