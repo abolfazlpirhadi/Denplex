@@ -16,12 +16,14 @@ namespace Dentplex.Web.Areas.Admin.Controllers
     {
         private DentplexDBEntities db = new DentplexDBEntities();
 
+        [Authorize]
         public ActionResult Index()
         {
             var sliderItems = db.SliderItems.Include(s => s.Slider);
             return View(sliderItems.ToList());
         }
 
+        [Authorize]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -36,6 +38,7 @@ namespace Dentplex.Web.Areas.Admin.Controllers
             return View(sliderItem);
         }
 
+        [Authorize]
         public ActionResult Create()
         {
             ViewBag.SlideID = new SelectList(db.Sliders, "SlideID", "SlideTitle");
@@ -71,6 +74,7 @@ namespace Dentplex.Web.Areas.Admin.Controllers
             return View(sliderItem);
         }
 
+        [Authorize]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -114,6 +118,7 @@ namespace Dentplex.Web.Areas.Admin.Controllers
             return View(sliderItem);
         }
 
+        [Authorize]
         public ActionResult Delete(int? id)
         {
             if (id == null)
