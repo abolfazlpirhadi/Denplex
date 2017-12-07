@@ -59,36 +59,11 @@
     </script>
 </head>
 <body>
-
-    @*<div class="navbar navbar-inverse navbar-fixed-top">
-            <div class="container">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-                </div>
-                <div class="navbar-collapse collapse">
-                    <ul class="nav navbar-nav"></ul>
-                </div>
-            </div>
-        </div>
-        <div class="container body-content">
-            @RenderBody()
-            <hr />
-            <footer>
-                <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-            </footer>
-        </div>*@
-
-
     <div class="admin-header col-lg-12 col-md-12 col-sm-12 col-xs-12">
         <a class="avatar"><i class="icon-user"></i></a>
         <ul class="avatar-name">
-            <li class="date hidden-xs">ابوالفضل پیرهادی</li>
-            <li class="date hidden-xs hidden-sm"><i class="icon-calendar"></i> 1396/9/9</li>
+            <li class="date hidden-xs">@Session["UserName"]</li>
+            <li class="date hidden-xs hidden-sm"><i class="icon-calendar"></i> @DateTime.Now.ToString("dddd, dd MMMM yyyy")</li>
         </ul>
         <ul class="admin-top-menu">
             <li>
@@ -129,16 +104,15 @@
                                     <ul class="submenu">
                                         <li><a href="/Admin/ProductGroups"><i class="icon-sitemap"></i> گروه بندی </a></li>
                                         <li><a href="/Admin/Products"><i class="icon-list"></i> لیست محصولات </a></li>
-                                        @*<li>
-                                                <a href="#">زیر منو </a>
-                                                <ul class="submenu">
-                                                    <li><a href="#">زیرمنو1 </a></li>
-                                                    <li><a href="#">زیرمنو 2 </a></li>
-                                                    <li><a href="#">زیر منو 3 </a></li>
-                                                </ul>
-                                            </li>*@
                                     </ul>
                                 </li>
+                                <li>
+                                    <a href="#"><i class="icon-anchor"></i>مدیریت سایت </a>
+                                    <ul class="submenu">
+                                        <li><a href="/Admin/Pages"><i class="icon-archive"></i> مدیریت تک صفحه </a></li>
+                                    </ul>
+                                </li>
+
                                 <li>
                                     <a href="#"><i class="icon-user"></i>کاربری </a>
                                     <ul class="submenu">

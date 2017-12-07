@@ -1,0 +1,14 @@
+﻿@model Dentplex.Data.Model.Page
+@{
+    ViewBag.Title = "AboutUs";
+}
+
+
+<div class="container">
+    <ul class="grid-product" style="padding:15px">
+        @Model.PageTitle
+        <br />
+        @Html.Raw(Model.PageText)
+    </ul>
+</div>
+

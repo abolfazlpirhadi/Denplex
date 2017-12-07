@@ -1,5 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="DentplexDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Pages">
+    <Key>
+      <PropertyRef Name="PageID" />
+    </Key>
+    <Property Name="PageID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PageName" Type="varchar" MaxLength="150" Nullable="false" />
+    <Property Name="PageTitle" Type="nvarchar" MaxLength="150" Nullable="false" />
+    <Property Name="PageText" Type="ntext" Nullable="false" />
+    <Property Name="PageIsActive" Type="bit" Nullable="false" />
+  </EntityType>
   <EntityType Name="ProductGroups">
     <Key>
       <PropertyRef Name="ProductGroupID" />
@@ -105,6 +115,7 @@
     </ReferentialConstraint>
   </Association>
   <EntityContainer Name="DentplexDBModelStoreContainer">
+    <EntitySet Name="Pages" EntityType="Self.Pages" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ProductGroups" EntityType="Self.ProductGroups" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Products" EntityType="Self.Products" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="SliderItems" EntityType="Self.SliderItems" Schema="dbo" store:Type="Tables" />
