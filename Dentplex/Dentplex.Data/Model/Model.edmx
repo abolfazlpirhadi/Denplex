@@ -5,6 +5,16 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="DentplexDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Pages">
+          <Key>
+            <PropertyRef Name="PageID" />
+          </Key>
+          <Property Name="PageID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PageName" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="PageTitle" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="PageText" Type="ntext" Nullable="false" />
+          <Property Name="PageIsActive" Type="bit" Nullable="false" />
+        </EntityType>
         <EntityType Name="ProductGroups">
           <Key>
             <PropertyRef Name="ProductGroupID" />
@@ -110,6 +120,7 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="DentplexDBModelStoreContainer">
+          <EntitySet Name="Pages" EntityType="Self.Pages" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ProductGroups" EntityType="Self.ProductGroups" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Products" EntityType="Self.Products" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SliderItems" EntityType="Self.SliderItems" Schema="dbo" store:Type="Tables" />
@@ -270,7 +281,18 @@
             <End Role="Sliders" EntitySet="Sliders" />
             <End Role="SliderItems" EntitySet="SliderItems" />
           </AssociationSet>
+          <EntitySet Name="Pages" EntityType="DentplexDBModel.Page" />
         </EntityContainer>
+        <EntityType Name="Page">
+          <Key>
+            <PropertyRef Name="PageID" />
+          </Key>
+          <Property Name="PageID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PageName" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="PageTitle" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="PageText" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PageIsActive" Type="Boolean" Nullable="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -335,6 +357,17 @@
                 <ScalarProperty Name="UserPassword" ColumnName="UserPassword" />
                 <ScalarProperty Name="UserEmail" ColumnName="UserEmail" />
                 <ScalarProperty Name="UserIsActive" ColumnName="UserIsActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Pages">
+            <EntityTypeMapping TypeName="DentplexDBModel.Page">
+              <MappingFragment StoreEntitySet="Pages">
+                <ScalarProperty Name="PageIsActive" ColumnName="PageIsActive" />
+                <ScalarProperty Name="PageText" ColumnName="PageText" />
+                <ScalarProperty Name="PageTitle" ColumnName="PageTitle" />
+                <ScalarProperty Name="PageName" ColumnName="PageName" />
+                <ScalarProperty Name="PageID" ColumnName="PageID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

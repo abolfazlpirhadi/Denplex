@@ -28,6 +28,7 @@ namespace Dentplex.Web.Areas.Admin.Controllers
                     if (user.UserIsActive)
                     {
                         FormsAuthentication.SetAuthCookie(user.UserName, false);
+                        Session["Username"] = user.UserName;
                         return Redirect(ReturnUrl);
                     }
                 }
@@ -42,6 +43,9 @@ namespace Dentplex.Web.Areas.Admin.Controllers
         public ActionResult LogOff()
         {
             FormsAuthentication.SignOut();
+            Session.Abandon();
+            Session.Clear();
+            Session.RemoveAll();
             return Redirect("/Admin/Account/Login");
         }
     }

@@ -1362,6 +1362,11 @@
     <Content Include="Content\ja-menu\css\fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="Content\ja-menu\css\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="Content\ja-menu\css\fonts\weathericons-regular-webfont.ttf" />
+    <Content Include="Areas\Admin\Views\Pages\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Pages\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Pages\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Pages\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Pages\Index.cshtml" />
     <None Include="Properties\PublishProfiles\Dentplex.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Images\ProductImages\MainImage\7c8ea462332544e0b122f065615271c9.jpg" />
@@ -1429,6 +1434,7 @@
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\AccountController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Admin\Controllers\PagesController.cs" />
     <Compile Include="Areas\Admin\Controllers\ProductGroupsController.cs" />
     <Compile Include="Areas\Admin\Controllers\ProductsController.cs" />
     <Compile Include="Areas\Admin\Controllers\SliderItemsController.cs" />
@@ -1437,6 +1443,7 @@
     <Compile Include="Classes\ImageResizer.cs" />
     <Compile Include="Classes\PersianCulture.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\PagesController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -1464,6 +1471,8 @@
     <Content Include="Views\Home\BottomAds.cshtml" />
     <Content Include="Views\Product\RelatedProducts.cshtml" />
     <Content Include="Views\Product\ShowProduct.cshtml" />
+    <Content Include="Views\Pages\ContactUs.cshtml" />
+    <Content Include="Views\Pages\AboutUs.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

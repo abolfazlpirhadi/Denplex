@@ -16,6 +16,7 @@ namespace Dentplex.Web.Areas.Admin.Controllers
     {
         private DentplexDBEntities db = new DentplexDBEntities();
 
+        [Authorize]
         public ActionResult Index()
         {
             var products = db.Products.Include(p => p.ProductGroup).Include(p => p.ProductGroup1);
@@ -32,6 +33,8 @@ namespace Dentplex.Web.Areas.Admin.Controllers
 
             return Json(new SelectList(list, "Value", "Text"), JsonRequestBehavior.AllowGet);
         }
+
+        [Authorize]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -45,6 +48,8 @@ namespace Dentplex.Web.Areas.Admin.Controllers
             }
             return View(product);
         }
+
+        [Authorize]
         public ActionResult Create()
         {
             ViewBag.ProductGroupID = new SelectList(db.ProductGroups.Where(g => g.ProductParentGroupID == null), "ProductGroupID", "ProductGroupTitle");
@@ -97,6 +102,8 @@ namespace Dentplex.Web.Areas.Admin.Controllers
             ViewBag.ProductSubGroupID = new SelectList(db.ProductGroups, "ProductGroupID", "ProductGroupTitle", product.ProductSubGroupID);
             return View(product);
         }
+
+        [Authorize]
         public ActionResult Edit(int? id)
         {
             if (id == null)

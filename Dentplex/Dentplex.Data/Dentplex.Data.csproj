@@ -79,6 +79,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MetaData\PageMetaData.cs" />
     <Compile Include="MetaData\ProductGroupMetaData.cs" />
     <Compile Include="MetaData\ProductMetaData.cs" />
     <Compile Include="MetaData\SliderItemMetaData.cs" />
@@ -97,6 +98,9 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Model.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Page.cs">
+      <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\Product.cs">
       <DependentUpon>Model.tt</DependentUpon>
