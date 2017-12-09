@@ -1,6 +1,6 @@
 ﻿@model IEnumerable<Dentplex.Data.Model.Product>
 @{
-    ViewBag.Title = "ProductList";
+    ViewBag.Title = "لیست محصولات";
 }
 
 @Html.Action("ProductBanner", "Product")
@@ -11,7 +11,7 @@
     @foreach (var item in Model)
     {
         <li class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
-            <a href="#">
+            <a href="/ShowProduct/@item.ProductID">
                 <img src="~/Images/ProductImages/MainImage/@item.ProductImage" class="img img-responsive" alt="HERO LASH MASCARA">
                 <span>@item.ProductTitle</span>
             </a>

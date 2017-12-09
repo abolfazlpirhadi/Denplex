@@ -1,9 +1,9 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-    <title>صفحه اصلی</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>@ViewBag.Title</title>
 
     <link rel="stylesheet" href="/Content/theme/css/bootstrap.css">
     <link rel="stylesheet" href="/Content/theme/css/style9.css">
@@ -14,11 +14,9 @@
     <script src="/Content/theme/js/jquery.min.js" type="text/javascript"></script>
     <script type="text/javascript">
         $(document).ready(function () {
-           
             $(".wrapp-slider img").css({
-                'width': $(window).width()-30,
+                'width': $(window).width() - 30,
             });
-
 
             var mySlider = new osSlider({
                 pNode: '.slider',
@@ -26,8 +24,6 @@
                 speed: 3000,
                 autoPlay: true
             });
-
-
 
             var swiper = new Swiper('.swiper-container3', {
                 effect: 'coverflow',
@@ -42,12 +38,12 @@
                     stretch: 0,
                     depth: 100,
                     modifier: 1,
-                    slideShadows : true,
+                    slideShadows: true,
                 },
                 pagination: {
                     el: '.swiper-pagination',
                 },
-				  
+
                 breakpoints: {
                     1024: {
                         slidesPerView: 5,
@@ -66,10 +62,8 @@
                         spaceBetween: 10
                     }
                 },
-				  
-            });	
 
-
+            });
         })
     </script>
 </head>
@@ -79,8 +73,8 @@
             <div class="top-header">
                 <div class="container">
                     <ul class="top-menu col-lg-3 col-md-4 col-sm-5 col-xs-6">
-                        <li><a href="#">تماس</a></li>
-                        <li class="hidden-xs"><a href="#">مشترک شوید</a></li>
+                        <li><a href="/Pages/ContactUs">تماس با ما</a></li>
+                        @*<li class="hidden-xs"><a href="#">مشترک شوید</a></li>*@
                         @*<li><a href="#">علاقه مندی ها<span class="fcount">0</span></a></li>*@
                     </ul>
 
@@ -119,9 +113,10 @@
                                 </div>
                                 <div class="collapse navbar-collapse col-lg-9 col-md-9 col-sm-9 col-xs-12" id="myNavbar">
                                     <ul class="nav navbar-nav">
+                                        <li><a href="/">صفحه اصلی</a></li>
                                         <li><a href="/Pages/AboutUs">درباره ما</a></li>
                                         <li><a href="/Product/1">محصولات</a></li>
-                                        <li><a href="#">تعداد محدود</a></li>
+                                        @*<li><a href="#">تعداد محدود</a></li>*@
                                         <li><a href="#">ویژه ها</a></li>
                                         <!-- <li class="active"><a href="#">تازه ها</a></li> -->
                                     </ul>
