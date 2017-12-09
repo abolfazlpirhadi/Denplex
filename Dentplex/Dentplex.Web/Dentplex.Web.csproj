@@ -1240,9 +1240,6 @@
     <Content Include="Content\ja-menu\index.html" />
     <Content Include="Content\ja-menu\js\jquery-1.11.2.min.js" />
     <Content Include="Content\ja-menu\js\jquery-accordion-menu.js" />
-    <Content Include="Content\sidebarnav\css\SidebarNav.min.css" />
-    <Content Include="Content\sidebarnav\index.html" />
-    <Content Include="Content\sidebarnav\js\SidebarNav.min.js" />
     <Content Include="Content\theme\css\bootstrap.css" />
     <Content Include="Content\theme\css\font-awesome.min.css" />
     <Content Include="Content\theme\css\img\039.png" />
@@ -1367,6 +1364,12 @@
     <Content Include="Areas\Admin\Views\Pages\Details.cshtml" />
     <Content Include="Areas\Admin\Views\Pages\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Pages\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\SlidersAjax\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\SlidersAjax\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\SlidersAjax\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\SlidersAjax\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\SlidersAjax\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\SlidersAjax\_List.cshtml" />
     <None Include="Properties\PublishProfiles\Dentplex.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Images\ProductImages\MainImage\7c8ea462332544e0b122f065615271c9.jpg" />
@@ -1438,6 +1441,7 @@
     <Compile Include="Areas\Admin\Controllers\ProductGroupsController.cs" />
     <Compile Include="Areas\Admin\Controllers\ProductsController.cs" />
     <Compile Include="Areas\Admin\Controllers\SliderItemsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\SlidersAjaxController.cs" />
     <Compile Include="Areas\Admin\Controllers\SlidersController.cs" />
     <Compile Include="Classes\CheckContentImage.cs" />
     <Compile Include="Classes\ImageResizer.cs" />

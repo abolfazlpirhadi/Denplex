@@ -374,7 +374,7 @@ font-size:22px;
 
 .grid-product li{margin-bottom:15px}
 
-.grid-product.product{padding:60px;}
+.grid-product.product{ padding: 0 60px;}
 
 
 .wrapp-update img{width:100%}
@@ -410,3 +410,5 @@ font-size:22px;
 }
 
 .osSlider-main .slider-nav{display:none;}
+
+.text-wrapp{ padding-top: 60px;}
