@@ -1,4 +1,5 @@
 ﻿using Dentplex.Data.Model;
+using Dentplex.Web.Classes;
 using Dentplex.Web.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -22,7 +23,8 @@ namespace Dentplex.Web.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = db.Users.SingleOrDefault(u => u.UserName == loginViewModel.UserName && u.UserPassword == loginViewModel.Password);
+                string hashPass = PasswordHelper.EncodePasswordMd5(loginViewModel.Password).Replace("-","");
+                var user = db.Users.SingleOrDefault(u => u.UserName == loginViewModel.UserName && u.UserPassword == hashPass);
                 if (user != null)
                 {
                     if (user.UserIsActive)

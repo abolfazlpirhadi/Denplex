@@ -1441,6 +1441,7 @@
     <Compile Include="Areas\Admin\Controllers\SlidersController.cs" />
     <Compile Include="Classes\CheckContentImage.cs" />
     <Compile Include="Classes\ImageResizer.cs" />
+    <Compile Include="Classes\PasswordHelper.cs" />
     <Compile Include="Classes\PersianCulture.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PagesController.cs" />
