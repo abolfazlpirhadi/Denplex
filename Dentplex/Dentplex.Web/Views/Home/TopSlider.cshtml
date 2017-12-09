@@ -1,6 +1,36 @@
 ﻿@model IEnumerable<Dentplex.Data.Model.SliderItem>
 @if (Model.Any())
 {
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+
+            loadTopSlider();
+
+
+
+            function loadTopSlider() {
+
+                $(".wrapp-slider img").css({
+                    'width': $(window).width() - 30,
+                });
+
+
+                 var mySlider = new osSlider({
+                    pNode: '.slider',
+                    cNode: '.slider-main li',
+                    speed: 3000,
+                    autoPlay: true
+                });
+
+                 //$(".wrapp-slider").show();
+            }
+
+            
+
+        });
+    </script>
+
     <div class="wrapp-slider">
         <div class="slider">
             <ul class="slider-main">

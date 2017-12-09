@@ -9,7 +9,7 @@
         <EntityTypeShape EntityType="DentplexDBModel.Product" Width="2" PointX="3.5" PointY="1.125" IsExpanded="true" />
         <EntityTypeShape EntityType="DentplexDBModel.SliderItem" Width="1.5" PointX="8" PointY="1.25" IsExpanded="true" />
         <EntityTypeShape EntityType="DentplexDBModel.Slider" Width="1.5" PointX="5.75" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="DentplexDBModel.User" Width="1.5" PointX="2.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DentplexDBModel.User" Width="1.5" PointX="10.25" PointY="2.75" IsExpanded="true" />
         <AssociationConnector Association="DentplexDBModel.FK_ProductGroups_ProductGroups" ManuallyRouted="false" />
         <AssociationConnector Association="DentplexDBModel.FK_Products_ProductGroups" ManuallyRouted="false" />
         <AssociationConnector Association="DentplexDBModel.FK_Products_ProductGroups1" ManuallyRouted="false" />
