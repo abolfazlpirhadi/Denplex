@@ -15,6 +15,7 @@
         <AssociationConnector Association="DentplexDBModel.FK_Products_ProductGroups1" ManuallyRouted="false" />
         <AssociationConnector Association="DentplexDBModel.FK_SliderItems_Sliders" ManuallyRouted="false" />
         <EntityTypeShape EntityType="DentplexDBModel.Page" Width="1.5" PointX="5.375" PointY="5.75" />
+        <EntityTypeShape EntityType="DentplexDBModel.sysdiagram" Width="1.5" PointX="0.75" PointY="5.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
