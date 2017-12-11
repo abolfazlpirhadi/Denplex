@@ -1,71 +1,110 @@
 ﻿@model IEnumerable<Dentplex.Data.Model.Product>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "فهرست محصولات";
 }
 
 <div class="panel panel-info" style="margin-top:20px">
     <div class="panel-heading"><h4>فهرست محصولات</h4></div>
     <div class="panel-body">
-        <p><a href="@Url.Action("Create","Products")" class="btn btn-sm btn-primary"><i class="glyphicon glyphicon-plus"></i> افزودن</a></p>
 
-        <table class="table table-bordered table-striped">
-            <tr>
-                <th>
-                    @*@Html.DisplayNameFor(model => model.ProductGroup.ProductGroupTitle)*@
-                    عنوان گروه
-                </th>
-                <th>
-                    @*@Html.DisplayNameFor(model => model.ProductGroup1.ProductGroupTitle)*@
-                    زیرگروه
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.ProductTitle)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.ProductShortText)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.ProductIsFavourite)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.ProductImage)
-                </th>
-                <th></th>
-            </tr>
-
-            @foreach (var item in Model)
+        <div class="k-rtl">
+            @(Html.Kendo().Grid(Model).Name("Grid").HtmlAttributes(new { style = "height:600px;" })
+            .Columns(columns =>
             {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.ProductGroup.ProductGroupTitle)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.ProductGroup1.ProductGroupTitle)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.ProductTitle)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.ProductShortText)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.ProductIsFavourite)
-                    </td>
-                    <td>
-                        <img src="/Images/ProductImages/ThumbImage/@item.ProductImage" class="thumbnail" style="max-width: 50px" />
-                    </td>
+                columns.Bound(model => model.ProductGroup.ProductGroupTitle);
+                columns.Bound(model => model.ProductGroup1.ProductGroupTitle);
+                columns.Bound(model => model.ProductTitle);
+                columns.Bound(model => model.ProductIsFavourite);
+                columns.Bound(item => @item.ProductID).Title("تصویر").Filterable(false).Groupable(false)
+                .Template(@<text>
+                            <img src="/Images/ProductImages/ThumbImage/@item.ProductImage" class="thumbnail" style="max-width: 30px" />
+                        </text>);
+                    columns.Bound(item => @item.ProductID).Title("دستورات").Filterable(false).Groupable(false)
+                .Template(@<text>
+                    <a href="@Url.Action("Edit","Products",new { id = @item.ProductID})" class="btn btn-sm btn-success"><i class="glyphicon glyphicon-edit"></i>ویرایش</a>
+                    <a href="@Url.Action("Delete","Products",new { id = @item.ProductID})" class="btn btn-sm btn-danger"><i class="glyphicon glyphicon-trash"></i>حذف</a>
+                </text>).Width(150);
+                })
+                .ToolBar(toolbar =>
+                {
+                    toolbar.Custom().Action("Create", "Products").Text("افزودن");
+                })
+                .Groupable()
+                .Pageable()
+                .Sortable()
+                .Scrollable()
+                .Filterable()
+                .DataSource(dataSource => dataSource
+                .Server()
+                .Model(model => model.Id(item => item.ProductID)))
+            )
 
-                    <td>
-                        <a href="@Url.Action("Edit","Products",new { id = @item.ProductID})" class="btn btn-sm btn-success"><i class="glyphicon glyphicon-edit"></i>ویرایش</a>
-                        <a href="@Url.Action("Delete","Products",new { id = @item.ProductID})" class="btn btn-sm btn-danger"><i class="glyphicon glyphicon-trash"></i>حذف</a>
-                    </td>
-                </tr>
-            }
-
-        </table>
+        </div>
     </div>
 </div>
+
+
+
+@*<p><a href="@Url.Action("Create","Products")" class="btn btn-sm btn-primary"><i class="glyphicon glyphicon-plus"></i> افزودن</a></p>*@
+
+@*<table class="table table-bordered table-striped">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ProductGroup.ProductGroupTitle)
+            عنوان گروه
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProductGroup1.ProductGroupTitle)
+            زیرگروه
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProductTitle)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProductShortText)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProductIsFavourite)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProductImage)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+            {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductGroup.ProductGroupTitle)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductGroup1.ProductGroupTitle)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductTitle)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductShortText)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductIsFavourite)
+            </td>
+            <td>
+                <img src="/Images/ProductImages/ThumbImage/@item.ProductImage" class="thumbnail" style="max-width: 50px" />
+            </td>
+
+            <td>
+                <a href="@Url.Action("Edit","Products",new { id = @item.ProductID})" class="btn btn-sm btn-success"><i class="glyphicon glyphicon-edit"></i>ویرایش</a>
+                <a href="@Url.Action("Delete","Products",new { id = @item.ProductID})" class="btn btn-sm btn-danger"><i class="glyphicon glyphicon-trash"></i>حذف</a>
+            </td>
+        </tr>
+    }
+
+</table>*@
+
+
 
 
 
