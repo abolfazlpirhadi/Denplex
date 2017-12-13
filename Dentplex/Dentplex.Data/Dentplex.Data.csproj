@@ -84,6 +84,7 @@
     <Compile Include="MetaData\ProductMetaData.cs" />
     <Compile Include="MetaData\SliderItemMetaData.cs" />
     <Compile Include="MetaData\SliderMetaData.cs" />
+    <Compile Include="MetaData\UserMetaData.cs" />
     <Compile Include="Model\Model.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

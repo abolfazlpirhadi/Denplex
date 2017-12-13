@@ -7,121 +7,115 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Dentplex.Data.Model;
+using Dentplex.Web.Classes;
+using System.IO;
 
 namespace Dentplex.Web.Areas.Admin.Controllers
 {
-    public class SlidersAjaxController : Controller
+    public class UsersController : Controller
     {
         private DentplexDBEntities db = new DentplexDBEntities();
 
-        
+        [Authorize]
         public ActionResult Index()
         {
-            //return View(db.Sliders.ToList());
-            return View();
+            return View(db.Users.ToList());
         }
 
-        
-        public PartialViewResult _List()
-        {
-            //var sliders = db.Sliders.Where(p => p.ProductParentGroupID == null);
-            return PartialView(db.Sliders.ToList());
-        }
-
-        // GET: Admin/SlidersAjax/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Slider slider = db.Sliders.Find(id);
-            if (slider == null)
+            User user = db.Users.Find(id);
+            if (user == null)
             {
                 return HttpNotFound();
             }
-            return View(slider);
+            return View(user);
         }
 
-        // GET: Admin/SlidersAjax/Create
-        public PartialViewResult Create()
+        [Authorize]
+        public ActionResult Create()
         {
-            return PartialView(new Slider());
+            return View();
         }
 
-        // POST: Admin/SlidersAjax/Create
+        // POST: Admin/Users/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "SlideID,SlideTitle,SlideImage,SlideIsActive,SlideDesc")] Slider slider)
+        public ActionResult Create([Bind(Include = "UserID,UserName,UserPassword,UserEmail,UserIsActive")] User user)
         {
             if (ModelState.IsValid)
             {
-                db.Sliders.Add(slider);
+                user.UserPassword  = PasswordHelper.EncodePasswordMd5(user.UserPassword).Replace("-", "");
+                db.Users.Add(user);
                 db.SaveChanges();
                 return RedirectToAction("Index");
-                //return PartialView(slider);
             }
 
-            return PartialView(new Slider());
+            return View(user);
         }
 
-        // GET: Admin/SlidersAjax/Edit/5
+        // GET: Admin/Users/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Slider slider = db.Sliders.Find(id);
-            if (slider == null)
+            User user = db.Users.Find(id);
+            if (user == null)
             {
                 return HttpNotFound();
             }
-            return View(slider);
+            return View(user);
         }
 
-        // POST: Admin/SlidersAjax/Edit/5
+        // POST: Admin/Users/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "SlideID,SlideTitle,SlideImage,SlideIsActive,SlideDesc")] Slider slider)
+        public ActionResult Edit([Bind(Include = "UserID,UserName,UserPassword,UserEmail,UserIsActive")] User user)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(slider).State = EntityState.Modified;
+                db.Entry(user).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(slider);
+            return View(user);
         }
 
-        // GET: Admin/SlidersAjax/Delete/5
+        // GET: Admin/Users/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Slider slider = db.Sliders.Find(id);
-            if (slider == null)
+            User user = db.Users.Find(id);
+            if (user == null)
             {
                 return HttpNotFound();
             }
-            return View(slider);
+            return View(user);
         }
 
-        // POST: Admin/SlidersAjax/Delete/5
+        // POST: Admin/Users/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Slider slider = db.Sliders.Find(id);
-            db.Sliders.Remove(slider);
+            User user = db.Users.Find(id);
+            db.Users.Remove(user);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return new HttpStatusCodeResult(System.Net.HttpStatusCode.OK);
+            //return RedirectToAction("Index");
         }
 
         protected override void Dispose(bool disposing)
@@ -132,12 +126,5 @@ namespace Dentplex.Web.Areas.Admin.Controllers
             }
             base.Dispose(disposing);
         }
-
-
-
-
-
-
-
     }
 }
