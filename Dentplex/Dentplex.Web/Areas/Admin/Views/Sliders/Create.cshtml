@@ -18,6 +18,15 @@
                         @Html.ValidationMessageFor(model => model.SlideTitle, "", new { @class = "text-danger" })
                     </div>
                 </div>
+
+                @*<div class="form-group">
+                    @Html.LabelFor(model => model.SliderName, htmlAttributes: new { @class = "control-label col-md-1" })
+                    <div class="col-md-3">
+                        @Html.EditorFor(model => model.SliderName, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.SliderName, "", new { @class = "text-danger" })
+                    </div>
+                </div>*@
+
                 <div class="form-group">
                     @Html.LabelFor(model => model.SlideIsActive, htmlAttributes: new { @class = "control-label col-md-1" })
                     <div class="col-md-3">
