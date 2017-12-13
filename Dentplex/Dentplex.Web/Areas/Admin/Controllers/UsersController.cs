@@ -51,7 +51,7 @@ namespace Dentplex.Web.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                user.UserPassword  = PasswordHelper.EncodePasswordMd5(user.UserPassword).Replace("-", "");
+                user.UserPassword = PasswordHelper.EncodePasswordMd5(user.UserPassword).Replace("-", "");
                 user.UserIsActive = true;
                 db.Users.Add(user);
                 db.SaveChanges();
@@ -86,21 +86,18 @@ namespace Dentplex.Web.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                User fuser = db.Users.Find(user.UserID);
-                if (fuser != null)
+                var currentPerson = db.Users.FirstOrDefault(u => u.UserID == user.UserID);
+                if (currentPerson == null)
+                    return HttpNotFound();
+
+                if (user.UserPassword != "******")
                 {
-                    if (user.UserPassword == "******")
-                    {
-                        user.UserPassword = fuser.UserPassword;
-                    }
-                    else
-                    {
-                        user.UserPassword = PasswordHelper.EncodePasswordMd5(user.UserPassword).Replace("-", ""); ;
-                    }
-                    db.Entry(user).State = EntityState.Modified;
-                    db.SaveChanges();
+                    currentPerson.UserPassword = PasswordHelper.EncodePasswordMd5(user.UserPassword).Replace("-", ""); ;
                 }
-                
+                currentPerson.UserName = user.UserName;
+                currentPerson.UserEmail = user.UserEmail;
+                db.SaveChanges();
+
                 return RedirectToAction("Index");
             }
             return View(user);
@@ -146,13 +143,13 @@ namespace Dentplex.Web.Areas.Admin.Controllers
                 db.SaveChanges();
                 new HttpStatusCodeResult(System.Net.HttpStatusCode.OK);
                 return true;
-                
+
             }
-                return false;
+            return false;
 
-            
 
-            
+
+
             //JsonResult
             //return Json(person);
         }
