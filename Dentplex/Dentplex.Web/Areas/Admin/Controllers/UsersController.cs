@@ -51,7 +51,8 @@ namespace Dentplex.Web.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                user.UserPassword  = PasswordHelper.EncodePasswordMd5(user.UserPassword).Replace("-", "");
+                user.UserPassword = PasswordHelper.EncodePasswordMd5(user.UserPassword).Replace("-", "");
+                user.UserIsActive = true;
                 db.Users.Add(user);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -72,6 +73,7 @@ namespace Dentplex.Web.Areas.Admin.Controllers
             {
                 return HttpNotFound();
             }
+            user.UserPassword = "******";
             return View(user);
         }
 
@@ -84,8 +86,18 @@ namespace Dentplex.Web.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(user).State = EntityState.Modified;
+                var currentPerson = db.Users.FirstOrDefault(u => u.UserID == user.UserID);
+                if (currentPerson == null)
+                    return HttpNotFound();
+
+                if (user.UserPassword != "******")
+                {
+                    currentPerson.UserPassword = PasswordHelper.EncodePasswordMd5(user.UserPassword).Replace("-", ""); ;
+                }
+                currentPerson.UserName = user.UserName;
+                currentPerson.UserEmail = user.UserEmail;
                 db.SaveChanges();
+
                 return RedirectToAction("Index");
             }
             return View(user);
@@ -116,6 +128,30 @@ namespace Dentplex.Web.Areas.Admin.Controllers
             db.SaveChanges();
             return new HttpStatusCodeResult(System.Net.HttpStatusCode.OK);
             //return RedirectToAction("Index");
+        }
+
+
+
+        [HttpPost]
+        public bool AjaxDelete(int userId)
+        {
+
+            User user = db.Users.Find(userId);
+            if (user != null)
+            {
+                db.Users.Remove(user);
+                db.SaveChanges();
+                new HttpStatusCodeResult(System.Net.HttpStatusCode.OK);
+                return true;
+
+            }
+            return false;
+
+
+
+
+            //JsonResult
+            //return Json(person);
         }
 
         protected override void Dispose(bool disposing)

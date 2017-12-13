@@ -24,9 +24,10 @@ namespace Dentplex.Data.Model
 
         [Display(Name = "ایمیل")]
         [Required(ErrorMessage = "لطفا {0} را وارد نمایید.")]
+        [RegularExpression(".+\\@.+\\..+",ErrorMessage = "لطفا ایمیل صحیح وارد نمایید")]
         public string UserEmail { get; set; }
 
-        [Display(Name = "فعال/غیرفعال")]
+        [Display(Name = "وضعیت")]
         public bool UserIsActive { get; set; }
     }
 

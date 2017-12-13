@@ -27,26 +27,29 @@
                 <div class="form-group">
                     @Html.LabelFor(model => model.UserPassword, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
-                        @Html.EditorFor(model => model.UserPassword, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.EditorFor(model => model.UserPassword, new { htmlAttributes = new { @class = "form-control", @maxlength = "100", @type = "password", placeholder = "********" } })
                         @Html.ValidationMessageFor(model => model.UserPassword, "", new { @class = "text-danger" })
+                        @*<input id="mytxtPass" name="mytxtPass" class = "form-control", maxlength = "100" type = "password" placeholder = "********"  />*@
+                        <a onclick='ShowPass();return false;'><i class="glyphicon glyphicon-eye-open"></i> نمایش پسورد</a>
                     </div>
                 </div>
-
+                <script type="text/javascript">
+                    
+                    function ShowPass() {
+                        debugger;
+                        var that = document.getElementById("UserPassword");
+                        if (that.type === "password") {
+                            that.type = "text";
+                        } else {
+                            that.type = "password";
+                        }
+                    }
+                </script>
                 <div class="form-group">
                     @Html.LabelFor(model => model.UserEmail, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
                         @Html.EditorFor(model => model.UserEmail, new { htmlAttributes = new { @class = "form-control" } })
                         @Html.ValidationMessageFor(model => model.UserEmail, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    @Html.LabelFor(model => model.UserIsActive, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        <div class="checkbox">
-                            @Html.EditorFor(model => model.UserIsActive)
-                            @Html.ValidationMessageFor(model => model.UserIsActive, "", new { @class = "text-danger" })
-                        </div>
                     </div>
                 </div>
 
