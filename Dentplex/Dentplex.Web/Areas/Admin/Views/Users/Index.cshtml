@@ -30,7 +30,7 @@
 
             @foreach (var item in Model)
             {
-                <tr>
+                <tr class="urow-@item.UserID">
                     <td>
                         @Html.DisplayFor(modelItem => item.UserName)
                     </td>
@@ -53,39 +53,30 @@
         </table>
 
         <script type="text/javascript">
-            
-            $(document).ready(function () {
-                debugger;
-
-
-
-
-
-
-            });
-
-
 
             function deleteUser(uid) {
                 debugger;
-                if (confirm('آیا از حذف این مورد اطمینان دارید ؟')) {
-                    $.ajax({
-                        type: "post",
-                        url: "@Url.Action("Delete", "Users")",
-                        ajaxasync: true,
-                    data: { id: uid },
-                    success: function () {
-                        alert("حذف موفق");
-                        // Perform redirect
-                        window.location.replace('@Url.Action("Index", "Users")');
+                if (confirm("آیا از حذف این مورد اطمینان دارید")) {
+                $.ajax({
+                    type: "POST",
+                    url: '@Url.Action("AjaxDelete", "Users")',
+                    contentType: "application/json; charset=utf-8",
+                    data: JSON.stringify({
+                        userId: uid
+                    }),
+                    success: function (response) {
+                        debugger;
+                        var i = response;
+                        $('.urow-' + uid).hide(1000);
                     },
-                    error: function (data) {
-                        alert(data.x);
-                    }
-                });
-            }
-
-
+                    failure: function (response) {
+                        alert("failure");
+                        },
+                    error: function (response) {
+                            alert("error");
+                        }
+                    });
+                }
             }
 
 
