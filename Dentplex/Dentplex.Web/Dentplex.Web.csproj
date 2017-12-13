@@ -1708,6 +1708,12 @@
     <Content Include="Areas\Admin\Views\Pages\Details.cshtml" />
     <Content Include="Areas\Admin\Views\Pages\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Pages\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\SlidersAjax\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\SlidersAjax\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\SlidersAjax\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\SlidersAjax\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\SlidersAjax\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\SlidersAjax\_List.cshtml" />
     <None Include="Properties\PublishProfiles\Dentplex.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Images\ProductImages\MainImage\7c8ea462332544e0b122f065615271c9.jpg" />
