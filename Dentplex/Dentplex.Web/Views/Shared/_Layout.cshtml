@@ -10,21 +10,9 @@
     <link rel="stylesheet" href="/Content/theme/css/font-awesome.min.css">
     <link rel="stylesheet" href="/Content/theme/css/swiper.min.css">
     <link href="~/Content/theme/css/osSlider.css" rel="stylesheet" />
-    <script src="/Content/theme/js/jquery.min.js" type="text/javascript"></script>
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
     <script type="text/javascript">
         $(document).ready(function () {
-
-            //$(".wrapp-slider img").css({
-            //    'width': $(window).width() - 30,
-            //});
-
-            //var mySlider = new osSlider({
-            //    pNode: '.slider',
-            //    cNode: '.slider-main li',
-            //    speed: 3000,
-            //    autoPlay: true
-            //});
-
             var swiper = new Swiper('.swiper-container3', {
                 effect: 'coverflow',
                 grabCursor: true,
@@ -66,8 +54,17 @@
             });	
         })
     </script>
+	@*<link href="@Url.Content("~/Content/kendo/2017.3.1018/kendo.common-bootstrap.min.css")" rel="stylesheet" type="text/css" />
+	<link href="@Url.Content("~/Content/kendo/2017.3.1018/kendo.mobile.all.min.css")" rel="stylesheet" type="text/css" />
+	<link href="@Url.Content("~/Content/kendo/2017.3.1018/kendo.bootstrap.min.css")" rel="stylesheet" type="text/css" />
+	<link href="@Url.Content("~/Content/kendo/2017.3.1018/kendo.rtl.min.css")" rel="stylesheet" type="text/css" />
+	<script src="@Url.Content("~/Scripts/kendo/2017.3.1018/jquery.min.js")"></script>
+	<script src="@Url.Content("~/Scripts/kendo/2017.3.1018/jszip.min.js")"></script>
+	<script src="@Url.Content("~/Scripts/kendo/2017.3.1018/kendo.all.min.js")"></script>
+	<script src="@Url.Content("~/Scripts/kendo/2017.3.1018/kendo.aspnetmvc.min.js")"></script>
+	<script src="@Url.Content("~/Scripts/kendo.modernizr.custom.js")"></script>*@
 </head>
-<body>
+<body class="k-rtl">
     <div class="main">
         <div class="header">
             <div class="top-header">

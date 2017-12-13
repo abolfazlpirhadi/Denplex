@@ -51,6 +51,7 @@ namespace Dentplex.Web.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
+                user.UserPassword  = PasswordHelper.EncodePasswordMd5(user.UserPassword).Replace("-", "");
                 db.Users.Add(user);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -113,7 +114,8 @@ namespace Dentplex.Web.Areas.Admin.Controllers
             User user = db.Users.Find(id);
             db.Users.Remove(user);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return new HttpStatusCodeResult(System.Net.HttpStatusCode.OK);
+            //return RedirectToAction("Index");
         }
 
         protected override void Dispose(bool disposing)

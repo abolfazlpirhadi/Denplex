@@ -1,10 +1,12 @@
 ﻿@model IEnumerable<Dentplex.Data.Model.SliderItem>
+
 @if (Model.Any())
 {
     <script type="text/javascript">
         $(document).ready(function() {
             loadTopSlider();
             function loadTopSlider() {
+                
                 $(".wrapp-slider img").css({
                     'width': $(window).width() - 30,
                 });
@@ -26,11 +28,9 @@
             <ul class="slider-main">
                 @foreach (var item in Model)
                 {
-
                     <li>
                         <a href="@item.SlideItemLink"><img src="~/Images/SliderItemImages/@item.SlideItemImage" alt=""></a>
                     </li>
-
                 }
             </ul>
         </div>

@@ -16,9 +16,9 @@
                 <th>
                     @Html.DisplayNameFor(model => model.UserName)
                 </th>
-                <th>
+                @*<th>
                     @Html.DisplayNameFor(model => model.UserPassword)
-                </th>
+                </th>*@
                 <th>
                     @Html.DisplayNameFor(model => model.UserEmail)
                 </th>
@@ -34,9 +34,9 @@
                     <td>
                         @Html.DisplayFor(modelItem => item.UserName)
                     </td>
-                    <td>
+                    @*<td>
                         @Html.DisplayFor(modelItem => item.UserPassword)
-                    </td>
+                    </td>*@
                     <td>
                         @Html.DisplayFor(modelItem => item.UserEmail)
                     </td>
@@ -44,8 +44,8 @@
                         @Html.DisplayFor(modelItem => item.UserIsActive)
                     </td>
                     <td>
-                        <a href="@Url.Action("Edit","Users",new { id = @item.UserID})" class="btn btn-sm btn-success"><i class="glyphicon glyphicon-edit"></i>ویرایش</a>
-                        <a href="@Url.Action("Delete","Users",new { id = @item.UserID})" class="btn btn-sm btn-danger"><i class="glyphicon glyphicon-trash"></i>حذف</a>
+                        <a href="@Url.Action("Edit","Users",new { id = @item.UserID})" class="btn btn-sm btn-success"><i class="glyphicon glyphicon-edit"></i> ویرایش</a>
+                        <a onclick='deleteUser(@item.UserID);return false;' class="btn btn-sm btn-danger"><i class="glyphicon glyphicon-trash"></i> حذف</a>
                     </td>
                 </tr>
             }
@@ -53,26 +53,42 @@
         </table>
 
         <script type="text/javascript">
+            
             $(document).ready(function () {
+                debugger;
 
-                $.ajax({
-                    type: "post",
-                    url: "@Url.Action("Delete", "Users")",
-                    ajaxasync: true,
-                    data: { id: $('input#idField').val() },
+
+
+
+
+
+            });
+
+
+
+            function deleteUser(uid) {
+                debugger;
+                if (confirm('آیا از حذف این مورد اطمینان دارید ؟')) {
+                    $.ajax({
+                        type: "post",
+                        url: "@Url.Action("Delete", "Users")",
+                        ajaxasync: true,
+                    data: { id: uid },
                     success: function () {
-
-                        alert("success");
-
+                        alert("حذف موفق");
                         // Perform redirect
-                        window.location.replace("@Url.Action('Index', 'Users')");
+                        window.location.replace('@Url.Action("Index", "Users")');
                     },
                     error: function (data) {
                         alert(data.x);
                     }
                 });
+            }
 
-            });
+
+            }
+
+
         </script>
 
 
