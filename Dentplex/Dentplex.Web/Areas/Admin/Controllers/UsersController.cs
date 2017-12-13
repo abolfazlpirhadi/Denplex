@@ -154,6 +154,23 @@ namespace Dentplex.Web.Areas.Admin.Controllers
             //return Json(person);
         }
 
+
+
+        [HttpPost]
+        public bool ChangeStatus(int userId)
+        {
+            var currentPerson = db.Users.FirstOrDefault(u => u.UserID == userId);
+            if (currentPerson == null)
+                return false;
+
+            currentPerson.UserIsActive = !currentPerson.UserIsActive;
+                db.SaveChanges();
+                new HttpStatusCodeResult(System.Net.HttpStatusCode.OK);
+                return true;
+        }
+
+        
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)

@@ -41,10 +41,18 @@
                         @Html.DisplayFor(modelItem => item.UserEmail)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.UserIsActive)
+                        @if (@item.UserIsActive)
+                        {
+                            <a onclick='changeStatus(@item.UserID,this);return false;' class="btn btn-sm btn-success">فعال</a>
+                        }
+                        else
+                        {
+                            <a onclick='changeStatus(@item.UserID,this);return false;' class="btn btn-sm btn-default">فعال</a>
+                        }
+                        
                     </td>
                     <td>
-                        <a href="@Url.Action("Edit","Users",new { id = @item.UserID})" class="btn btn-sm btn-success"><i class="glyphicon glyphicon-edit"></i> ویرایش</a>
+                        <a href="@Url.Action("Edit","Users",new { id = @item.UserID})" class="btn btn-sm btn-warning"><i class="glyphicon glyphicon-edit"></i> ویرایش</a>
                         <a onclick='deleteUser(@item.UserID);return false;' class="btn btn-sm btn-danger"><i class="glyphicon glyphicon-trash"></i> حذف</a>
                     </td>
                 </tr>
@@ -54,31 +62,58 @@
 
         <script type="text/javascript">
 
-            function deleteUser(uid) {
-                debugger;
-                if (confirm("آیا از حذف این مورد اطمینان دارید")) {
+            function changeStatus(uid, that) {
                 $.ajax({
                     type: "POST",
-                    url: '@Url.Action("AjaxDelete", "Users")',
+                    url: '@Url.Action("ChangeStatus", "Users")',
                     contentType: "application/json; charset=utf-8",
                     data: JSON.stringify({
                         userId: uid
                     }),
-                    success: function (response) {
+                    success: function(response) {
+                        alert("success");
                         debugger;
-                        var i = response;
-                        $('.urow-' + uid).hide(1000);
+                        if ($(that).hasClass("btn btn-sm btn-success")) {
+                            $(that).removeClass("btn btn-sm btn-success").addClass("btn btn-sm btn-default");
+                        } else {
+                            $(that).removeClass("btn btn-sm btn-default").addClass("btn btn-sm btn-success");
+                        }
                     },
-                    failure: function (response) {
+                    failure: function(response) {
                         alert("failure");
+                    },
+                    error: function(response) {
+                        alert("error");
+                    }
+                });
+            }
+
+
+            function deleteUser(uid) {
+
+                if (confirm("آیا از حذف این مورد اطمینان دارید")) {
+                    $.ajax({
+                        type: "POST",
+                        url: '@Url.Action("AjaxDelete", "Users")',
+                        contentType: "application/json; charset=utf-8",
+                        data: JSON.stringify({
+                            userId: uid
+                        }),
+                        success: function(response) {
+                            debugger;
+                            var i = response;
+                            $('.urow-' + uid).hide(1000);
                         },
-                    error: function (response) {
+                        failure: function(response) {
+                            alert("failure");
+                        },
+                        error: function(response) {
                             alert("error");
                         }
                     });
                 }
-            }
 
+            }
 
         </script>
 
