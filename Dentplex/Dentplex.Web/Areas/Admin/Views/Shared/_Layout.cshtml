@@ -13,14 +13,18 @@
     <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
     <script src="~/Scripts/modernizr-2.6.2.js"></script>
     <link href="~/Content/MyStyle.css" rel="stylesheet" />
+    
 
     <link href="~/Content/kendo/kendo.common-bootstrap.min.css" rel="stylesheet" />
-    <link href="~/Content/kendo/kendo.default.min.css" rel="stylesheet" />
+    @*<link href="~/Content/kendo/kendo.default.min.css" rel="stylesheet" />*@
     @*<link href="~/Content/kendo/kendo.silver.min.css" rel="stylesheet" />*@
-    <link href="~/Content/kendo/kendo.mobile.all.min.css" rel="stylesheet" />
+    <link href="~/Content/kendo/kendo.bootstrap.min.css" rel="stylesheet" />
+    @*<link href="~/Content/kendo/kendo.mobile.all.min.css" rel="stylesheet" />*@
     <link href="~/Content/kendo/kendo.rtl.min.css" rel="stylesheet" />
     <script src="~/Scripts/kendo/jszip.min.js"></script>
     <script src="~/Scripts/kendo/kendo.all.min.js"></script>
+    <script src="~/Scripts/kendo/messages/kendo.messages.fa-IR.min.js"></script>
+    <script src="~/Scripts/kendo/cultures/kendo.culture.fa-IR.min.js"></script>
     <script src="~/Scripts/kendo/kendo.aspnetmvc.min.js"></script>
 
 
@@ -130,7 +134,7 @@
                                 <li>
                                     <a href="#"><i class="icon-user"></i>کاربری </a>
                                     <ul class="submenu">
-                                        <li><a href="#"><i class="icon-key"></i> تغییر رمز عبور </a></li>
+                                        <li><a href="@Url.Action("Index","Users")"><i class="icon-key"></i>مدیریت کاربران </a></li>
                                     </ul>
                                 </li>
                             </ul>

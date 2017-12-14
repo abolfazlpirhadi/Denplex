@@ -34,11 +34,12 @@ namespace Dentplex.Web.Areas.Admin.Controllers
                         return Redirect(ReturnUrl);
                     }
                 }
+                else
+                {
+                    ModelState.AddModelError("UserName", "نام کاربری یا رمز عبور اشتباه است!");
+                }
             }
-            else
-            {
-                ModelState.AddModelError("UserName", "کاربری با این مشخصات یافت نشد!");
-            }
+            
             return View(loginViewModel);
         }
 
