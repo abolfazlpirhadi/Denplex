@@ -1719,6 +1719,10 @@
     <Content Include="Areas\Admin\Views\Users\Details.cshtml" />
     <Content Include="Areas\Admin\Views\Users\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Users\Index.cshtml" />
+    <Content Include="Content\theme\fonts\Samim-Bold.eot" />
+    <Content Include="Content\theme\fonts\Samim-Bold.woff" />
+    <Content Include="Content\theme\fonts\Samim.eot" />
+    <Content Include="Content\theme\fonts\Samim.woff" />
     <None Include="Properties\PublishProfiles\Dentplex.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Images\ProductImages\MainImage\7c8ea462332544e0b122f065615271c9.jpg" />
