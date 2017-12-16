@@ -129,6 +129,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Areas\Admin\Views\SlidersKendo\EditorTemplates\SliderTemplate.cshtml" />
     <Content Include="Content\anime-bg.css" />
     <Content Include="Content\bootstrap-rtl.css" />
     <Content Include="Content\ckeditor\adapters\jquery.js" />
@@ -1724,7 +1725,6 @@
     <Content Include="Areas\Admin\Views\SlidersKendo\Details.cshtml" />
     <Content Include="Areas\Admin\Views\SlidersKendo\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\SlidersKendo\Index.cshtml" />
-    <Content Include="Areas\Admin\Views\SlidersKendo\EditorTemplates\SliderTemplate.cshtml" />
     <None Include="Properties\PublishProfiles\Dentplex.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Images\ProductImages\MainImage\7c8ea462332544e0b122f065615271c9.jpg" />

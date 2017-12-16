@@ -1,0 +1,42 @@
+﻿@model Dentplex.Web.Areas.Admin.Controllers.SlidersKendoController.Sliderclass
+
+
+<div class="k-edit-label">شناسه: </div>
+<div class="k-edit-field">
+    <input name="SlideID" disabled class="k-textbox" />
+</div>
+<div class="k-edit-label">نام اسلایدر: </div>
+<div class="k-edit-field">
+    <input name="SlideTitle" required class="k-textbox" />
+</div>
+<div class="k-edit-label">تصویر: </div>
+<div class="k-edit-field">
+    <input name="SlideImage" required class="slrimg k-textbox" />
+</div>
+
+<script>
+    function success(e) {
+        var imagePath = e.response.ImageUrl;
+        $(".slrimg").val(imagePath).trigger("change");
+    }
+</script>
+<div class="k-edit-label">تصویر: </div>
+<div class="k-edit-field">
+    @(Html.Kendo().Upload()
+    .Name("file")
+    .Multiple(false)
+    .Async(a => a
+        .Save("UldSave", "SlidersKendo")
+        .AutoUpload(true)
+    )
+    .Events(e => e.Success("success"))
+    )
+</div>
+    <div class="k-edit-label">توضیحات: </div>
+    <div class="k-edit-field">
+        <textarea name="SlideDesc" cols="40" rows="5" required class="k-textbox"></textarea>
+    </div>
+
+    @*or use:
+
+        @Html.EditorFor(model => model.SlideTitle)*@
