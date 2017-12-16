@@ -1719,6 +1719,12 @@
     <Content Include="Areas\Admin\Views\Users\Details.cshtml" />
     <Content Include="Areas\Admin\Views\Users\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Users\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\SlidersKendo\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\SlidersKendo\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\SlidersKendo\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\SlidersKendo\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\SlidersKendo\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\SlidersKendo\EditorTemplates\SliderTemplate.cshtml" />
     <None Include="Properties\PublishProfiles\Dentplex.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Images\ProductImages\MainImage\7c8ea462332544e0b122f065615271c9.jpg" />
@@ -3656,6 +3662,7 @@
     <Compile Include="Areas\Admin\Controllers\SliderItemsController.cs" />
     <Compile Include="Areas\Admin\Controllers\SlidersAjaxController.cs" />
     <Compile Include="Areas\Admin\Controllers\SlidersController.cs" />
+    <Compile Include="Areas\Admin\Controllers\SlidersKendoController.cs" />
     <Compile Include="Areas\Admin\Controllers\UsersController.cs" />
     <Compile Include="Classes\CheckContentImage.cs" />
     <Compile Include="Classes\ImageResizer.cs" />
@@ -3903,6 +3910,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Areas\Admin\Views\Products\DisplayTemplates\" />
     <Folder Include="Images\SliderImages\" />
   </ItemGroup>
   <ItemGroup>

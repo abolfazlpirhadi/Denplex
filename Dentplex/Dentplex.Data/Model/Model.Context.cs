@@ -15,11 +15,18 @@ namespace Dentplex.Data.Model
     
     public partial class DentplexDBEntities : DbContext
     {
+        private Slider slider;
+
         public DentplexDBEntities()
             : base("name=DentplexDBEntities")
         {
         }
-    
+
+        public DentplexDBEntities(Slider slider)
+        {
+            this.slider = slider;
+        }
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             throw new UnintentionalCodeFirstException();
