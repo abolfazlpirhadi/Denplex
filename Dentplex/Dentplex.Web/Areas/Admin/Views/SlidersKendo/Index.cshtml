@@ -22,13 +22,14 @@
                 //  columns.Bound(c => c.SlideID);
                 columns.Bound(c => c.SlideImage).ClientTemplate(
                 @"<img src='#:data.SlideImage#'/ class='thumbnail' style='max-width: 100px'>")
-              .Width(240);
-                columns.Bound(c => c.SlideTitle);
+              .Title("تصویر");
+                columns.Bound(c => c.SlideTitle).Title("عنوان اسلایدر");
 
                 columns.Command(command =>
                 {
-                    command.Edit();
-                    command.Destroy();
+                    command.Edit().Text("ویرایش");
+                    command.Destroy().Text("حذف");
+                    //command.Custom("Status").Click("changeStatus").Text("فعال");
                 }).Width(200);
 
             })

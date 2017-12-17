@@ -25,11 +25,61 @@ namespace Dentplex.Web.Controllers
                 return View(product);
             }
         }
-        public ActionResult ProductBanner(int id)
+        public ActionResult ProductBanner(int? id)
         {
-            var productgroup = db.ProductGroups.Find(id);
-            return PartialView(productgroup);
+            
+            if (id != null)
+            {
+                var productgroup = db.ProductGroups.Find(id);
+                return PartialView(productgroup);
+            }
+            else
+            {
+                var productgroup = db.ProductGroups;
+                return PartialView(productgroup);
+            }
         }
+
+        [Route("Product/{id}")]
+        [HttpPost]
+        public ActionResult AjGroupItemShow(int? id , List<string> gIds)
+        {
+            string combindedString = string.Join(",", gIds.ToArray());
+            int fid;
+            //for try parse using from "Select"
+
+            if (combindedString == "")
+            {
+                var fildes = db.Products.Where(p => p.ProductGroupID == id);
+
+                return PartialView("_ProductListSubGroups", fildes);
+            }
+            else
+            {
+                var fIdLists = combindedString.Split(',').Select(p => Int32.TryParse(p, out fid) ? Int32.Parse(p) : -1).ToList();
+
+                //if (fIdLists.Count < 30)
+                //{
+                var fildes = (from u in db.Products
+                              join up in fIdLists on u.ProductSubGroupID equals up
+                              select u).ToList();
+
+                return PartialView("_ProductListSubGroups", fildes);
+            }
+            
+
+            
+            //JsonResult
+            //return Json(person);
+        }
+
+        public ActionResult _ProductsubGroups(int id)
+        {
+            var productSubgroup = db.ProductGroups.Where(v => v.ProductParentGroupID == id);
+            return PartialView(productSubgroup);
+        }
+
+        
         public PartialViewResult ProductGroups()
         {
             return PartialView(db.ProductGroups.Where(p => p.ProductParentGroupID == null));
