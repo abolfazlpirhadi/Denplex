@@ -27,8 +27,9 @@
 
                 columns.Command(command =>
                 {
-                    command.Edit();
-                    command.Destroy();
+                    command.Edit().Text("ویرایش");
+                    command.Destroy().Text("حذف");
+                    //command.Custom("Status").Click("changeStatus").Text("فعال");
                 }).Width(200);
 
             })

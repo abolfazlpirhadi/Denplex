@@ -5,25 +5,27 @@
     <script type="text/javascript">
         $(document).ready(function() {
             loadTopSlider();
-            function loadTopSlider() {
-                
-                $(".wrapp-slider img").css({
-                    'width': $(window).width() - 30,
-                });
 
-                 var mySlider = new osSlider({
-                    pNode: '.slider',
-                    cNode: '.slider-main li',
-                    speed: 3000,
-                    autoPlay: true
-                });
-
-                 //$(".wrapp-slider").show();
-            }
         });
+
+        function loadTopSlider() {
+
+            $(".wrapp-slider img").css({
+                'width': $(window).width() - 30,
+            });
+
+            var mySlider = new osSlider({
+                pNode: '.slider',
+                cNode: '.slider-main li',
+                speed: 3000,
+                autoPlay: true
+            });
+
+            $(".wrapp-slider").css("opacity","1");
+        }
     </script>
 
-    <div class="wrapp-slider">
+    <div class="wrapp-slider" style="opacity: 0">
         <div class="slider">
             <ul class="slider-main">
                 @foreach (var item in Model)
