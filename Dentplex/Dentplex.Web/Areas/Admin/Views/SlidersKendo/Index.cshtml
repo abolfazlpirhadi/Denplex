@@ -21,9 +21,9 @@
             {
                 //  columns.Bound(c => c.SlideID);
                 columns.Bound(c => c.SlideImage).ClientTemplate(
-                @"<img src='#:data.SlideImage#'/ class='thumbnail' style='max-width: 100px'>")
-              .Title("تصویر");
-                columns.Bound(c => c.SlideTitle).Title("عنوان اسلایدر");
+                @"<img src='/Images/ProductImages/ThumbImage/#:data.SlideImage#'/ class='thumbnail' style='max-width: 100px'>")
+              .Width(240);
+                columns.Bound(c => c.SlideTitle);
 
                 columns.Command(command =>
                 {
