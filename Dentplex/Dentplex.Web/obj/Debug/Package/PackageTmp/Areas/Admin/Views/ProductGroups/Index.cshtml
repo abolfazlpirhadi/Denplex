@@ -1,0 +1,79 @@
+﻿@{
+    ViewBag.Title = "فهرست ";
+}
+
+<h4>فهرست گروه محصولات</h4>
+<hr />
+
+<h2><a class="btn btn-primary" onclick="AddGroup()"><span class="glyphicon glyphicon-plus"></span>افزودن گروه جدید&nbsp;</a></h2>
+<div id="ShowList">@Html.Action("List")</div>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+            </div>
+            <div class="modal-body" id="myModalBody">
+                ...
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts
+{
+    @*<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/Scripts/modal.js"></script>*@
+    @*<script src="~/Scripts/Human_JS/humane.min.js"></script>
+        <link href="~/Scripts/Human_JS/humane_js_themes/original.css" rel="stylesheet" />*@
+
+    <script>
+        function AddGroup() {
+            $.ajax({
+                url: "/Admin/ProductGroups/Create",
+                type: "Get"
+            }).done(function (res) {
+                $("#myModal").modal();
+                $("#myModalLabel").html("افزودن گروه جدید");
+                $("#myModalBody").html(res);
+            });
+        };
+
+        function AddSubGroup(id) {
+            $.ajax({
+                url: "/Admin/ProductGroups/Create?parentId=" + id,
+                type: "Get"
+            }).done(function (res) {
+                $("#myModal").modal();
+                $("#myModalLabel").html("افزودن زیر گروه جدید");
+                $("#myModalBody").html(res);
+            });
+        };
+
+        function Success() {
+            $("#myModal").modal('hide');
+            humane.log("عملیات با موفقیت انجام شد");
+        }
+
+        function EditGroup(id) {
+            $.get("/Admin/ProductGroups/Edit/" + id, function (res) {
+                $("#myModal").modal();
+                $("#myModalLabel").html("ویرایش گروه");
+                $("#myModalBody").html(res);
+            });
+        }
+
+        function DeleteGroup(id) {
+            if (confirm('آیا از حذف مطمئن هستید ؟')) {
+                $.get("/Admin/ProductGroups/Delete/" + id, function (res) {
+                    $("#ShowList").html(res);
+                });
+            }
+        }
+    </script>
+}

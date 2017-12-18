@@ -1,0 +1,66 @@
+﻿@model Dentplex.Data.Model.ProductGroup
+
+@{
+    ViewBag.Title = "ویرایش " + Server.HtmlDecode(Html.DisplayNameFor(model => model).ToString());
+}
+
+@using (Ajax.BeginForm("Edit", "ProductGroups", FormMethod.Post, new AjaxOptions(){ UpdateTargetId = "ShowList", OnSuccess = "Success" }, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        @Html.ValidationSummary(true)
+        @Html.HiddenFor(model => model.ProductGroupID)
+        @Html.HiddenFor(model => model.ProductParentGroupID)
+        @Html.HiddenFor(model => model.ProductGroupBanner)
+        @Html.HiddenFor(model => model.ProductGroupImage)
+
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ProductGroupTitle, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ProductGroupTitle)
+                @Html.ValidationMessageFor(model => model.ProductGroupTitle)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ProductGroupImage, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="file" name="imgProductGroup" />
+                @Html.ValidationMessageFor(model => model.ProductGroupImage)
+                <br />
+                @if (Model.ProductGroupImage != null)
+                {
+                    <img src="~/Images/ProuctGroups/MainImage/@Model.ProductGroupImage" class="thumbnail" style="max-height: 70px" />
+                }
+            </div>
+            
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ProductGroupBanner, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="file" name="imgBannerProductGroup" />
+                @Html.ValidationMessageFor(model => model.ProductGroupBanner)
+                <br />
+                @if (Model.ProductGroupBanner != null)
+                {
+                    <img src="~/Images/ProuctGroups/BannerImage/@Model.ProductGroupBanner" class="thumbnail" style="max-width: 100px" />
+                }
+            </div>
+        </div>
+
+        <div class="form-group" id="buttons">
+            <div class="col-md-offset-2 col-md-10">
+                <button class="btn btn-info" type="submit">@*<span class="glyphicon glyphicon-save"></span>*@ثبت</button>
+                @*<input type="submit" value="ثبت" class="btn btn-primary" />*@
+            </div>
+        </div>
+    </div>
+}
+
+
+
+
+

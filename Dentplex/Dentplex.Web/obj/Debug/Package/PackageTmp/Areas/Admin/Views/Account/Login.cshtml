@@ -1,0 +1,77 @@
+﻿@model Dentplex.Web.ViewModels.LoginViewModel
+
+@{
+    Layout = null;
+}
+
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<link href="~/Content/bootstrap-rtl.css" rel="stylesheet" />
+<link href="~/Content/anime-bg.css" rel="stylesheet" />
+<div class="back-wrapper"></div>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    @*<div class="form-horizontal col-lg-3 col-md-4 col-sm-6 col-xs-12 center-block" style="float:none;">
+        <h4>UserViewModel</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.UserName, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Login" class="btn btn-default" />
+            </div>
+        </div>
+    </div>*@
+   
+
+    <div class="main-login-wrapper panel-body col-lg-3 col-md-4 col-sm-6 col-xs-12" style="float:none;">
+        <div class="panel panel-info login-wrapper" style="background:#fff;">
+            <div class="panel-heading">ورود به پنل مدیریت</div>
+            <div class="panel-body">
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="input-group input-group-sm">
+                    <span class="input-group-addon"> @Html.LabelFor(model => model.UserName, htmlAttributes: new { @class = "control-label col-md-2" })</span>
+                    @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+                @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
+                <div class="input-group input-group-sm">
+                    <span class="input-group-addon">@Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })</span>
+                    @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+                @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                <div class="input-group input-group-sm">
+                    <div class="input-group-btn">
+                        <input type="submit" value="Login" class="btn btn-xs btn-info" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+}
+
+        <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+        <script src="~/Scripts/jquery.validate.min.js"></script>
+        <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>

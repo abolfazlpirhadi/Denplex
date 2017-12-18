@@ -1,0 +1,53 @@
+﻿@model IEnumerable<Dentplex.Data.Model.SliderItem>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h4>فهرست آیتم های اسلایدر</h4>
+<hr />
+
+<p><a href="@Url.Action("Create","SliderItems")" class="btn btn-sm btn-primary"><i class="glyphicon glyphicon-plus"></i> افزودن</a></p>
+<table class="table table-bordered table-striped">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Slider.SlideTitle)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SlideItemTitle)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SlideItemImage)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SlideItemLink)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SlideItemOrder)
+        </th>
+        <th></th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Slider.SlideTitle)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SlideItemTitle)
+            </td>
+            <td>
+                <img src="/Images/SliderItemImages/@item.SlideItemImage" class="thumbnail" style="max-width: 100px" />
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SlideItemLink)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SlideItemOrder)
+            </td>
+            <td>
+                <a href="@Url.Action("Edit","SliderItems",new { id = @item.SlideItemID})" class="btn btn-sm btn-success"><i class="glyphicon glyphicon-edit"></i>ویرایش</a>
+                <a href="@Url.Action("Delete","SliderItems",new { id = @item.SlideItemID})" class="btn btn-sm btn-danger"><i class="glyphicon glyphicon-trash"></i>حذف</a>
+            </td>
+        </tr>
+    }
+</table>
