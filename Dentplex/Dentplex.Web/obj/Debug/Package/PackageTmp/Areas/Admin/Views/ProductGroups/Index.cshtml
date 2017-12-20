@@ -38,7 +38,7 @@
                 url: "/Admin/ProductGroups/Create",
                 type: "Get"
             }).done(function (res) {
-                $("#myModal").modal();
+                $("#myModal").modal('show');
                 $("#myModalLabel").html("افزودن گروه جدید");
                 $("#myModalBody").html(res);
             });
@@ -49,7 +49,7 @@
                 url: "/Admin/ProductGroups/Create?parentId=" + id,
                 type: "Get"
             }).done(function (res) {
-                $("#myModal").modal();
+                $("#myModal").modal('show');
                 $("#myModalLabel").html("افزودن زیر گروه جدید");
                 $("#myModalBody").html(res);
             });
@@ -62,7 +62,7 @@
 
         function EditGroup(id) {
             $.get("/Admin/ProductGroups/Edit/" + id, function (res) {
-                $("#myModal").modal();
+                $("#myModal").modal('show');
                 $("#myModalLabel").html("ویرایش گروه");
                 $("#myModalBody").html(res);
             });

@@ -10,6 +10,18 @@
     text-rendering: optimizeLegibility;
 }
 
+@font-face {
+    font-family: 'Samim';
+    src: url("../Content/theme/fonts/Samim.eot");
+    src: url("../Content/theme/fonts/Samim.eot?#iefix") format("embedded-opentype"),
+        url("../Content/theme/fonts/Samim.woff") format("woff"),
+        url("../Content/theme/fonts/Samim.ttf") format("truetype"),
+        url("../Content/theme/fonts/Samim.svg#web_Yekan") format("svg");
+    font-style: normal;
+    font-weight: normal;
+    text-rendering: optimizeLegibility;
+}
+
 * {
     font-family: Vazir;
 }

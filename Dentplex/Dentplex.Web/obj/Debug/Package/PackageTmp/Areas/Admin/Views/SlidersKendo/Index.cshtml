@@ -1,0 +1,172 @@
+﻿@using Dentplex.Data.Model
+@using Dentplex.Web.Areas.Admin.Controllers
+@model IEnumerable<Dentplex.Data.Model.Slider>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+
+
+<div class="panel panel-info" style="margin-top:20px">
+    <div class="panel-heading"><h4>فهرست کاربران</h4></div>
+    <div class="panel-body">
+        <div class="k-rtl">
+
+
+            @(Html.Kendo().Grid<SlidersKendoController.Sliderclass>()
+            .Name("SldGrid")
+            .Selectable()
+            .Columns(columns =>
+            {
+                //  columns.Bound(c => c.SlideID);
+                columns.Bound(c => c.SlideImage).ClientTemplate(
+                @"<img src='/Images/ProductImages/ThumbImage/#:data.SlideImage#'/ class='thumbnail' style='max-width: 100px'>")
+              .Width(240);
+                columns.Bound(c => c.SlideTitle);
+
+                columns.Command(command =>
+                {
+                    command.Edit().Text("ویرایش");
+                    command.Destroy().Text("حذف");
+                    //command.Custom("Status").Click("changeStatus").Text("فعال");
+                }).Width(200);
+
+            })
+            //.Pageable(pager => pager
+            //    .Input(Model.)
+            //    .Numeric(Model.Numeric)
+            //    .Info(Model.Info)
+            //    .PreviousNext(Model.PreviousNext)
+            //    .Refresh(Model.Refresh)
+            //    .PageSizes(Model.PageSizes)
+            //  )
+            .DataSource(dataSource => dataSource
+                .Ajax()
+                .Model(model =>
+                {
+                    model.Id(sdr => sdr.SlideID);
+                    model.Field(sdr => sdr.SlideID).Editable(false);
+                    model.Field(sdr => sdr.SlideTitle);
+                    model.Field(sdr => sdr.SlideImage);
+                    model.Field(sdr => sdr.SlideIsActive);
+                    model.Field(sdr => sdr.SlideDesc);
+                }
+                )
+                .Read(read => read.Action("GetAllSlider", "SlidersKendo").Type(HttpVerbs.Get))
+              .Update(update => update.Action("UpdateSlider", "SlidersKendo").Type(HttpVerbs.Get))
+              .Create(create => create.Action("AddSlider", "SlidersKendo").Type(HttpVerbs.Get))
+              .Destroy(destroy => destroy.Action("DeleteSlider", "SlidersKendo").Type(HttpVerbs.Get))
+              .PageSize(10)
+
+                )
+           .ToolBar(toolbar => toolbar.Create())
+
+           // Set grid editable.
+           .Editable(editable => editable.Mode(GridEditMode.PopUp).TemplateName("SliderTemplate"))
+
+            // Set grid sortable.
+            .Sortable()
+
+            // Set grid selectable.
+            .Selectable()
+
+            // Set grid pagable.
+            .Pageable()
+            //.Pageable(pageable =>
+            //{
+            //    pageable.Refresh(true);
+            //    pageable.PageSizes(true);
+            //})
+
+
+            )
+            
+            
+
+            
+
+
+
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@*<h2>Index</h2>
+
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.SlideTitle)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SlideImage)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SlideIsActive)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SlideDesc)
+            </th>
+            <th></th>
+        </tr>
+
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.SlideTitle)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SlideImage)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SlideIsActive)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SlideDesc)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id=item.SlideID }) |
+                @Html.ActionLink("Details", "Details", new { id=item.SlideID }) |
+                @Html.ActionLink("Delete", "Delete", new { id=item.SlideID })
+            </td>
+        </tr>
+    }
+
+    </table>*@
