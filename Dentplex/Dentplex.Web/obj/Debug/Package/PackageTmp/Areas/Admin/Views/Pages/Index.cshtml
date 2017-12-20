@@ -1,4 +1,5 @@
 ﻿@model IEnumerable<Dentplex.Data.Model.Page>
+@using Kendo.Mvc.UI
 
 @{
     ViewBag.Title = "Index";
@@ -7,49 +8,86 @@
 <div class="panel panel-info" style="margin-top:20px">
     <div class="panel-heading"><h4>فهرست صفحات تک صفحه ای</h4></div>
     <div class="panel-body">
-        <p><a href="@Url.Action("Create","Pages")" class="btn btn-sm btn-primary"><i class="glyphicon glyphicon-plus"></i> افزودن</a></p>
-        <table class="table table-bordered table-striped">
-            <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.PageName)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.PageTitle)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.PageText)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.PageIsActive)
-                </th>
-                <th></th>
-            </tr>
-
-            @foreach (var item in Model)
-            {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.PageName)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.PageTitle)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.PageText)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.PageIsActive)
-                    </td>
-                    <td>
+        <div class="k-rtl">
+            @(Html.Kendo().Grid(Model).Name("Grid")
+                .Columns(columns =>
+                {
+                    columns.Bound(model => model.PageName);
+                    columns.Bound(model => model.PageTitle);
+                    columns.Bound(model => model.PageIsActive);
+                    columns.Bound(item => @item.PageID).Title("دستورات").Filterable(false).Groupable(false)
+                    .Template(@<text>
                         <a href="@Url.Action("Edit","Pages",new { id = @item.PageID})" class="btn btn-sm btn-success"><i class="glyphicon glyphicon-edit"></i>ویرایش</a>
                         <a href="@Url.Action("Delete","Pages",new { id = @item.PageID})" class="btn btn-sm btn-danger"><i class="glyphicon glyphicon-trash"></i>حذف</a>
-                    </td>
-                </tr>
-            }
+                        </text>).Width(150);
+                })
+                .ToolBar(toolbar =>
+                {
+                    toolbar.Custom().Action("Create", "Pages").Text("افزودن");
+                })
+                .Groupable()
+                .Pageable()
+                .Sortable()
+                .Scrollable()
+                .Filterable()
+                .DataSource(dataSource => dataSource
+                .Server()
+                .Model(model => model.Id(item => item.PageID)))
+            )
 
-        </table>
+        </div>
     </div>
 </div>
 
 
-        
+
+
+
+
+
+
+
+@*<p><a href="@Url.Action("Create","Pages")" class="btn btn-sm btn-primary"><i class="glyphicon glyphicon-plus"></i> افزودن</a></p>
+<table class="table table-bordered table-striped">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.PageName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PageTitle)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PageText)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PageIsActive)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+            {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.PageName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PageTitle)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PageText)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PageIsActive)
+            </td>
+            <td>
+                <a href="@Url.Action("Edit","Pages",new { id = @item.PageID})" class="btn btn-sm btn-success"><i class="glyphicon glyphicon-edit"></i>ویرایش</a>
+                <a href="@Url.Action("Delete","Pages",new { id = @item.PageID})" class="btn btn-sm btn-danger"><i class="glyphicon glyphicon-trash"></i>حذف</a>
+            </td>
+        </tr>
+    }
+
+</table>*@
+
+
+

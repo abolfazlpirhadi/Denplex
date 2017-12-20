@@ -3,13 +3,29 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title>@ViewBag.Title</title>
     <link href="~/Content/bootstrap-rtl.css" rel="stylesheet" type="text/css" />
     <link href="~/fonts/font-awesome/css/font-awesome.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/ja-menu/css/jquery-accordion-menu.css" rel="stylesheet" />
     <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
     <script src="~/Scripts/modernizr-2.6.2.js"></script>
     <link href="~/Content/MyStyle.css" rel="stylesheet" />
+    
+    <link href="@Url.Content("~/Content/kendo/kendo.common-bootstrap.min.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/kendo/kendo.bootstrap.min.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/kendo/kendo.rtl.min.css")" rel="stylesheet" type="text/css" />
+    <script src="@Url.Content("~/Scripts/kendo/jszip.min.js")"></script>
+    <link href="@Url.Content("~/Content/kendo/kendo.mobile.all.min.css")" rel="stylesheet" type="text/css" />
+    <script src="@Url.Content("~/Scripts/kendo/kendo.all.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/kendo/kendo.aspnetmvc.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/kendo.modernizr.custom.js")"></script>
+    <script src="~/Scripts/kendo/messages/kendo.messages.fa-IR.min.js"></script>
+    <script src="~/Scripts/kendo/cultures/kendo.culture.fa-IR.min.js"></script>
+
+
     <script type="text/javascript">
         jQuery(document).ready(function () {
             jQuery("#jquery-accordion-menu").jqueryAccordionMenu();
@@ -59,6 +75,7 @@
     </script>
 </head>
 <body>
+
     <div class="admin-header col-lg-12 col-md-12 col-sm-12 col-xs-12">
         <a class="avatar"><i class="icon-user"></i></a>
         <ul class="avatar-name">
@@ -79,8 +96,6 @@
         </button>
     </div>
 
-
-
     <nav class="navbar navbar-admin col-lg-2 col-md-2 col-sm-2 col-xs-12">
         <div class="container-fluid">
             <div class="collapse navbar-collapse" id="AdminNavbar">
@@ -95,28 +110,28 @@
                                 <li>
                                     <a href="#"><i class="icon-gift"></i>مدیریت اسلایدر</a>
                                     <ul class="submenu">
-                                        <li><a href="/Admin/Sliders"><i class="icon-adjust"></i> اسلایدر </a></li>
-                                        <li><a href="/Admin/SliderItems"><i class="icon-adjust"></i> آیتم های اسلایدر </a></li>
+                                        @*<li><a href="@Url.Action("Index","Sliders")"><i class="icon-adjust"></i> اسلایدر </a></li>*@
+                                        <li><a href="@Url.Action("Index","SliderItems")"><i class="icon-adjust"></i> اسلایدر بزرگ صفحه اول </a></li>
                                     </ul>
                                 </li>
                                 <li>
                                     <a href="#"><i class="icon-gift"></i>مدیریت محصولات </a>
                                     <ul class="submenu">
-                                        <li><a href="/Admin/ProductGroups"><i class="icon-sitemap"></i> گروه بندی </a></li>
-                                        <li><a href="/Admin/Products"><i class="icon-list"></i> لیست محصولات </a></li>
+                                        <li><a href="@Url.Action("Index","ProductGroups")"><i class="icon-sitemap"></i> گروه بندی </a></li>
+                                        <li><a href="@Url.Action("Index","Products")"><i class="icon-list"></i> لیست محصولات </a></li>
                                     </ul>
                                 </li>
                                 <li>
                                     <a href="#"><i class="icon-anchor"></i>مدیریت سایت </a>
                                     <ul class="submenu">
-                                        <li><a href="/Admin/Pages"><i class="icon-archive"></i> مدیریت تک صفحه </a></li>
+                                        <li><a href="@Url.Action("Index","Pages")"><i class="icon-archive"></i> مدیریت تک صفحه </a></li>
                                     </ul>
                                 </li>
 
                                 <li>
-                                    <a href="#"><i class="icon-user"></i>کاربری </a>
+                                    <a href="#"><i class="icon-user"></i>کاربران </a>
                                     <ul class="submenu">
-                                        <li><a href="#"><i class="icon-key"></i> تغییر رمز عبور </a></li>
+                                        <li><a href="@Url.Action("Index","Users")"><i class="icon-key"></i>مدیریت کاربران </a></li>
                                     </ul>
                                 </li>
                             </ul>
@@ -129,12 +144,6 @@
             </div>
         </div>
     </nav>
-
-
-
-
-
-
 
     <div class="load-modules col-lg-10 col-md-10 col-sm-10 col-xs-12">
         @RenderBody()
@@ -150,7 +159,7 @@
 
     @RenderSection("Scripts", false)
 
-    <script src="~/Scripts/bootstrap.min.js"></script>
+    
     <script src="~/Content/ja-menu/js/jquery-accordion-menu.js" type='text/javascript'></script>
     <script>
         $(function () {
@@ -163,25 +172,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-<body>
-
-
-
-
-</body>
 
 
 

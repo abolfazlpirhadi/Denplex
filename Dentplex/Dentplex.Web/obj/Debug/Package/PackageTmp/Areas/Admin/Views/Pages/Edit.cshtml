@@ -9,6 +9,7 @@
     <div class="panel-body">
         @using (Html.BeginForm())
         {
+            @Html.HiddenFor(m=>m.PageID)
             @Html.AntiForgeryToken()
 
             <div class="form-horizontal">
