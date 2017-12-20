@@ -1,0 +1,82 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="panel panel-info" style="margin-top:20px">
+    <div class="panel-heading"><h4>فهرست گروه محصولات</h4></div>
+    <div class="panel-body">
+        <div class="k-rtl">
+            @(Html.Kendo().Grid<Dentplex.Web.ViewModels.ProductGroupsViewModel>().Name("grid")
+                     .Columns(columns =>
+                     {
+                         columns.Bound(e => e.ProductGroupID).Title("شماره").HtmlAttributes(new { @class = "id" }).Visible(false);
+                         columns.Bound(e => e.ProductGroupTitle).Filterable(ftb => ftb.Cell(cell => cell.Operator("contains")));
+                         columns.Command(command =>
+                         {
+                             command.Edit().Text("ویرایش").UpdateText("ذخیره").CancelText("انصراف");
+                             //command.Destroy().Text("حذف");
+                         }).Width(200);
+                     })
+                     .ClientDetailTemplateId("template")
+                     .Sortable()
+                     .Filterable(ftb => ftb.Mode(GridFilterMode.Row))
+                     .Editable(editable =>
+                     {
+                         editable.Mode(GridEditMode.PopUp);
+                     })
+                     .Filterable(ftb => ftb.Mode(GridFilterMode.Row))
+                     .ToolBar(toolbar => toolbar.Create().Text("افزودن"))
+                     .DataSource(dataSource => dataSource
+                     .Ajax()
+                     .Model(model => model.Id(e => e.ProductGroupID))
+                     .Create(create => create.Action("ProductGroupsParent_Create", "ProductGroupsAjax"))
+                     .Read(read => read.Action("ProductGroupsParent_Read", "ProductGroupsAjax").Type(HttpVerbs.Get))
+                     .Update(update => update.Action("ProductGroupsParent_Update", "ProductGroupsAjax"))
+                     //.Destroy(destroy => destroy.Action("CopyRoom_Destroy", "PrtOffCopyRoom", new { @area = "PublicService" }))
+                ))
+
+            <script id="template" type="text/kendo-tmpl">
+                @(Html.Kendo().Grid<Dentplex.Web.ViewModels.ProductGroupsViewModel>().Name("grid_#=ID#")
+                        .Columns(columns =>
+                        {
+                            columns.Bound(a => a.ProductParentGroupID).Visible(false).HtmlAttributes(new { @class = "id" });
+                            columns.Bound(a => a.ProductGroupTitle).Visible(false);
+                            columns.Command(command =>
+                            {
+                                command.Edit().Text("ویرایش").UpdateText("ذخیره").CancelText("انصراف");
+                                //command.Destroy().Text("حذف");
+                            });
+                        })
+                        .Filterable(ftb => ftb.Mode(GridFilterMode.Row))
+                        .DataSource(dataSource => dataSource
+                        .Ajax()
+                        .PageSize(5)
+                        .Model(model =>
+                        {
+                            //model.Field(p => p.CopyRoomID)
+                            //.DefaultValue(Model.ID)
+                            //.Editable(false);
+                            model.Id(p => p.ProductParentGroupID);
+                        })
+                        .Create(create => create.Action("ProductGroupsChild_Create", "ProductGroupsAjax").Data("function () {return { parentID: '#=ID#'}}"))
+                        .Read(read => read.Action("ProductGroupsChild_Read", "ProductGroupsAjax", new { parentID = "#=ID#" }))
+                        .Update(update => update.Action("ProductGroupsChild_Update", "ProductGroupsAjax"))
+                        //.Destroy(destroy => destroy.Action("CopyRoomActivity_Destroy", "PrtOffCopyRoomActivity", new { @area = "PublicService" }))
+                        )
+                        .Editable(editable =>
+                        {
+                            editable.Mode(GridEditMode.PopUp);
+                        })
+                        .Pageable()
+                        .ToolBar(toolbar => toolbar.Create())
+                        .Sortable()
+                        .NoRecords("هیچ اطلاعاتی برای نمایش وجود ندارد!")
+                        .ToClientTemplate())
+            </script>
+        </div>
+    </div>
+</div>
+
+
+
