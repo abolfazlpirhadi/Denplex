@@ -1725,6 +1725,7 @@
     <Content Include="Areas\Admin\Views\SlidersKendo\Details.cshtml" />
     <Content Include="Areas\Admin\Views\SlidersKendo\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\SlidersKendo\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\ProductGroupsAjax\Index.cshtml" />
     <None Include="Properties\PublishProfiles\Dentplex.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Images\ProductImages\MainImage\7c8ea462332544e0b122f065615271c9.jpg" />
@@ -3657,6 +3658,7 @@
     <Compile Include="Areas\Admin\Controllers\AccountController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
     <Compile Include="Areas\Admin\Controllers\PagesController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ProductGroupsAjaxController.cs" />
     <Compile Include="Areas\Admin\Controllers\ProductGroupsController.cs" />
     <Compile Include="Areas\Admin\Controllers\ProductsController.cs" />
     <Compile Include="Areas\Admin\Controllers\SliderItemsController.cs" />
@@ -3676,6 +3678,7 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
+    <Compile Include="ViewModels\ProductGroupsViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />

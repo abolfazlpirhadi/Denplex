@@ -68,14 +68,6 @@ namespace Dentplex.Web.Areas.Admin.Controllers
                     }).ToList();
                 //Apply paging.
                 int count = response.Count;
-
-
-
-
-
-
-
-
                 if (request.Page > 0)
                 {
                     response = response.Skip((request.Page - 1)*request.PageSize).ToList();
@@ -83,8 +75,6 @@ namespace Dentplex.Web.Areas.Admin.Controllers
                 response = response.Take(request.PageSize).ToList();
 
                 //return Json(response.ToDataSourceResult(request), JsonRequestBehavior.AllowGet);
-
-
                 var result = new SliderResualt()
                 {
                     Data = response,
