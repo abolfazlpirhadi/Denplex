@@ -1,6 +1,6 @@
 ﻿
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "فهرست گروه محصولات";
 }
 
 <div class="panel panel-info" style="margin-top:20px">
@@ -10,8 +10,14 @@
             @(Html.Kendo().Grid<Dentplex.Web.ViewModels.ProductGroupsViewModel>().Name("grid")
                      .Columns(columns =>
                      {
-                         columns.Bound(e => e.ProductGroupID).Title("شماره").HtmlAttributes(new { @class = "id" }).Visible(false);
-                         columns.Bound(e => e.ProductGroupTitle).Filterable(ftb => ftb.Cell(cell => cell.Operator("contains")));
+                         columns.Bound(e => e.ProductGroupID).Title("شماره").Hidden(true);
+                         columns.Bound(e => e.ProductGroupTitle).Title("عنوان گروه");
+                         columns.Bound(c => c.ProductGroupImage).Title("تصویر اصلی").ClientTemplate(
+                            @"<img src='/Images/ProuctGroups/MainImage/#:data.ProductGroupImage#'/ class='thumbnail' style='max-width: 30px'>")
+                         .Width(240);
+                         columns.Bound(c => c.ProductGroupBanner).Title("تصویر بنر").ClientTemplate(
+                            @"<img src='/Images/ProuctGroups/BannerImage/#:data.ProductGroupBanner#'/ class='thumbnail' style='max-width: 60px'>")
+                        .Width(240);
                          columns.Command(command =>
                          {
                              command.Edit().Text("ویرایش").UpdateText("ذخیره").CancelText("انصراف");
@@ -20,13 +26,12 @@
                      })
                      .ClientDetailTemplateId("template")
                      .Sortable()
-                     .Filterable(ftb => ftb.Mode(GridFilterMode.Row))
+                     .Filterable()
                      .Editable(editable =>
                      {
                          editable.Mode(GridEditMode.PopUp);
                      })
-                     .Filterable(ftb => ftb.Mode(GridFilterMode.Row))
-                     .ToolBar(toolbar => toolbar.Create().Text("افزودن"))
+                     .ToolBar(toolbar => toolbar.Create().Text("افزودن گروه جدید"))
                      .DataSource(dataSource => dataSource
                      .Ajax()
                      .Model(model => model.Id(e => e.ProductGroupID))
@@ -37,30 +42,26 @@
                 ))
 
             <script id="template" type="text/kendo-tmpl">
-                @(Html.Kendo().Grid<Dentplex.Web.ViewModels.ProductGroupsViewModel>().Name("grid_#=ID#")
+                @(Html.Kendo().Grid<Dentplex.Web.ViewModels.ProductGroupsViewModel>().Name("grid_#=ProductGroupID#")
                         .Columns(columns =>
                         {
-                            columns.Bound(a => a.ProductParentGroupID).Visible(false).HtmlAttributes(new { @class = "id" });
-                            columns.Bound(a => a.ProductGroupTitle).Visible(false);
+                            columns.Bound(a => a.ProductGroupTitle).Title("عنوان گروه");
                             columns.Command(command =>
                             {
                                 command.Edit().Text("ویرایش").UpdateText("ذخیره").CancelText("انصراف");
                                 //command.Destroy().Text("حذف");
                             });
                         })
-                        .Filterable(ftb => ftb.Mode(GridFilterMode.Row))
+                        .Filterable()
                         .DataSource(dataSource => dataSource
                         .Ajax()
                         .PageSize(5)
                         .Model(model =>
                         {
-                            //model.Field(p => p.CopyRoomID)
-                            //.DefaultValue(Model.ID)
-                            //.Editable(false);
-                            model.Id(p => p.ProductParentGroupID);
+                            model.Id(p => p.ProductGroupID);
                         })
-                        .Create(create => create.Action("ProductGroupsChild_Create", "ProductGroupsAjax").Data("function () {return { parentID: '#=ID#'}}"))
-                        .Read(read => read.Action("ProductGroupsChild_Read", "ProductGroupsAjax", new { parentID = "#=ID#" }))
+                        .Create(create => create.Action("ProductGroupsChild_Create", "ProductGroupsAjax").Data("function () {return { productGroupID: '#=ProductGroupID#'}}"))
+                        .Read(read => read.Action("ProductGroupsChild_Read", "ProductGroupsAjax", new { productGroupID = "#=ProductGroupID#" }))
                         .Update(update => update.Action("ProductGroupsChild_Update", "ProductGroupsAjax"))
                         //.Destroy(destroy => destroy.Action("CopyRoomActivity_Destroy", "PrtOffCopyRoomActivity", new { @area = "PublicService" }))
                         )
@@ -69,7 +70,7 @@
                             editable.Mode(GridEditMode.PopUp);
                         })
                         .Pageable()
-                        .ToolBar(toolbar => toolbar.Create())
+                        .ToolBar(toolbar => toolbar.Create().Text("افزودن زیرگروه جدید"))
                         .Sortable()
                         .NoRecords("هیچ اطلاعاتی برای نمایش وجود ندارد!")
                         .ToClientTemplate())

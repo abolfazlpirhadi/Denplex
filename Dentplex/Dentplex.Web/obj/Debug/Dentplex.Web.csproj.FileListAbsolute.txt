@@ -102,3 +102,5 @@ D:\P R O J E C T\DentplexProject\GitHub\Denplex\Dentplex\Dentplex.Web\bin\System
 D:\P R O J E C T\DentplexProject\GitHub\Denplex\Dentplex\Dentplex.Web\obj\Debug\Dentplex.Web.csprojResolveAssemblyReference.cache
 D:\P R O J E C T\DentplexProject\GitHub\Denplex\Dentplex\Dentplex.Web\obj\Debug\Dentplex.Web.dll
 D:\P R O J E C T\DentplexProject\GitHub\Denplex\Dentplex\Dentplex.Web\obj\Debug\Dentplex.Web.pdb
+D:\P R O J E C T\DentplexProject\GitHub\Denplex\Dentplex\Dentplex.Web\bin\Newtonsoft.Json.dll
+D:\P R O J E C T\DentplexProject\GitHub\Denplex\Dentplex\Dentplex.Web\bin\Newtonsoft.Json.xml

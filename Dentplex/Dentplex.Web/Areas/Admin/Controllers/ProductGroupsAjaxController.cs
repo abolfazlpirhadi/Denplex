@@ -22,47 +22,17 @@ namespace Dentplex.Web.Areas.Admin.Controllers
         //Parent
         public JsonResult ProductGroupsParent_Read([DataSourceRequest] DataSourceRequest request)
         {
-            try
+            var list = db.ProductGroups.Where(p => p.ProductParentGroupID == null).Select(p => new ProductGroupsViewModel
             {
-                var response = (from p in db.ProductGroups
-                                where p.ProductParentGroupID == null
-                                select new ProductGroupsViewModel
-                                {
-                                    ProductGroupID = p.ProductGroupID,
-                                    ProductGroupTitle = p.ProductGroupTitle,
-                                }).ToList();
-                //Apply paging.
-                int count = response.Count;
-                if (request.Page > 0)
-                {
-                    response = response.Skip((request.Page - 1) * request.PageSize).ToList();
-                }
-                response = response.Take(request.PageSize).ToList();
+                ProductGroupID = p.ProductGroupID,
+                ProductParentGroupID = p.ProductParentGroupID,
+                ProductGroupTitle = p.ProductGroupTitle,
+                ProductGroupImage = p.ProductGroupImage,
+                ProductGroupBanner = p.ProductGroupBanner
+            }).ToList();
 
-                //return Json(response.ToDataSourceResult(request), JsonRequestBehavior.AllowGet);
-                //var result = new SliderResualt()
-                //{
-                //    Data = response,
-                //    Total = count
-                //};
-
-                return Json(response, JsonRequestBehavior.AllowGet);
-
-
-                //return Json(GetOrders().ToDataSourceResult(request));
-            }
-            catch (Exception ex)
-            {
-                return Json(ex.Message);
-            }
-
-
-            //var list = db.ProductGroups.Where(p => p.ProductParentGroupID == null).Select(p=> new ProductGroupsViewModel
-            //{
-            //    ProductGroupTitle = p.ProductGroupTitle,
-            //});
-            //DataSourceResult result = list.ToDataSourceResult(request);
-            //return Json(result, JsonRequestBehavior.AllowGet);
+            DataSourceResult result = list.ToDataSourceResult(request);
+            return Json(result, JsonRequestBehavior.AllowGet);
         }
         public ActionResult ProductGroupsParent_Create([DataSourceRequest] DataSourceRequest request, ProductGroupsViewModel productGroupsViewModel)
         {
@@ -95,20 +65,24 @@ namespace Dentplex.Web.Areas.Admin.Controllers
         }
 
         //Child
-        public ActionResult ProductGroupsChild_Read([DataSourceRequest] DataSourceRequest request, int parentID)
+        public ActionResult ProductGroupsChild_Read([DataSourceRequest] DataSourceRequest request, int productGroupID)
         {
-            var list = db.ProductGroups.Where(p => p.ProductGroupID == parentID);
+            var list = db.ProductGroups.Where(p => p.ProductParentGroupID == productGroupID).Select(p => new ProductGroupsViewModel
+            {
+                ProductGroupID = p.ProductGroupID,
+                ProductParentGroupID = p.ProductParentGroupID,
+                ProductGroupTitle = p.ProductGroupTitle,
+            }).ToList();
             DataSourceResult result = list.ToDataSourceResult(request);
             return Json(result, JsonRequestBehavior.AllowGet);
         }
-        public ActionResult ProductGroupsChild_Create([DataSourceRequest] DataSourceRequest request, ProductGroupsViewModel productGroupsViewModel, int parentID)
+        public ActionResult ProductGroupsChild_Create([DataSourceRequest] DataSourceRequest request, ProductGroupsViewModel productGroupsViewModel, int productGroupID)
         {
             if (productGroupsViewModel != null && ModelState.IsValid)
             {
-
                 db.ProductGroups.Add(new ProductGroup()
                 {
-                    ProductParentGroupID = parentID,
+                    ProductParentGroupID = productGroupID,
                     ProductGroupTitle = productGroupsViewModel.ProductGroupTitle,
                 });
                 db.SaveChanges();
@@ -123,8 +97,7 @@ namespace Dentplex.Web.Areas.Admin.Controllers
                 ProductGroup productGroup = db.ProductGroups.Find(productGroupsViewModel.ProductGroupID);
                 if (productGroup != null)
                 {
-                    productGroupsViewModel.ProductGroupTitle = productGroupsViewModel.ProductGroupTitle;
-
+                    productGroup.ProductGroupTitle = productGroupsViewModel.ProductGroupTitle;
                     db.Entry(productGroup).State = EntityState.Modified;
                     db.SaveChanges();
                 }

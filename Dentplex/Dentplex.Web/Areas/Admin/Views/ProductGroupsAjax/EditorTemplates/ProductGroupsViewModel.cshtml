@@ -1,0 +1,14 @@
+﻿@model Dentplex.Web.ViewModels.ProductGroupsViewModel
+
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="form-horizontal">
+            <div class="form-group">
+                @Html.LabelFor(model => model.ProductGroupTitle, new { @class = "control-label col-lg-2" })
+                <div class="col-lg-4">@Html.TextBoxFor(model => model.ProductGroupTitle, new { @class = "k-textbox" })</div>
+
+            </div>
+        </div>
+    </div>
+</div>
