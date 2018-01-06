@@ -8,7 +8,7 @@
 
 
 * {
-  font-family: Kufi,tahoma;
+  font-family: Vazir,tahoma;
 }
 
 @font-face{font-family:'Kufi';font-style:normal;font-weight:400;
@@ -27,6 +27,13 @@
 		url('../fonts/DroidKufi-Bold.ttf') format('truetype'),
 		url('../fonts/DroidKufi-Bold.svg#Droid Arabic Kufi') format('svg')}
 
+@font-face{font-family:'Vazir';font-style:normal;font-weight:700;
+	src:url('../fonts/Vazir.eot');
+	src:url('../fonts/Vazir.eot?#iefix') format('embedded-opentype'),
+		url('../fonts/Vazir.woff') format('woff'),
+		url('../fonts/Vazir.woff2') format('woff2'),
+		url('../fonts/Vazir-Bold.ttf') format('truetype'),
+		url('../fonts/Vazir-Bold.svg#Droid Arabic Kufi') format('svg')}
 	
 
 a {

@@ -1731,6 +1731,7 @@
     <Content Include="Areas\Admin\Views\SlidersKendo\Index.cshtml" />
     <Content Include="Areas\Admin\Views\ProductGroupsAjax\Index.cshtml" />
     <Content Include="Areas\Admin\Views\ProductGroupsAjax\EditorTemplates\ProductGroupsViewModel.cshtml" />
+    <Content Include="Areas\Admin\Views\ProductGroupsAjax\EditorTemplates\ProductGroupsChildViewModel.cshtml" />
     <None Include="Properties\PublishProfiles\Dentplex.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Images\ProductImages\MainImage\7c8ea462332544e0b122f065615271c9.jpg" />
@@ -3683,6 +3684,7 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
+    <Compile Include="ViewModels\ProductGroupsChildViewModel.cs" />
     <Compile Include="ViewModels\ProductGroupsViewModel.cs" />
   </ItemGroup>
   <ItemGroup>

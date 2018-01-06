@@ -1,10 +1,12 @@
 ﻿using Dentplex.Data.Model;
+using Dentplex.Web.Classes;
 using Dentplex.Web.ViewModels;
 using Kendo.Mvc.Extensions;
 using Kendo.Mvc.UI;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -34,13 +36,36 @@ namespace Dentplex.Web.Areas.Admin.Controllers
             DataSourceResult result = list.ToDataSourceResult(request);
             return Json(result, JsonRequestBehavior.AllowGet);
         }
-        public ActionResult ProductGroupsParent_Create([DataSourceRequest] DataSourceRequest request, ProductGroupsViewModel productGroupsViewModel)
+        [HttpPost]
+        public ActionResult ProductGroupsParent_Create([DataSourceRequest] DataSourceRequest request, ProductGroupsViewModel productGroupsViewModel,
+            HttpPostedFileBase imgProductGroup, HttpPostedFileBase imgProductBanner)
         {
             if (productGroupsViewModel != null && ModelState.IsValid)
             {
+                string mainImagePath = "/Images/ProuctGroups/MainImage/";
+                string bannerImagePath = "/Images/ProuctGroups/BannerImage/";
+                string imageName = "";
+                string imageNameBanner = "";
+
+                if (imgProductGroup != null && imgProductGroup.IsImage())
+                {
+                    imageName = Guid.NewGuid() + Path.GetExtension(imgProductGroup.FileName);
+                    productGroupsViewModel.ProductGroupImage = imageName;
+                    imgProductGroup.SaveAs(Server.MapPath(mainImagePath + imageName));
+                }
+
+                if (imgProductBanner != null && imgProductBanner.IsImage())
+                {
+                    imageNameBanner = Guid.NewGuid() + Path.GetExtension(imgProductBanner.FileName);
+                    productGroupsViewModel.ProductGroupBanner = imageNameBanner;
+                    imgProductBanner.SaveAs(Server.MapPath(bannerImagePath + imageNameBanner));
+                }
+
                 db.ProductGroups.Add(new ProductGroup()
                 {
                     ProductGroupTitle = productGroupsViewModel.ProductGroupTitle,
+                    ProductGroupImage= productGroupsViewModel.ProductGroupImage,
+                    ProductGroupBanner = productGroupsViewModel.ProductGroupBanner,
                 });
                 db.SaveChanges();
             }
@@ -67,7 +92,7 @@ namespace Dentplex.Web.Areas.Admin.Controllers
         //Child
         public ActionResult ProductGroupsChild_Read([DataSourceRequest] DataSourceRequest request, int productGroupID)
         {
-            var list = db.ProductGroups.Where(p => p.ProductParentGroupID == productGroupID).Select(p => new ProductGroupsViewModel
+            var list = db.ProductGroups.Where(p => p.ProductParentGroupID == productGroupID).Select(p => new ProductGroupsChildViewModel
             {
                 ProductGroupID = p.ProductGroupID,
                 ProductParentGroupID = p.ProductParentGroupID,
@@ -76,7 +101,7 @@ namespace Dentplex.Web.Areas.Admin.Controllers
             DataSourceResult result = list.ToDataSourceResult(request);
             return Json(result, JsonRequestBehavior.AllowGet);
         }
-        public ActionResult ProductGroupsChild_Create([DataSourceRequest] DataSourceRequest request, ProductGroupsViewModel productGroupsViewModel, int productGroupID)
+        public ActionResult ProductGroupsChild_Create([DataSourceRequest] DataSourceRequest request, ProductGroupsChildViewModel productGroupsViewModel, int productGroupID)
         {
             if (productGroupsViewModel != null && ModelState.IsValid)
             {
@@ -90,7 +115,7 @@ namespace Dentplex.Web.Areas.Admin.Controllers
 
             return Json(new[] { productGroupsViewModel }.ToDataSourceResult(request, ModelState));
         }
-        public ActionResult ProductGroupsChild_Update([DataSourceRequest] DataSourceRequest request, ProductGroupsViewModel productGroupsViewModel)
+        public ActionResult ProductGroupsChild_Update([DataSourceRequest] DataSourceRequest request, ProductGroupsChildViewModel productGroupsViewModel)
         {
             if (productGroupsViewModel != null && ModelState.IsValid)
             {
