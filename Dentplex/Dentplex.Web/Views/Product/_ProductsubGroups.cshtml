@@ -27,7 +27,6 @@
 
 
     <script type="text/javascript">
-
         var fidItems = [];
 
         $(document).ready(function() {
@@ -41,7 +40,8 @@
                 fidItems = [];
                 $(".productSubNav li").removeClass("active");
                 $(".showAll").parent().addClass("active");
-                GenerateSubsPost();
+                //GenerateSubsPost();
+                $(".aProduct").show(1000);
                 return false;
             }
             if (fidItems.length == 30) {
@@ -57,26 +57,35 @@
                         });
                 }
 
+                if (fidItems.length === 0) { $(".aProduct").show(1000); $(".showAll").parent().addClass("active"); } else { $(".aProduct-" + fId).hide(1000); };
+
                 $(that).parent().removeClass("active");
-                GenerateSubsPost();
+                //GenerateSubsPost();
+
                 //$.inArray(fId, fidItems)== -1 && fidItems.length < 25
 
 
             } else {
+
+                if (fidItems.length === 0) { $(".aProduct").not(".aProduct-" + fId).hide(1000); };
+
                 if ($.inArray(fId, fidItems) == -1) {
                     fidItems.push(fId);
                 }
                 $(that).parent().addClass("active");
                 $(".showAll").parent().removeClass("active");
-                GenerateSubsPost();
+                //GenerateSubsPost();
+                $(".aProduct-" + fId).show(1000);
             }
+
+
         }
 
 
 
         function GenerateSubsPost() {
             var strList = fidItems.join(", ");
- 
+
                 $.ajax({
                     type: "POST",
                     url: '@Url.Action("AjGroupItemShow", "Product")',
@@ -99,10 +108,9 @@
                         $("#refTable").html("بارگذاری ناموفق");
                     }
                 });
-   
+
 
         }
-
 
     </script>
 
