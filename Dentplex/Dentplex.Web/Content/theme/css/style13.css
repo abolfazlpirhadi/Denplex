@@ -151,6 +151,10 @@ span.fcount {
 
 .top-menu, .site-search, .lang{float: right;}
 
+.lang{display: none;}
+
+.top-menu{ padding-right: 15px !important;}
+
 .top-header {
     font-size: 11px;
 	background: #212224;
@@ -459,4 +463,37 @@ font-size:22px;
 
 div#myNavbar {
     padding-top: 17px;
+}
+
+
+.product_title {
+    font-size: 26px;
+}
+
+
+@media (min-width: 992px) {
+    .aProduct {
+        width: 20%;
+    }
+}
+
+
+@media (min-width: 1200px) {
+    .aProduct {
+        width: 20%;
+    }
+}
+
+
+.wrapp-sync> a>span {
+    font-size: 13px;
+    height: 35px;
+    display: block;
+    width: 100%;
+    overflow: hidden;
+    background: #fff;
+}
+
+.wrapp-img-sync {
+    height: 400px;
 }

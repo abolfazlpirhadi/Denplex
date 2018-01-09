@@ -3,12 +3,15 @@
 @if (Model.Any())
 {
     <ul>
+        
 
         @foreach (var item in Model)
         {
-            <li class="col-lg-2 col-md-3 col-sm-4 col-xs-6 aProduct aProduct-@item.ProductSubGroupID">
+            <li class="col-sm-4 col-xs-6 wrapp-sync aProduct aProduct-@item.ProductSubGroupID">
                 <a href="~/ShowProduct/@item.ProductID">
-                    <img src="~/Images/ProductImages/MainImage/@item.ProductImage" class="img img-responsive" alt="@item.ProductTitle">
+                    <div class="wrapp-img-sync">
+                        <img src="~/Images/ProductImages/MainImage/@item.ProductImage" class="img img-responsive" alt="@item.ProductTitle">
+                    </div>
                     <span>@item.ProductTitle</span>
                 </a>
             </li>
