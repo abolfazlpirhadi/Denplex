@@ -15,11 +15,19 @@
 		url('theme/fonts/DroidKufi-Bold.ttf') format('truetype'),
 		url('theme/fonts/DroidKufi-Bold.svg#Droid Arabic Kufi') format('svg')}
 
+@font-face{font-family:'vazir';font-style:normal;font-weight:700;
+	src:url('theme/fonts/vazir.eot');
+	src:url('theme/fonts/vazir.eot?#iefix') format('embedded-opentype'),
+		url('theme/fonts/vazir.woff') format('woff'),
+		url('theme/fonts/vazir.woff2') format('woff2'),
+		url('theme/fonts/vazir.ttf') format('truetype'),
+		url('theme/fonts/vazir.svg#Droid Arabic Kufi') format('svg')}
+
 @font-face {
     font-family: 'DroidKufi-Regular';
     src: url('theme/fonts/DroidKufi-Regular.eot') format('embedded-opentype');
 }
-*{ font-family: 'Kufi', 'tahoma' !important;font-weight: normal !important;}
+*{ font-family:'vazir', 'Kufi', 'tahoma' !important;font-weight: normal !important;}
 
 /********bg motion start********/
 

@@ -66,3 +66,26 @@ D:\MyProjects\GitHub\Denplex2\Dentplex\Dentplex.Data\bin\Debug\System.Web.WebPag
 D:\MyProjects\GitHub\Denplex2\Dentplex\Dentplex.Data\obj\Debug\Dentplex.Data.csprojResolveAssemblyReference.cache
 D:\MyProjects\GitHub\Denplex2\Dentplex\Dentplex.Data\obj\Debug\Dentplex.Data.dll
 D:\MyProjects\GitHub\Denplex2\Dentplex\Dentplex.Data\obj\Debug\Dentplex.Data.pdb
+D:\P R O J E C T\DentplexProject\GitHub\Dentplex\Dentplex.Data\bin\Debug\Dentplex.Data.dll.config
+D:\P R O J E C T\DentplexProject\GitHub\Dentplex\Dentplex.Data\bin\Debug\Dentplex.Data.dll
+D:\P R O J E C T\DentplexProject\GitHub\Dentplex\Dentplex.Data\bin\Debug\Dentplex.Data.pdb
+D:\P R O J E C T\DentplexProject\GitHub\Dentplex\Dentplex.Data\bin\Debug\EntityFramework.dll
+D:\P R O J E C T\DentplexProject\GitHub\Dentplex\Dentplex.Data\bin\Debug\EntityFramework.SqlServer.dll
+D:\P R O J E C T\DentplexProject\GitHub\Dentplex\Dentplex.Data\bin\Debug\Microsoft.Web.Infrastructure.dll
+D:\P R O J E C T\DentplexProject\GitHub\Dentplex\Dentplex.Data\bin\Debug\System.Web.Helpers.dll
+D:\P R O J E C T\DentplexProject\GitHub\Dentplex\Dentplex.Data\bin\Debug\System.Web.Mvc.dll
+D:\P R O J E C T\DentplexProject\GitHub\Dentplex\Dentplex.Data\bin\Debug\System.Web.Razor.dll
+D:\P R O J E C T\DentplexProject\GitHub\Dentplex\Dentplex.Data\bin\Debug\System.Web.WebPages.Deployment.dll
+D:\P R O J E C T\DentplexProject\GitHub\Dentplex\Dentplex.Data\bin\Debug\System.Web.WebPages.dll
+D:\P R O J E C T\DentplexProject\GitHub\Dentplex\Dentplex.Data\bin\Debug\System.Web.WebPages.Razor.dll
+D:\P R O J E C T\DentplexProject\GitHub\Dentplex\Dentplex.Data\bin\Debug\EntityFramework.xml
+D:\P R O J E C T\DentplexProject\GitHub\Dentplex\Dentplex.Data\bin\Debug\EntityFramework.SqlServer.xml
+D:\P R O J E C T\DentplexProject\GitHub\Dentplex\Dentplex.Data\bin\Debug\System.Web.Helpers.xml
+D:\P R O J E C T\DentplexProject\GitHub\Dentplex\Dentplex.Data\bin\Debug\System.Web.Mvc.xml
+D:\P R O J E C T\DentplexProject\GitHub\Dentplex\Dentplex.Data\bin\Debug\System.Web.Razor.xml
+D:\P R O J E C T\DentplexProject\GitHub\Dentplex\Dentplex.Data\bin\Debug\System.Web.WebPages.xml
+D:\P R O J E C T\DentplexProject\GitHub\Dentplex\Dentplex.Data\bin\Debug\System.Web.WebPages.Deployment.xml
+D:\P R O J E C T\DentplexProject\GitHub\Dentplex\Dentplex.Data\bin\Debug\System.Web.WebPages.Razor.xml
+D:\P R O J E C T\DentplexProject\GitHub\Dentplex\Dentplex.Data\obj\Debug\Dentplex.Data.csprojResolveAssemblyReference.cache
+D:\P R O J E C T\DentplexProject\GitHub\Dentplex\Dentplex.Data\obj\Debug\Dentplex.Data.dll
+D:\P R O J E C T\DentplexProject\GitHub\Dentplex\Dentplex.Data\obj\Debug\Dentplex.Data.pdb

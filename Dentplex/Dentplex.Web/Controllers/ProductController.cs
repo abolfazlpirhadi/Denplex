@@ -96,7 +96,7 @@ namespace Dentplex.Web.Controllers
         public PartialViewResult RelatedProducts(int id)
         {
             var product = db.Products.Find(id);
-            var listProductRelated = db.Products.Where(p => p.ProductGroupID == product.ProductGroupID && p.ProductID != id);
+            var listProductRelated = db.Products.Where(p => p.ProductSubGroupID == product.ProductSubGroupID && p.ProductID != id).ToList();
 
             return PartialView(listProductRelated);
         }

@@ -1,14 +1,14 @@
 ﻿@model IEnumerable<Dentplex.Data.Model.User>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "فهرست کاربران";
 }
 
 <div class="panel panel-info" style="margin-top:20px">
     <div class="panel-heading"><h4>فهرست کاربران</h4></div>
     <div class="panel-body">
         <div class="k-rtl">
-            @(Html.Kendo().Grid(Model).Name("Grid").HtmlAttributes(new { style = "height:600px;" })
+            @(Html.Kendo().Grid(Model).Name("Grid")
                 .Columns(columns =>
                 {
                     columns.Bound(model => model.UserName);
@@ -17,7 +17,7 @@
                     columns.Bound(item => @item.UserID).Title("دستورات").Filterable(false).Groupable(false)
                     .Template(@<text>
                         <a href="@Url.Action("Edit","Users",new { id = @item.UserID})"  class="btn btn-sm btn-success"><i class="glyphicon glyphicon-edit"></i>ویرایش</a>
-                        <a href="@Url.Action("Delete","Users",new { id = @item.UserID})"  class="btn btn-sm btn-danger"><i class="glyphicon glyphicon-trash"></i>حذف</a>
+                        @*<a href="@Url.Action("Delete","Users",new { id = @item.UserID})"  class="btn btn-sm btn-danger"><i class="glyphicon glyphicon-trash"></i>حذف</a>*@
                     </text>).Width(150);
                 })
                 .ToolBar(toolbar =>

@@ -16,7 +16,7 @@
                     columns.Bound(item => @item.PageID).Title("دستورات").Filterable(false).Groupable(false)
                     .Template(@<text>
                         <a href="@Url.Action("Edit","Pages",new { id = @item.PageID})" class="btn btn-sm btn-success"><i class="glyphicon glyphicon-edit"></i>ویرایش</a>
-                        <a href="@Url.Action("Delete","Pages",new { id = @item.PageID})" class="btn btn-sm btn-danger"><i class="glyphicon glyphicon-trash"></i>حذف</a>
+                        @*<a href="@Url.Action("Delete","Pages",new { id = @item.PageID})" class="btn btn-sm btn-danger"><i class="glyphicon glyphicon-trash"></i>حذف</a>*@
                         </text>).Width(150);
                 })
                 .ToolBar(toolbar =>

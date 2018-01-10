@@ -1,8 +1,7 @@
 ﻿@model Dentplex.Data.Model.User
 
 @{
-    ViewBag.Title = "Edit";
-    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "ویرایش کاربر";
 }
 
 <div class="panel panel-info" style="margin-top:20px">
@@ -18,7 +17,7 @@
 
                 <div class="form-group">
                     @Html.LabelFor(model => model.UserName, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
+                    <div class="col-md-3">
                         @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @class = "form-control" } })
                         @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
                     </div>
@@ -26,7 +25,7 @@
 
                 <div class="form-group">
                     @Html.LabelFor(model => model.UserPassword, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
+                    <div class="col-md-3">
                         @Html.EditorFor(model => model.UserPassword, new { htmlAttributes = new { @class = "form-control", @maxlength = "100", @type = "password", placeholder = "********" } })
                         @Html.ValidationMessageFor(model => model.UserPassword, "", new { @class = "text-danger" })
                         @*<input id="mytxtPass" name="mytxtPass" class = "form-control", maxlength = "100" type = "password" placeholder = "********"  />*@
@@ -47,7 +46,7 @@
                 </script>
                 <div class="form-group">
                     @Html.LabelFor(model => model.UserEmail, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
+                    <div class="col-md-3">
                         @Html.EditorFor(model => model.UserEmail, new { htmlAttributes = new { @class = "form-control" } })
                         @Html.ValidationMessageFor(model => model.UserEmail, "", new { @class = "text-danger" })
                     </div>
@@ -55,7 +54,7 @@
 
                 <div class="form-group">
                     <div class="col-md-offset-2 col-md-10">
-                        <input type="submit" value="ویرایش" class="btn btn-default" />
+                        <input type="submit" value="ذخیره" class="btn btn-primary" />
                         @Html.ActionLink("بازگشت به لیست", "Index")
                     </div>
                 </div>
