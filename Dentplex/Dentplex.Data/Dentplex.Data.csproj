@@ -109,6 +109,9 @@
     <Compile Include="Model\ProductGroup.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Model\ProductImage.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="Model\Slider.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>

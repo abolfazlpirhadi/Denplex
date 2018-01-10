@@ -1,25 +1,22 @@
-﻿@model IEnumerable<Dentplex.Data.Model.Product>
+﻿@model IEnumerable<Dentplex.Data.Model.ProductGroup>
 @{
     ViewBag.Title = "لیست محصولات";
 }
 
-@Html.Action("ProductBanner", "Product")
+@if (ViewBag.AllProduct != null)
+{
+    @Html.Action("ProductBannerAll", "Product")
+    @Html.Action("ProductGroups", "Product")
+    @Html.Action("ProductAll", "Product")
+}
+else
+{
+    @Html.Action("ProductBanner", "Product")
+    @Html.Action("ProductGroups", "Product")
+    @Html.Action("_ProductsubGroups", "Product")
+}
 
-@Html.Action("ProductGroups", "Product")
 
-@Html.Action("_ProductsubGroups", "Product")
-
-@*<ul class="grid-product">
-    @foreach (var item in Model)
-    {
-        <li class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
-            <a href="/ShowProduct/@item.ProductID">
-                <img src="~/Images/ProductImages/MainImage/@item.ProductImage" class="img img-responsive" alt="HERO LASH MASCARA">
-                <span>@item.ProductTitle</span>
-            </a>
-        </li>
-    }
-</ul>*@
 
 
 

@@ -3914,6 +3914,8 @@
     <Content Include="Scripts\kendo\messages\kendo.messages.zh-TW.min.js.map" />
     <Content Include="Views\Product\_ProductsubGroups.cshtml" />
     <Content Include="Views\Product\_ProductListSubGroups.cshtml" />
+    <Content Include="Views\Product\ProductBannerAll.cshtml" />
+    <Content Include="Views\Product\ProductAll.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
