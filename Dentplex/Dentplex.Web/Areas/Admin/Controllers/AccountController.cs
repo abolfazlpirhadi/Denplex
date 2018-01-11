@@ -13,6 +13,7 @@ namespace Dentplex.Web.Areas.Admin.Controllers
     public class AccountController : Controller
     {
         private DentplexDBEntities db = new DentplexDBEntities();
+
         public ActionResult Login()
         {
             return View();

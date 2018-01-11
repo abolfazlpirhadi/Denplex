@@ -1,53 +1,42 @@
 ﻿@model IEnumerable<Dentplex.Data.Model.SliderItem>
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "فهرست اسلایدر";
 }
 
-<h4>آیتم های اسلایدر بزرگ صفحه اول</h4>
-<hr />
+<div class="panel panel-info" style="margin-top:20px">
+    <div class="panel-heading"><h4>فهرست اسلایدر</h4></div>
+    <div class="panel-body">
+        <div class="k-rtl">
+            @(Html.Kendo().Grid(Model).Name("Grid")
+                .Columns(columns =>
+                {
+                    columns.Bound(model => model.SlideItemTitle);
+                    columns.Bound(item => @item.SlideItemID).Title("تصویر").Filterable(false).Groupable(false)
+                        .Template(@<text>
+                                <img src="/Images/SliderItemImages/@item.SlideItemImage" class="thumbnail" style="max-width: 100px" />
+                        </text>);
+                    columns.Bound(model => model.SlideItemLink);
+                    columns.Bound(model => model.SlideItemOrder);
+                    columns.Bound(item => @item.SlideItemID).Title("دستورات").Filterable(false).Groupable(false)
+                    .Template(@<text>
+                        <a href="@Url.Action("Edit","SliderItems",new { id = @item.SlideItemID})" class="btn btn-sm btn-success"><i class="glyphicon glyphicon-edit"></i>ویرایش</a>
+                        <a href="@Url.Action("Delete","SliderItems",new { id = @item.SlideItemID})" class="btn btn-sm btn-danger"><i class="glyphicon glyphicon-trash"></i>حذف</a>
+                    </text>).Width(150);
+                })
+                .ToolBar(toolbar =>
+                {
+                    toolbar.Custom().Action("Create", "SliderItems").Text("افزودن");
+                })
+                .Groupable()
+                .Pageable()
+                .Sortable()
+                .Scrollable()
+                .Filterable()
+                .DataSource(dataSource => dataSource
+                .Server()
+                .Model(model => model.Id(item => item.SlideItemID)))
+            )
 
-<p><a href="@Url.Action("Create","SliderItems")" class="btn btn-sm btn-primary"><i class="glyphicon glyphicon-plus"></i> افزودن</a></p>
-<table class="table table-bordered table-striped">
-    <tr>
-        @*<th>
-            @Html.DisplayNameFor(model => model.Slider.SlideTitle)
-        </th>*@
-        <th>
-            @Html.DisplayNameFor(model => model.SlideItemTitle)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.SlideItemImage)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.SlideItemLink)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.SlideItemOrder)
-        </th>
-        <th></th>
-    </tr>
-    @foreach (var item in Model)
-    {
-        <tr>
-            @*<td>
-                @Html.DisplayFor(modelItem => item.Slider.SlideTitle)
-            </td>*@
-            <td>
-                @Html.DisplayFor(modelItem => item.SlideItemTitle)
-            </td>
-            <td>
-                <img src="/Images/SliderItemImages/@item.SlideItemImage" class="thumbnail" style="max-width: 100px" />
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.SlideItemLink)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.SlideItemOrder)
-            </td>
-            <td>
-                <a href="@Url.Action("Edit","SliderItems",new { id = @item.SlideItemID})" class="btn btn-sm btn-success"><i class="glyphicon glyphicon-edit"></i>ویرایش</a>
-                <a href="@Url.Action("Delete","SliderItems",new { id = @item.SlideItemID})" class="btn btn-sm btn-danger"><i class="glyphicon glyphicon-trash"></i>حذف</a>
-            </td>
-        </tr>
-    }
-</table>
+        </div>
+    </div>
+</div>

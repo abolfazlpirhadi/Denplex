@@ -62,12 +62,12 @@ namespace Dentplex.Web.Areas.Admin.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ProductID,ProductGroupID,ProductSubGroupID,ProductTitle,ProductShortText,ProductText,ProductImage,ProductIsFavourite")] Product product, HttpPostedFileBase imgProduct)
+        public ActionResult Create([Bind(Include = "ProductID,ProductGroupID,ProductSubGroupID,ProductTitle,ProductShortText,ProductText,ProductImage,ProductIsFavourite,ProductDateCreate")] Product product, HttpPostedFileBase imgProduct)
         {
             if (ModelState.IsValid)
             {
                 product.ProductImage = "";
-
+                product.ProductDateCreate = DateTime.Now;
                 if (imgProduct != null && imgProduct.IsImage())
                 {
                     string mainImagePath = "/Images/ProductImages/MainImage/";

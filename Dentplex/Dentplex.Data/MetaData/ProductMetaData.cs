@@ -40,6 +40,9 @@ namespace Dentplex.Data.Model
 
         [Display(Name = "برگزیده")]
         public bool ProductIsFavourite { get; set; }
+
+        [Display(Name = "تاریخ ثبت")]
+        public DateTime ProductDateCreate { get; set; }
     }
 
     [MetadataType(typeof(ProductMetaData))]

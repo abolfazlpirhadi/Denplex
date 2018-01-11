@@ -11,38 +11,49 @@ namespace Dentplex.Web.Controllers
     {
         private DentplexDBEntities db = new DentplexDBEntities();
 
+        [Route("Product")]
+        public ActionResult Product()
+        {
+            ViewBag.AllProduct = "ProductBannerAll";
+            return View();
+        }
+        public PartialViewResult ProductBannerAll()
+        {
+            return PartialView();
+        }
+        public PartialViewResult ProductGroups()
+        {
+            return PartialView(db.ProductGroups.Where(p => p.ProductParentGroupID == null));
+        }
+        public PartialViewResult ProductAll()
+        {
+            return PartialView(db.ProductGroups.ToList());
+        }
+        public ActionResult AjGroupItemShow()
+        {
+            var fildes = db.Products;
+            return PartialView("_ProductListSubGroups", fildes);
+        }
+
+        //***************************************
+
+
+
+
         [Route("Product/{id}")]
         public ActionResult Product(int? id)
         {
-            if (id != -1)
-            {
-                var product = db.Products.Where(p => p.ProductGroupID == id);
-                return View(product);
-            }
-            else
-            {
-                var product = db.Products.ToList();
-                return View(product);
-            }
+            return View();
         }
-        public ActionResult ProductBanner(int? id)
+        public ActionResult ProductBanner(int id)
         {
-            
-            if (id != null)
-            {
-                var productgroup = db.ProductGroups.Find(id);
-                return PartialView(productgroup);
-            }
-            else
-            {
-                var productgroup = db.ProductGroups;
-                return PartialView(productgroup);
-            }
+            var productgroup = db.ProductGroups.Find(id);
+            return PartialView(productgroup);
         }
 
         [Route("Product/{id}")]
         [HttpPost]
-        public ActionResult AjGroupItemShow(int? id , List<string> gIds)
+        public ActionResult AjGroupItemShow(int? id, List<string> gIds)
         {
             string combindedString = string.Join(",", gIds.ToArray());
             int fid;
@@ -66,9 +77,9 @@ namespace Dentplex.Web.Controllers
 
                 return PartialView("_ProductListSubGroups", fildes);
             }
-            
 
-            
+
+
             //JsonResult
             //return Json(person);
         }
@@ -79,11 +90,8 @@ namespace Dentplex.Web.Controllers
             return PartialView(productSubgroup);
         }
 
-        
-        public PartialViewResult ProductGroups()
-        {
-            return PartialView(db.ProductGroups.Where(p => p.ProductParentGroupID == null));
-        }
+
+
         [Route("ShowProduct/{id}")]
         public ActionResult ShowProduct(int id)
         {
@@ -96,7 +104,7 @@ namespace Dentplex.Web.Controllers
         public PartialViewResult RelatedProducts(int id)
         {
             var product = db.Products.Find(id);
-            var listProductRelated = db.Products.Where(p => p.ProductGroupID == product.ProductGroupID && p.ProductID != id);
+            var listProductRelated = db.Products.Where(p => p.ProductSubGroupID == product.ProductSubGroupID && p.ProductID != id);
 
             return PartialView(listProductRelated);
         }

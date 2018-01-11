@@ -15,28 +15,22 @@ namespace Dentplex.Data.Model
     
     public partial class DentplexDBEntities : DbContext
     {
-        private Slider slider;
-
         public DentplexDBEntities()
             : base("name=DentplexDBEntities")
         {
         }
-
-        public DentplexDBEntities(Slider slider)
-        {
-            this.slider = slider;
-        }
-
+    
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             throw new UnintentionalCodeFirstException();
         }
     
         public virtual DbSet<ProductGroup> ProductGroups { get; set; }
-        public virtual DbSet<Product> Products { get; set; }
         public virtual DbSet<SliderItem> SliderItems { get; set; }
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<Page> Pages { get; set; }
         public virtual DbSet<Slider> Sliders { get; set; }
+        public virtual DbSet<Product> Products { get; set; }
+        public virtual DbSet<ProductImage> ProductImages { get; set; }
     }
 }

@@ -26,6 +26,15 @@
           <Property Name="ProductGroupImage" Type="varchar" MaxLength="250" />
           <Property Name="ProductGroupBanner" Type="varchar" MaxLength="250" />
         </EntityType>
+        <EntityType Name="ProductImages">
+          <Key>
+            <PropertyRef Name="ProductImageID" />
+          </Key>
+          <Property Name="ProductImageID" Type="int" Nullable="false" />
+          <Property Name="ProductID" Type="int" Nullable="false" />
+          <Property Name="ProductColor" Type="nvarchar" MaxLength="50" />
+          <Property Name="ProductImageName" Type="varchar" MaxLength="150" />
+        </EntityType>
         <EntityType Name="Products">
           <Key>
             <PropertyRef Name="ProductID" />
@@ -39,6 +48,7 @@
           <Property Name="ProductText" Type="nvarchar(max)" />
           <Property Name="ProductImage" Type="varchar" MaxLength="100" />
           <Property Name="ProductIsFavourite" Type="bit" Nullable="false" />
+          <Property Name="ProductDateCreate" Type="datetime" />
         </EntityType>
         <EntityType Name="SliderItems">
           <Key>
@@ -83,6 +93,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_ProductImages_Products">
+          <End Role="Products" Type="Self.Products" Multiplicity="1" />
+          <End Role="ProductImages" Type="Self.ProductImages" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Products">
+              <PropertyRef Name="ProductID" />
+            </Principal>
+            <Dependent Role="ProductImages">
+              <PropertyRef Name="ProductImageID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Products_ProductGroups">
           <End Role="ProductGroups" Type="Self.ProductGroups" Multiplicity="1" />
           <End Role="Products" Type="Self.Products" Multiplicity="*" />
@@ -122,6 +144,7 @@
         <EntityContainer Name="DentplexDBModelStoreContainer">
           <EntitySet Name="Pages" EntityType="Self.Pages" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ProductGroups" EntityType="Self.ProductGroups" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProductImages" EntityType="Self.ProductImages" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Products" EntityType="Self.Products" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SliderItems" EntityType="Self.SliderItems" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Sliders" EntityType="Self.Sliders" Schema="dbo" store:Type="Tables" />
@@ -129,6 +152,10 @@
           <AssociationSet Name="FK_ProductGroups_ProductGroups" Association="Self.FK_ProductGroups_ProductGroups">
             <End Role="ProductGroups" EntitySet="ProductGroups" />
             <End Role="ProductGroups1" EntitySet="ProductGroups" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductImages_Products" Association="Self.FK_ProductImages_Products">
+            <End Role="Products" EntitySet="Products" />
+            <End Role="ProductImages" EntitySet="ProductImages" />
           </AssociationSet>
           <AssociationSet Name="FK_Products_ProductGroups" Association="Self.FK_Products_ProductGroups">
             <End Role="ProductGroups" EntitySet="ProductGroups" />
@@ -159,25 +186,9 @@
           <Property Name="ProductGroupBanner" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="ProductGroups1" Relationship="Self.FK_ProductGroups_ProductGroups" FromRole="ProductGroups" ToRole="ProductGroups1" />
           <NavigationProperty Name="ProductGroup1" Relationship="Self.FK_ProductGroups_ProductGroups" FromRole="ProductGroups1" ToRole="ProductGroups" />
-          <NavigationProperty Name="Products" Relationship="Self.FK_Products_ProductGroups" FromRole="ProductGroups" ToRole="Products" />
-          <NavigationProperty Name="Products1" Relationship="Self.FK_Products_ProductGroups1" FromRole="ProductGroups" ToRole="Products" />
-        </EntityType>
-        <EntityType Name="Product">
-          <Key>
-            <PropertyRef Name="ProductID" />
-          </Key>
-          <Property Name="ProductID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ProductGroupID" Type="Int32" Nullable="false" />
-          <Property Name="ProductSubGroupID" Type="Int32" Nullable="false" />
-          <Property Name="ProductTitle" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="ProductName" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
-          <Property Name="ProductShortText" Type="String" MaxLength="350" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="ProductText" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="ProductImage" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="ProductIsFavourite" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="ProductGroup" Relationship="Self.FK_Products_ProductGroups" FromRole="Products" ToRole="ProductGroups" />
-          <NavigationProperty Name="ProductGroup1" Relationship="Self.FK_Products_ProductGroups1" FromRole="Products" ToRole="ProductGroups" />
-        </EntityType>
+          <NavigationProperty Name="Products" Relationship="DentplexDBModel.FK_Products_ProductGroups" FromRole="ProductGroup" ToRole="Product" />
+          <NavigationProperty Name="Products1" Relationship="DentplexDBModel.FK_Products_ProductGroups1" FromRole="ProductGroup" ToRole="Product" />
+          </EntityType>
         <EntityType Name="SliderItem">
           <Key>
             <PropertyRef Name="SlideItemID" />
@@ -212,52 +223,33 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Products_ProductGroups">
-          <End Role="ProductGroups" Type="Self.ProductGroup" Multiplicity="1" />
-          <End Role="Products" Type="Self.Product" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="ProductGroups">
-              <PropertyRef Name="ProductGroupID" />
-            </Principal>
-            <Dependent Role="Products">
-              <PropertyRef Name="ProductGroupID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Products_ProductGroups1">
-          <End Role="ProductGroups" Type="Self.ProductGroup" Multiplicity="1" />
-          <End Role="Products" Type="Self.Product" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="ProductGroups">
-              <PropertyRef Name="ProductGroupID" />
-            </Principal>
-            <Dependent Role="Products">
-              <PropertyRef Name="ProductSubGroupID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityContainer Name="DentplexDBEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="ProductGroups" EntityType="Self.ProductGroup" />
-          <EntitySet Name="Products" EntityType="Self.Product" />
           <EntitySet Name="SliderItems" EntityType="Self.SliderItem" />
           <EntitySet Name="Users" EntityType="Self.User" />
           <AssociationSet Name="FK_ProductGroups_ProductGroups" Association="Self.FK_ProductGroups_ProductGroups">
             <End Role="ProductGroups" EntitySet="ProductGroups" />
             <End Role="ProductGroups1" EntitySet="ProductGroups" />
           </AssociationSet>
-          <AssociationSet Name="FK_Products_ProductGroups" Association="Self.FK_Products_ProductGroups">
-            <End Role="ProductGroups" EntitySet="ProductGroups" />
-            <End Role="Products" EntitySet="Products" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Products_ProductGroups1" Association="Self.FK_Products_ProductGroups1">
-            <End Role="ProductGroups" EntitySet="ProductGroups" />
-            <End Role="Products" EntitySet="Products" />
-          </AssociationSet>
           <EntitySet Name="Pages" EntityType="DentplexDBModel.Page" />
           <EntitySet Name="Sliders" EntityType="DentplexDBModel.Slider" />
           <AssociationSet Name="FK_SliderItems_Sliders" Association="DentplexDBModel.FK_SliderItems_Sliders">
             <End Role="Slider" EntitySet="Sliders" />
             <End Role="SliderItem" EntitySet="SliderItems" />
+          </AssociationSet>
+          <EntitySet Name="Products" EntityType="DentplexDBModel.Product" />
+          <AssociationSet Name="FK_Products_ProductGroups" Association="DentplexDBModel.FK_Products_ProductGroups">
+            <End Role="ProductGroup" EntitySet="ProductGroups" />
+            <End Role="Product" EntitySet="Products" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Products_ProductGroups1" Association="DentplexDBModel.FK_Products_ProductGroups1">
+            <End Role="ProductGroup" EntitySet="ProductGroups" />
+            <End Role="Product" EntitySet="Products" />
+          </AssociationSet>
+          <EntitySet Name="ProductImages" EntityType="DentplexDBModel.ProductImage" />
+          <AssociationSet Name="FK_ProductImages_Products" Association="DentplexDBModel.FK_ProductImages_Products">
+            <End Role="Product" EntitySet="Products" />
+            <End Role="ProductImage" EntitySet="ProductImages" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="Page">
@@ -293,6 +285,70 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="ProductID" />
+          </Key>
+          <Property Name="ProductID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProductGroupID" Type="Int32" Nullable="false" />
+          <Property Name="ProductSubGroupID" Type="Int32" Nullable="false" />
+          <Property Name="ProductTitle" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="ProductName" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="ProductShortText" Type="String" Nullable="false" MaxLength="350" FixedLength="false" Unicode="true" />
+          <Property Name="ProductText" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ProductImage" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ProductIsFavourite" Type="Boolean" Nullable="false" />
+          <Property Name="ProductDateCreate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="ProductGroup" Relationship="DentplexDBModel.FK_Products_ProductGroups" FromRole="Product" ToRole="ProductGroup" />
+          <NavigationProperty Name="ProductGroup1" Relationship="DentplexDBModel.FK_Products_ProductGroups1" FromRole="Product" ToRole="ProductGroup" />
+          <NavigationProperty Name="ProductImage1" Relationship="DentplexDBModel.FK_ProductImages_Products" FromRole="Product" ToRole="ProductImage" />
+        </EntityType>
+        <Association Name="FK_Products_ProductGroups">
+          <End Type="DentplexDBModel.ProductGroup" Role="ProductGroup" Multiplicity="1" />
+          <End Type="DentplexDBModel.Product" Role="Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductGroup">
+              <PropertyRef Name="ProductGroupID" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="ProductGroupID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Products_ProductGroups1">
+          <End Type="DentplexDBModel.ProductGroup" Role="ProductGroup" Multiplicity="1" />
+          <End Type="DentplexDBModel.Product" Role="Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductGroup">
+              <PropertyRef Name="ProductGroupID" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="ProductSubGroupID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="ProductImage">
+          <Key>
+            <PropertyRef Name="ProductImageID" />
+          </Key>
+          <Property Name="ProductImageID" Type="Int32" Nullable="false" />
+          <Property Name="ProductID" Type="Int32" Nullable="false" />
+          <Property Name="ProductColor" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ProductImageName" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Product" Relationship="DentplexDBModel.FK_ProductImages_Products" FromRole="ProductImage" ToRole="Product" />
+        </EntityType>
+        <Association Name="FK_ProductImages_Products">
+          <End Type="DentplexDBModel.Product" Role="Product" Multiplicity="1" />
+          <End Type="DentplexDBModel.ProductImage" Role="ProductImage" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="ProductID" />
+            </Principal>
+            <Dependent Role="ProductImage">
+              <PropertyRef Name="ProductImageID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -308,21 +364,6 @@
                 <ScalarProperty Name="ProductGroupName" ColumnName="ProductGroupName" />
                 <ScalarProperty Name="ProductGroupImage" ColumnName="ProductGroupImage" />
                 <ScalarProperty Name="ProductGroupBanner" ColumnName="ProductGroupBanner" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Products">
-            <EntityTypeMapping TypeName="DentplexDBModel.Product">
-              <MappingFragment StoreEntitySet="Products">
-                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
-                <ScalarProperty Name="ProductGroupID" ColumnName="ProductGroupID" />
-                <ScalarProperty Name="ProductSubGroupID" ColumnName="ProductSubGroupID" />
-                <ScalarProperty Name="ProductTitle" ColumnName="ProductTitle" />
-                <ScalarProperty Name="ProductName" ColumnName="ProductName" />
-                <ScalarProperty Name="ProductShortText" ColumnName="ProductShortText" />
-                <ScalarProperty Name="ProductText" ColumnName="ProductText" />
-                <ScalarProperty Name="ProductImage" ColumnName="ProductImage" />
-                <ScalarProperty Name="ProductIsFavourite" ColumnName="ProductIsFavourite" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -371,6 +412,32 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Products">
+            <EntityTypeMapping TypeName="DentplexDBModel.Product">
+              <MappingFragment StoreEntitySet="Products">
+                <ScalarProperty Name="ProductDateCreate" ColumnName="ProductDateCreate" />
+                <ScalarProperty Name="ProductIsFavourite" ColumnName="ProductIsFavourite" />
+                <ScalarProperty Name="ProductImage" ColumnName="ProductImage" />
+                <ScalarProperty Name="ProductText" ColumnName="ProductText" />
+                <ScalarProperty Name="ProductShortText" ColumnName="ProductShortText" />
+                <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+                <ScalarProperty Name="ProductTitle" ColumnName="ProductTitle" />
+                <ScalarProperty Name="ProductSubGroupID" ColumnName="ProductSubGroupID" />
+                <ScalarProperty Name="ProductGroupID" ColumnName="ProductGroupID" />
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProductImages">
+            <EntityTypeMapping TypeName="DentplexDBModel.ProductImage">
+              <MappingFragment StoreEntitySet="ProductImages">
+                <ScalarProperty Name="ProductImageName" ColumnName="ProductImageName" />
+                <ScalarProperty Name="ProductColor" ColumnName="ProductColor" />
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+                <ScalarProperty Name="ProductImageID" ColumnName="ProductImageID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -395,15 +462,17 @@
     <Diagrams>
       <Diagram DiagramId="4c3eab4e5f1048688bd0fa42fb99ce1b" Name="Diagram1">
         <EntityTypeShape EntityType="DentplexDBModel.ProductGroup" Width="1.5" PointX="0.75" PointY="1.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="DentplexDBModel.Product" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
         <EntityTypeShape EntityType="DentplexDBModel.SliderItem" Width="1.5" PointX="8" PointY="1" IsExpanded="true" />
         <EntityTypeShape EntityType="DentplexDBModel.User" Width="1.5" PointX="0.75" PointY="5.75" IsExpanded="true" />
         <EntityTypeShape EntityType="DentplexDBModel.Page" Width="1.5" PointX="2.75" PointY="5.75" IsExpanded="true" />
         <EntityTypeShape EntityType="DentplexDBModel.Slider" Width="1.5" PointX="5.75" PointY="1" IsExpanded="true" />
         <AssociationConnector Association="DentplexDBModel.FK_ProductGroups_ProductGroups" ManuallyRouted="false" />
-        <AssociationConnector Association="DentplexDBModel.FK_Products_ProductGroups" ManuallyRouted="false" />
-        <AssociationConnector Association="DentplexDBModel.FK_Products_ProductGroups1" ManuallyRouted="false" />
         <AssociationConnector Association="DentplexDBModel.FK_SliderItems_Sliders" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="DentplexDBModel.Product" Width="1.5" PointX="3" PointY="0.875" />
+        <AssociationConnector Association="DentplexDBModel.FK_Products_ProductGroups" />
+        <AssociationConnector Association="DentplexDBModel.FK_Products_ProductGroups1" />
+        <EntityTypeShape EntityType="DentplexDBModel.ProductImage" Width="1.5" PointX="5.25" PointY="3.625" />
+        <AssociationConnector Association="DentplexDBModel.FK_ProductImages_Products" />
       </Diagram>
     </Diagrams>
   </Designer>

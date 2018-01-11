@@ -1601,6 +1601,7 @@
     <Content Include="Content\theme\css\style13.css" />
     <Content Include="Content\theme\css\swiper.min.css" />
     <Content Include="Content\theme\fonts\fontawesome-webfont.svg" />
+    <Content Include="Content\theme\img\Product_header.jpg" />
     <Content Include="Content\theme\img\bg-footer.png" />
     <Content Include="Content\theme\img\cat-pic.jpg" />
     <Content Include="Content\theme\img\header.jpg" />
@@ -3913,6 +3914,8 @@
     <Content Include="Scripts\kendo\messages\kendo.messages.zh-TW.min.js.map" />
     <Content Include="Views\Product\_ProductsubGroups.cshtml" />
     <Content Include="Views\Product\_ProductListSubGroups.cshtml" />
+    <Content Include="Views\Product\ProductBannerAll.cshtml" />
+    <Content Include="Views\Product\ProductAll.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

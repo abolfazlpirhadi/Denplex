@@ -23,8 +23,10 @@ namespace Dentplex.Data.Model
         public string ProductText { get; set; }
         public string ProductImage { get; set; }
         public bool ProductIsFavourite { get; set; }
+        public Nullable<System.DateTime> ProductDateCreate { get; set; }
     
         public virtual ProductGroup ProductGroup { get; set; }
         public virtual ProductGroup ProductGroup1 { get; set; }
+        public virtual ProductImage ProductImage1 { get; set; }
     }
 }

@@ -4,9 +4,20 @@
     <div class="swiper-container s1">
         <div class="swiper-wrapper">
             <div class="swiper-slide">
-                <a href="#">
-                    <img class="img-responsive" src="~/Images/ProuctGroups/BannerImage/@Model.ProductGroupBanner" alt="p2 cosmetics Logo">
-                </a>
+                @if (Model.ProductGroupImage != null)
+                {
+                    <a href="#">
+                        <img class="img-responsive" src="~/Images/ProuctGroups/BannerImage/@Model.ProductGroupBanner" alt="p2 cosmetics Logo">
+                    </a>
+                }
+
+                else
+                {
+                    <a href="#">
+                        <img src="~/Content/theme/img/Product_header.jpg" />
+                    </a>
+                }
+
             </div>
         </div>
     </div>

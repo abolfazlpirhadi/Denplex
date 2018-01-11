@@ -41,8 +41,8 @@
                 padding: 14px 22px;
                 float: left;
                 text-decoration: none;
-                color: #f0f0f0;
-                font-size: 12px;
+                color: #fff;
+                font-size: 13px;
                 background: #414956;
                 white-space: nowrap;
                 position: relative;
@@ -322,7 +322,7 @@ ul {
     ul.avatar-name {
         float: right;
         list-style: none;
-        color: #999;
+        color: #fff;
         padding: 5px 0;
         margin-bottom: 0;
         line-height: 25px;
@@ -335,7 +335,7 @@ ul {
 
 
         ul.avatar-name .date {
-            font-size: 11px;
+            font-size: 13px;
         }
 
 
