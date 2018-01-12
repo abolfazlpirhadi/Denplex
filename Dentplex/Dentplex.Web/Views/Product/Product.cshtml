@@ -3,7 +3,7 @@
     ViewBag.Title = "لیست محصولات";
 }
 
-@if (ViewBag.AllProduct != null)
+@*@if (ViewBag.AllProduct != null)
 {
     @Html.Action("ProductBannerAll", "Product")
     @Html.Action("ProductGroups", "Product")
@@ -14,7 +14,12 @@ else
     @Html.Action("ProductBanner", "Product")
     @Html.Action("ProductGroups", "Product")
     @Html.Action("_ProductsubGroups", "Product")
-}
+}*@
+
+@Html.Action("ProductBanner", "Product")
+@Html.Action("ProductGroups", "Product")
+@Html.Action("_ProductsubGroups", "Product")
+@Html.Action("ProductShowList", "Product")
 
 
 

@@ -29,11 +29,11 @@ namespace Dentplex.Web.Controllers
         {
             return PartialView(db.ProductGroups.ToList());
         }
-        public ActionResult AjGroupItemShow()
-        {
-            var fildes = db.Products;
-            return PartialView("_ProductListSubGroups", fildes);
-        }
+        //public ActionResult AjGroupItemShow()
+        //{
+        //    var fildes = db.Products;
+        //    return PartialView("_ProductListSubGroups", fildes);
+        //}
 
         //***************************************
 
@@ -45,49 +45,81 @@ namespace Dentplex.Web.Controllers
         {
             return View();
         }
-        public ActionResult ProductBanner(int id)
+        public ActionResult ProductBanner(int? id)
         {
-            var productgroup = db.ProductGroups.Find(id);
+            var productgroup = new ProductGroup();
+            if (id != null)
+                 productgroup = db.ProductGroups.Find(id);
+            
             return PartialView(productgroup);
         }
 
-        [Route("Product/{id}")]
-        [HttpPost]
-        public ActionResult AjGroupItemShow(int? id, List<string> gIds)
+        public ActionResult ProductShowList(int? id)
         {
-            string combindedString = string.Join(",", gIds.ToArray());
-            int fid;
-            //for try parse using from "Select"
-
-            if (combindedString == "")
+            var productList = new List<Product>();
+            if (id != null)
             {
-                var fildes = db.Products.Where(p => p.ProductGroupID == id);
-
-                return PartialView("_ProductListSubGroups", fildes);
+                productList = db.Products.Where(v => v.ProductGroupID == id).OrderByDescending(d => d.ProductDateCreate).ToList();
             }
             else
             {
-                var fIdLists = combindedString.Split(',').Select(p => Int32.TryParse(p, out fid) ? Int32.Parse(p) : -1).ToList();
-
-                //if (fIdLists.Count < 30)
-                //{
-                var fildes = (from u in db.Products
-                              join up in fIdLists on u.ProductSubGroupID equals up
-                              select u).ToList();
-
-                return PartialView("_ProductListSubGroups", fildes);
+                //Limit 200 products for quick load page
+                productList = db.Products.Take(200).OrderByDescending(d => d.ProductDateCreate).ToList();
             }
+            
 
+            return PartialView("ProductList", productList);
 
-
-            //JsonResult
-            //return Json(person);
         }
 
-        public ActionResult _ProductsubGroups(int id)
+        //[Route("Product/{id}")]
+        //[HttpPost]
+        //public ActionResult AjGroupItemShow(int? id, List<string> gIds)
+        //{
+        //    string combindedString = string.Join(",", gIds.ToArray());
+        //    int fid;
+        //    //for try parse using from "Select"
+
+        //    if (combindedString == "")
+        //    {
+        //        var fildes = db.Products.Where(p => p.ProductGroupID == id);
+
+        //        return PartialView("_ProductListSubGroups", fildes);
+        //    }
+        //    else
+        //    {
+        //        var fIdLists = combindedString.Split(',').Select(p => Int32.TryParse(p, out fid) ? Int32.Parse(p) : -1).ToList();
+
+        //        //if (fIdLists.Count < 30)
+        //        //{
+        //        var fildes = (from u in db.Products
+        //                      join up in fIdLists on u.ProductSubGroupID equals up
+        //                      select u).ToList();
+
+        //        return PartialView("_ProductListSubGroups", fildes);
+        //    }
+
+
+
+        //    //JsonResult
+        //    //return Json(person);
+        //}
+
+        //[Route("Product/{id}")]
+        ////[HttpPost]
+        //public ActionResult AjGroupItemShow(int? id)
+        //{
+        //        var fildes = db.Products.Where(p => p.ProductGroupID == id);
+        //        return PartialView("_ProductListSubGroups", fildes);
+        //}
+
+        public ActionResult _ProductsubGroups(int? id)
         {
-            var productSubgroup = db.ProductGroups.Where(v => v.ProductParentGroupID == id);
-            return PartialView(productSubgroup);
+            var productSubgroup = new List<ProductGroup>();
+            if (id != null)
+              productSubgroup = db.ProductGroups.Where(v => v.ProductParentGroupID == id).ToList();
+
+            return PartialView("_ProductsubGroups",productSubgroup);
         }
 
 
