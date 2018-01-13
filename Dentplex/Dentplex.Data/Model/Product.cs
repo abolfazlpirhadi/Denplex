@@ -14,6 +14,12 @@ namespace Dentplex.Data.Model
     
     public partial class Product
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Product()
+        {
+            this.ProductGalleries = new HashSet<ProductGallery>();
+        }
+    
         public int ProductID { get; set; }
         public int ProductGroupID { get; set; }
         public int ProductSubGroupID { get; set; }
@@ -27,6 +33,7 @@ namespace Dentplex.Data.Model
     
         public virtual ProductGroup ProductGroup { get; set; }
         public virtual ProductGroup ProductGroup1 { get; set; }
-        public virtual ProductImage ProductImage1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ProductGallery> ProductGalleries { get; set; }
     }
 }

@@ -86,6 +86,5 @@ D:\P R O J E C T\DentplexProject\GitHub\Dentplex\Dentplex.Data\bin\Debug\System.
 D:\P R O J E C T\DentplexProject\GitHub\Dentplex\Dentplex.Data\bin\Debug\System.Web.WebPages.xml
 D:\P R O J E C T\DentplexProject\GitHub\Dentplex\Dentplex.Data\bin\Debug\System.Web.WebPages.Deployment.xml
 D:\P R O J E C T\DentplexProject\GitHub\Dentplex\Dentplex.Data\bin\Debug\System.Web.WebPages.Razor.xml
-D:\P R O J E C T\DentplexProject\GitHub\Dentplex\Dentplex.Data\obj\Debug\Dentplex.Data.csprojResolveAssemblyReference.cache
 D:\P R O J E C T\DentplexProject\GitHub\Dentplex\Dentplex.Data\obj\Debug\Dentplex.Data.dll
 D:\P R O J E C T\DentplexProject\GitHub\Dentplex\Dentplex.Data\obj\Debug\Dentplex.Data.pdb

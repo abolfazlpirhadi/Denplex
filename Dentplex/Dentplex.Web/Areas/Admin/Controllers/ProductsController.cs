@@ -94,7 +94,7 @@ namespace Dentplex.Web.Areas.Admin.Controllers
                 else
                 {
                     ModelState.AddModelError("ProductImage", "تصویر را انتخاب کنید!");
-                    return View(imgProduct);
+                    return View(product);
                 }
             }
 

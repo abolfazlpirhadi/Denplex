@@ -12,12 +12,13 @@ namespace Dentplex.Data.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class ProductImage
+    public partial class ProductGallery
     {
-        public int ProductImageID { get; set; }
+        public int ProductGalleryID { get; set; }
         public int ProductID { get; set; }
         public string ProductColor { get; set; }
         public string ProductImageName { get; set; }
+        public string ProductImageTitle { get; set; }
     
         public virtual Product Product { get; set; }
     }

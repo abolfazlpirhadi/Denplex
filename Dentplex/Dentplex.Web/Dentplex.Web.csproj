@@ -1733,6 +1733,11 @@
     <Content Include="Areas\Admin\Views\ProductGroupsAjax\Index.cshtml" />
     <Content Include="Areas\Admin\Views\ProductGroupsAjax\EditorTemplates\ProductGroupsViewModel.cshtml" />
     <Content Include="Areas\Admin\Views\ProductGroupsAjax\EditorTemplates\ProductGroupsChildViewModel.cshtml" />
+    <Content Include="Areas\Admin\Views\ProductGalleries\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\ProductGalleries\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\ProductGalleries\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\ProductGalleries\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\ProductGalleries\Index.cshtml" />
     <None Include="Properties\PublishProfiles\Dentplex.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Images\ProductImages\MainImage\7c8ea462332544e0b122f065615271c9.jpg" />
@@ -3665,6 +3670,7 @@
     <Compile Include="Areas\Admin\Controllers\AccountController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
     <Compile Include="Areas\Admin\Controllers\PagesController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ProductGalleriesController.cs" />
     <Compile Include="Areas\Admin\Controllers\ProductGroupsAjaxController.cs" />
     <Compile Include="Areas\Admin\Controllers\ProductGroupsController.cs" />
     <Compile Include="Areas\Admin\Controllers\ProductsController.cs" />
@@ -3926,6 +3932,8 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Views\Products\DisplayTemplates\" />
+    <Folder Include="Images\ProductGallery\MainImage\" />
+    <Folder Include="Images\ProductGallery\ThumbImage\" />
     <Folder Include="Images\SliderImages\" />
   </ItemGroup>
   <ItemGroup>

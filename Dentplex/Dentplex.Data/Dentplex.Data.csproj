@@ -81,6 +81,7 @@
   <ItemGroup>
     <Compile Include="MetaData\PageMetaData.cs" />
     <Compile Include="MetaData\ProductGroupMetaData.cs" />
+    <Compile Include="MetaData\ProductGalleryMetaData.cs" />
     <Compile Include="MetaData\ProductMetaData.cs" />
     <Compile Include="MetaData\SliderItemMetaData.cs" />
     <Compile Include="MetaData\SliderMetaData.cs" />
@@ -106,10 +107,10 @@
     <Compile Include="Model\Product.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\ProductGroup.cs">
+    <Compile Include="Model\ProductGallery.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\ProductImage.cs">
+    <Compile Include="Model\ProductGroup.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\Slider.cs">

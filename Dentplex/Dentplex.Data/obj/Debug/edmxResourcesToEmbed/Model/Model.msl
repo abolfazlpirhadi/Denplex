@@ -74,13 +74,14 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="ProductImages">
-      <EntityTypeMapping TypeName="DentplexDBModel.ProductImage">
-        <MappingFragment StoreEntitySet="ProductImages">
+    <EntitySetMapping Name="ProductGalleries">
+      <EntityTypeMapping TypeName="DentplexDBModel.ProductGallery">
+        <MappingFragment StoreEntitySet="ProductGalleries">
+          <ScalarProperty Name="ProductImageTitle" ColumnName="ProductImageTitle" />
           <ScalarProperty Name="ProductImageName" ColumnName="ProductImageName" />
           <ScalarProperty Name="ProductColor" ColumnName="ProductColor" />
           <ScalarProperty Name="ProductID" ColumnName="ProductID" />
-          <ScalarProperty Name="ProductImageID" ColumnName="ProductImageID" />
+          <ScalarProperty Name="ProductGalleryID" ColumnName="ProductGalleryID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

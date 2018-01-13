@@ -1,0 +1,93 @@
+﻿@model Dentplex.Data.Model.ProductGallery
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<div class="panel panel-info" style="margin-top:20px">
+    <div class="panel-heading"><h4>افزودن گالری تصاویر</h4></div>
+    <div class="panel-body">
+        @using (Html.BeginForm("Create", "ProductGalleries", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-horizontal">
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                @*@Html.HiddenFor(m => m.ProductID)
+                @Html.HiddenFor(m => m.ProductGalleryID)*@
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.ProductColor, htmlAttributes: new { @class = "control-label col-md-1" })
+                    <div class="col-md-3">
+                        @Html.EditorFor(model => model.ProductColor, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.ProductColor, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.ProductImageName, htmlAttributes: new { @class = "control-label col-md-1" })
+                    <div class="col-md-3">
+                        @Html.Kendo().Upload().Name("imgProductGallery")
+                        @Html.ValidationMessageFor(model => model.ProductImageName, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.ProductImageTitle, htmlAttributes: new { @class = "control-label col-md-1" })
+                    <div class="col-md-3">
+                        @Html.EditorFor(model => model.ProductImageTitle, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.ProductImageTitle, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="ثبت" class="btn btn-primary" />
+                        @Html.ActionLink("بازگشت به لیست محصولات", "Index", "Products")
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+@*<div class="panel panel-info" style="margin-top:20px">
+    <div class="panel-heading"><h4>فهرست گالری تصاویر</h4></div>
+    <div class="panel-body">
+        <div class="k-rtl">
+             
+            @(Html.Kendo().Grid(IEnumerable<Dentplex.Data.Model.Product>).Name("Grid")
+            .Columns(columns =>
+            {
+                columns.Bound(model => model.ProductGalleryID);
+                columns.Bound(model => model.ProductColor);
+                columns.Bound(model => model.ProductImageName);
+                columns.Bound(model => model.ProductImageTitle);
+                columns.Bound(item => @item.ProductID).Title("تصویر").Filterable(false).Groupable(false)
+                .Template(@<text>
+                    <img src="/Images/ProductGallery/ThumbImage/@item.ProductImageName" class="thumbnail" style="max-width: 30px" />
+                </text>);
+    columns.Bound(item => @item.ProductID).Title("دستورات").Filterable(false).Groupable(false)
+        .Template(@<text>
+                    <a href="@Url.Action("Delete","Products",new { id = @item.ProductID})" class="btn btn-xs btn-danger"><i class="glyphicon glyphicon-trash"></i>حذف</a>
+        </text>).Width(150);
+            })
+                .Groupable()
+                .Pageable()
+                .Sortable()
+                .Scrollable()
+                .Filterable()
+                .DataSource(dataSource => dataSource
+                .Server()
+                .Model(model => model.Id(item => item.ProductID)))
+            )
+
+        </div>
+
+    </div>
+</div>*@
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
