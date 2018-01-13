@@ -6,7 +6,7 @@
     <title>@ViewBag.Title</title>
 
     <link rel="stylesheet" href="/Content/theme/css/bootstrap.css">
-    <link rel="stylesheet" href="/Content/theme/css/style13.css">
+    <link rel="stylesheet" href="/Content/theme/css/style15.css">
     <link rel="stylesheet" href="/Content/theme/css/font-awesome.min.css">
     <link rel="stylesheet" href="/Content/theme/css/swiper.min.css">
     <link href="~/Content/theme/css/osSlider.css" rel="stylesheet" />
@@ -55,7 +55,7 @@
                                         <span class="icon-bar"></span>
                                         <span class="icon-bar"></span>
                                     </button>
-                                    <a class="navbar-brand" href="#"><img class="img-responsive" src="/Content/theme/img/logo@2x.png" alt="p2 cosmetics Logo"></a>
+                                    <a class="navbar-brand" href="/"><img class="img-responsive" src="/Content/theme/img/logo@2x.png" alt="p2 cosmetics Logo"></a>
                                 </div>
                                 <div class="collapse navbar-collapse col-lg-9 col-md-9 col-sm-9 col-xs-12" id="myNavbar">
                                     <ul class="nav navbar-nav">
@@ -106,13 +106,13 @@
                         <li><a href="#">مراقبت ناخن</a></li>
                         <li><a href="#">زیبایی</a></li>
                     </ul>
-                    <ul class="col-lg-2 col-md-2 col-sm-2 col-xs-0 fmenu">
+                    @*<ul class="col-lg-2 col-md-2 col-sm-2 col-xs-0 fmenu">
                         <li class="fmenu-title"><a href="#">تعداد محدود</a></li>
                         <li></li>
                         <li></li>
                         <li></li>
                         <li></li>
-                    </ul>
+                    </ul>*@
                     <ul class="col-lg-2 col-md-2 col-sm-2 col-xs-0 fmenu">
                         <li class="fmenu-title"><a href="#">ویژه ها</a></li>
                         <li></li>
@@ -120,20 +120,18 @@
                         <li></li>
                         <li></li>
                     </ul>
-                    <ul class="col-lg-2 col-md-2 col-sm-2 col-xs-0 fmenu">
-                        <li class="fmenu-title"><a href="@Url.Action("AboutUs","Pages")">درباره ما</a></li>
-                        <li>هدف اصلی ما</li>
-                        <li>........</li>
-                        <li>........</li>
-                        <li>........</li>
+                    <ul class="col-lg-4 col-md-4 col-sm-4 col-xs-0 fmenu">
+                        <li class="fmenu-title"><a href="@Url.Action("ContactUs","Pages")">تماس با ما</a></li>
+                        <li>آدرس: تهران- خیابان پاسداران- بوستان هفتم- ساختمان Lorinzer – پلاک 156- طبقه اول- زنگ 103</li>
+                        <li>تلفن: 522549664</li>
                     </ul>
                     <ul class="col-lg-2 col-md-2 col-sm-2 col-xs-0 footer-menu-licence">
                         <li>
-                            <a href="#" target="_blank" class="qualityLogo">
+                            <a href="http://de.wessling-group.com/en/" target="_blank" class="qualityLogo">
                                 <img src="/Content/theme/img/wessling_en.png" alt="WESSLING - kontrollierte Qualität und Sicherheit">
                             </a>
                         </li>
-                        <li></li>
+                        <li><a href="/"><img class="img-responsive" src="/Content/theme/img/logo@2x.png" alt="p2 cosmetics Logo"></a></li>
                         <li></li>
                         <li></li>
                     </ul>
@@ -165,7 +163,7 @@
                             </a>
                         </li>
                     </ul>
-                    <ul class="col-lg-2 col-md-3 col-sm-12 col-xs-12 so-menu">
+                    <ul class="col-lg-3 col-md-4 col-sm-12 col-xs-12 so-menu">
                         <li>
                             <a href="#">
                                 <i class="icon-instagram"></i>
@@ -173,7 +171,12 @@
                         </li>
                         <li>
                             <a href="#">
-                                <i class="icon-facebook"></i>
+                                <i class="icon-google-plus"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <i class="icon-location-arrow"></i>
                             </a>
                         </li>
                     </ul>

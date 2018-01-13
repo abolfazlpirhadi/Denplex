@@ -1,5 +1,7 @@
 ﻿@model IEnumerable<Dentplex.Data.Model.Product>
-    @{ Layout = "~/Views/Shared/_Layout.cshtml";}
+    
+
+@*@{ Layout = "~/Views/Shared/_Layout.cshtml";}
 
 @if (Model.Any())
 {
@@ -15,4 +17,67 @@
             </li>
         }
     </ul>
+}*@
+
+
+@if (Model.Any())
+{
+    <div id="refTable" class="grid-product">
+        <ul>
+            @foreach (var item in Model)
+            {
+                <li class="col-sm-4 col-xs-6 wrapp-sync aProduct aProduct-@item.ProductSubGroupID">
+                    <a href="~/ShowProduct/@item.ProductID">
+                        <div class="wrapp-img-sync">
+                            <img src="~/Images/ProductImages/MainImage/@item.ProductImage" class="img img-responsive" alt="@item.ProductTitle">
+                        </div>
+                        <span>@item.ProductTitle</span>
+                    </a>
+                </li>
+            }
+        </ul>
+    </div>
 }
+
+
+<script type="text/javascript">
+        var fidItems = [];
+
+        function GenerateSubs(that, fId) {
+            if (fId == 0) {
+                fidItems = [];
+                $(".productSubNav li").removeClass("active");
+                $(".showAll").parent().addClass("active");
+                //GenerateSubsPost();
+                $(".aProduct").show(1000);
+                return false;
+            }
+            if (fidItems.length == 30) {
+                alert("تعداد انتخاب بیش از حد مجاز می باشد");
+                return false;
+            }
+            if ($(that).parent().hasClass("active")) {
+                if ($.inArray(fId, fidItems) != -1) {
+                    fidItems = $.grep(fidItems,
+                        function(value) {
+                            return value != fId;
+                        });
+                }
+                if (fidItems.length === 0) { $(".aProduct").show(1000); $(".showAll").parent().addClass("active"); } else { $(".aProduct-" + fId).hide(1000); };
+                $(that).parent().removeClass("active");
+            } else {
+                if (fidItems.length === 0) { $(".aProduct").not(".aProduct-" + fId).hide(1000); };
+                if ($.inArray(fId, fidItems) == -1) {
+                    fidItems.push(fId);
+                }
+                $(that).parent().addClass("active");
+                $(".showAll").parent().removeClass("active");
+                $(".aProduct-" + fId).show(1000);
+            }
+        }
+
+</script>
+
+
+
+

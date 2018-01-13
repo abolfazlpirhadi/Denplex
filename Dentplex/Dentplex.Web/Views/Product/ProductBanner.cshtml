@@ -7,14 +7,14 @@
                 @if (Model.ProductGroupImage != null)
                 {
                     <a href="#">
-                        <img class="img-responsive" src="~/Images/ProuctGroups/BannerImage/@Model.ProductGroupBanner" alt="p2 cosmetics Logo">
+                        <img class="img-responsive" src="~/Images/ProuctGroups/BannerImage/@Model.ProductGroupBanner" alt="@Model.ProductGroupTitle">
                     </a>
                 }
 
                 else
                 {
                     <a href="#">
-                        <img src="~/Content/theme/img/Product_header.jpg" />
+                        <img class="img-responsive" src="~/Content/theme/img/Product_header.jpg" />
                     </a>
                 }
 
