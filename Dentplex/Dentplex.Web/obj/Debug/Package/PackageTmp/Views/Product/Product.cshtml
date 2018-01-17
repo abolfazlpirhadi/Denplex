@@ -1,0 +1,27 @@
+﻿@model IEnumerable<Dentplex.Data.Model.ProductGroup>
+@{
+    ViewBag.Title = "لیست محصولات";
+}
+
+@*@if (ViewBag.AllProduct != null)
+{
+    @Html.Action("ProductBannerAll", "Product")
+    @Html.Action("ProductGroups", "Product")
+    @Html.Action("ProductAll", "Product")
+}
+else
+{
+    @Html.Action("ProductBanner", "Product")
+    @Html.Action("ProductGroups", "Product")
+    @Html.Action("_ProductsubGroups", "Product")
+}*@
+
+@Html.Action("ProductBanner", "Product")
+@Html.Action("ProductGroups", "Product")
+@Html.Action("_ProductsubGroups", "Product")
+@Html.Action("ProductShowList", "Product")
+
+
+
+
+

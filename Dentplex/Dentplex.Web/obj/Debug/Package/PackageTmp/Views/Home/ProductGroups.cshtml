@@ -1,0 +1,24 @@
+﻿@model IEnumerable<Dentplex.Data.Model.ProductGroup>
+
+@if (Model.Any())
+{
+    <div class="container">
+        <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12 center-block wrapp-product-group" style="float:none;">
+            <div class="row big-title text-center">
+                <h2>محصولاتی برای شما</h2>
+            </div>
+
+            @foreach (var item in Model)
+            {
+                <a href="/Product/@item.ProductGroupID" class="col-lg-4 col-md-4 col-sm-6 col-xs-6 pr-cate">
+                    <div class="frame">
+                        <img class="img-responsive" src="~/Images/ProuctGroups/MainImage/@item.ProductGroupImage" alt="صورت">
+                    </div>
+                    <span>@item.ProductGroupTitle</span>
+                </a>
+            }
+        </div>
+    </div>
+}
+
+

@@ -1,0 +1,93 @@
+﻿
+@{
+    ViewBag.Title = "فهرست";
+}
+
+<h4>اسلایدرها</h4>
+<hr />
+<h2><a id="btnAddSlider" class="btn btn-primary"><span class="glyphicon glyphicon-plus"></span>افزودن اسلایدر جدید&nbsp;</a></h2>
+<div id="ShowList">
+    @Html.Action("_List")
+</div>
+<!-- Modal -->
+<div class="modal fade" id="SliderModal" tabindex="-1" role="dialog" aria-labelledby="SliderModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="SliderModalLabel">Modal title</h4>
+            </div>
+            <div class="modal-body" id="SliderModalBody">
+                ...
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+@section Scripts
+{
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+<script src="~/Scripts/modal.js"></script>
+    <script type="text/javascript">
+        
+        $("#btnAddSlider").click(function () {
+            alert("mohsen");
+            $.ajax({
+                url: "/Admin/SlidersAjax/Create",
+                type: "Get"
+            }).done(function (res) {
+                $("#SliderModal").modal();
+                $("#SliderModalLabel").html("افزودن گروه جدید");
+                $("#SliderModalBody").html(res);
+            });
+        });
+
+        //function ShowAddSliderForm() {
+        //    $.ajax({
+        //        url: "/Admin/SlidersAjax/Create",
+        //        type: "Get"
+        //    }).done(function (res) {
+        //        $("#SliderModal").modal('show');
+        //        $("#SliderModalLabel").html("افزودن اسلایدر جدید");
+        //        $("#SliderModalBody").html(res);
+        //    });
+        //};
+
+        function AddSubGroup(id) {
+            $.ajax({
+                url: "/Admin/SlidersAjax/Create?parentId=" + id,
+                type: "Get"
+            }).done(function (res) {
+                $("#SliderModal").modal('show');
+                $("#SliderModalLabel").html("افزودن زیر گروه جدید");
+                $("#SliderModalBody").html(res);
+            });
+        };
+
+        function Success() {
+            $("#SliderModal").modal('hide');
+            humane.log("عملیات با موفقیت انجام شد");
+        }
+
+        function EditGroup(id) {
+            $.get("/Admin/SlidersAjax/Edit/" + id, function (res) {
+                $("#SliderModal").modal('show');
+                $("#SliderModalLabel").html("ویرایش گروه");
+                $("#SliderModalBody").html(res);
+            });
+        }
+
+        function DeleteGroup(id) {
+            if (confirm('آیا از حذف مطمئن هستید ؟')) {
+                $.get("/Admin/SlidersAjax/Delete/" + id, function (res) {
+                    $("#ShowList").html(res);
+                });
+            }
+        }
+    </script>
+}
+
+

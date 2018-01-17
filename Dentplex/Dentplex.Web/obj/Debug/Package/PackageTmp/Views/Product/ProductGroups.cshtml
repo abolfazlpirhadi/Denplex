@@ -1,0 +1,24 @@
+﻿@model IEnumerable<Dentplex.Data.Model.ProductGroup>
+
+@if (Model.Any())
+{
+    <nav class="productNav">
+        <ul class="col-lg-12 col-md-12 col-sm-12 col-xs-12 group-menu center-block" style="float:none">
+            @foreach (var item in Model)
+            {
+                <li><a href="/Product/@item.ProductGroupID">@item.ProductGroupTitle</a></li>
+            }
+        </ul>
+    </nav>
+    <div class="clearfix"></div>
+
+    @*<ul class="filter">
+        <span class="closeFilter">x</span>
+        <span class="showFilter"></span>
+        <li class=""><a class="showAll" href="#">Alle</a></li>
+        
+        <li class="active"><a href="http://en.p2cosmetics.com/products/lips-en-2/lip-gloss/">Lip Gloss</a><span class="reset">x</span></li>
+        
+    </ul>*@
+}
+
