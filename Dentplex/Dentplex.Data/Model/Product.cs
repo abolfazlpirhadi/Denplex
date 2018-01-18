@@ -31,9 +31,9 @@ namespace Dentplex.Data.Model
         public bool ProductIsFavourite { get; set; }
         public Nullable<System.DateTime> ProductDateCreate { get; set; }
     
-        public virtual ProductGroup ProductGroup { get; set; }
-        public virtual ProductGroup ProductGroup1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ProductGallery> ProductGalleries { get; set; }
+        public virtual ProductGroup ProductGroup { get; set; }
+        public virtual ProductGroup ProductGroup1 { get; set; }
     }
 }

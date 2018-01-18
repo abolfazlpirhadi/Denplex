@@ -7,7 +7,11 @@
 <div class="container">
     <div class="grid-product-det product">
         <div class="pic-wrapp col-lg-6 col-md-6 col-sm-12 col-xs-12">
-            <img src="~/Images/ProductImages/MainImage/@Model.ProductImage" class="img img-responsive" alt="">
+            @if(Model.ProductGalleries.Any(i => i.ProductID == Model.ProductID)){
+            @Html.Action("ShowProductGallery", "Product")
+            }else{
+            <img src="~/Images/ProductImages/MainImage/@Model.ProductImage" class="img img-responsive center-block" style="float: none;" alt="@Model.ProductTitle">
+            }
         </div>
         <div class="text-wrapp col-lg-6 col-md-6 col-sm-12 col-xs-12">
 

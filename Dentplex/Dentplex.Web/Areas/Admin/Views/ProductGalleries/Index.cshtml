@@ -1,16 +1,19 @@
 ﻿@model IEnumerable<Dentplex.Data.Model.ProductGallery>
 
+
 @{
-    ViewBag.Title = "Index";
-    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
-}
+        ViewBag.Title = "";
+        Layout = "";
+    }
 
-<h2>Index</h2>
-
-<p>
+@*<p>
     @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
+</p>*@
+
+
+@*@Html.Action("ShowCreatePage", "ProductGalleries")*@
+
+@*<table class="table">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.ProductColor)
@@ -49,4 +52,36 @@
     </tr>
 }
 
-</table>
+</table>*@
+
+
+
+
+
+<div class="k-rtl">
+    @(Html.Kendo().Grid(Model).Name("Grid")
+            .Columns(columns =>
+            {
+            columns.Bound(model => model.ProductImageName).Template(@<text>
+    <img src="/Images/ProductGallery/ThumbImage/@item.ProductImageName" class='thumbnail' style='max-width: 100px'>
+            </text>);
+            columns.Bound(model => model.ProductColor).Template(@<text>
+        <div style="width: 50px; height: 30px; background:@item.ProductColor" class='thumbnail'></div>
+            </text>); 
+columns.Bound(model => model.ProductImageTitle);
+columns.Bound(item => @item.ProductGalleryID).Title("دستورات").Filterable(false).Groupable(false)
+        .Template(@<text>
+                        @*<a href="@Url.Action("Edit","Pages",new { id = @item.PageID})" class="btn btn-sm btn-success"><i class="glyphicon glyphicon-edit"></i>ویرایش</a>*@
+                        <a href="@Url.Action("Delete","ProductGalleries",new { id = @item.ProductGalleryID})" class="btn btn-sm btn-danger"><i class="glyphicon glyphicon-trash"></i>حذف</a>
+                    </text>);
+                })
+                .DataSource(dataSource => dataSource
+                .Server()
+                .Model(model => model.Id(item => item.ProductGalleryID)))
+    )
+
+</div>
+
+
+
+

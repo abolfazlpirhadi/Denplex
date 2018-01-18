@@ -17,10 +17,18 @@ namespace Dentplex.Web.Areas.Admin.Controllers
         private DentplexDBEntities db = new DentplexDBEntities();
 
         // GET: Admin/ProductGalleries
-        public ActionResult Index()
+        public ActionResult Index(int id)
         {
-            var productGalleries = db.ProductGalleries.Include(p => p.Product);
+            //var productGalleries = db.ProductGalleries.Include(p => p.Product);
+            var productGalleries = db.ProductGalleries.Where(o => o.ProductID == id).OrderByDescending(u => u.ProductGalleryID);
             return View(productGalleries.ToList());
+        }
+
+        public string ProductTitle(int id)
+        {
+            //var productGalleries = db.ProductGalleries.Include(p => p.Product);
+            var product = db.Products.Find(id);
+            return product.ProductTitle;
         }
 
         // GET: Admin/ProductGalleries/Details/5
@@ -45,11 +53,20 @@ namespace Dentplex.Web.Areas.Admin.Controllers
             return View();
         }
 
+
+        //public ActionResult ShowCreatePage()
+        //{
+        //    //var listProductGallery = db.ProductGalleries.Where(p => p.ProductID == id);
+        //    ViewBag.ProductID = new SelectList(db.Products, "ProductID", "ProductTitle");
+        //    return PartialView("Create");
+        //}
+
         // POST: Admin/ProductGalleries/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        //[Route("ProductGalleries/Index/{id}")]
         public ActionResult Create([Bind(Include = "ProductGalleryID,ProductID,ProductColor,ProductImageName,ProductImageTitle")] ProductGallery productGallery,int id,HttpPostedFileBase imgProductGallery)
         {
             productGallery.ProductID = id;
@@ -77,6 +94,7 @@ namespace Dentplex.Web.Areas.Admin.Controllers
                     db.ProductGalleries.Add(productGallery);
                     db.SaveChanges();
                     return RedirectToAction("Create");
+                    //return RedirectToAction("Index");
                 }
                 else
                 {
@@ -132,11 +150,14 @@ namespace Dentplex.Web.Areas.Admin.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             ProductGallery productGallery = db.ProductGalleries.Find(id);
-            if (productGallery == null)
+            if (productGallery != null)
             {
-                return HttpNotFound();
+                db.ProductGalleries.Remove(productGallery);
+                db.SaveChanges();
             }
-            return View(productGallery);
+            //return View(productGallery);
+           // ViewBag.ProductID = new SelectList(db.Products, "ProductID", "ProductTitle", productGallery.ProductID);
+            return RedirectToAction("Create", new { id = productGallery.ProductID });
         }
 
         // POST: Admin/ProductGalleries/Delete/5

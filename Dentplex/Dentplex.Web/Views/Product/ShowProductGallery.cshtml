@@ -1,0 +1,56 @@
+﻿@model IEnumerable<Dentplex.Data.Model.ProductGallery>
+
+@if (Model.Any())
+{
+        
+        <div class="tab-content">
+            @foreach (var item in Model)
+            {
+                <div role="tabpanel" class="tab-pane fade" id="ProductPic-@item.ProductGalleryID">
+                    <img src="~/Images/ProductGallery/MainImage/@item.ProductImageName" class="img img-responsive center-block" style="float: none;" alt="@item.ProductImageTitle">
+                </div>
+            }
+        </div>
+        
+        <ul class="nav nav-tabs" role="tablist">
+            @foreach (var item in Model)
+            {
+                <li role="presentation" style="background:@item.ProductColor">
+                    <a href="#ProductPic-@item.ProductGalleryID" role="tab"  data-toggle="tab">
+                        <i class="icon-sort-up" style="display: none;color:@item.ProductColor"></i>
+                    </a>
+                </li>
+            }
+        </ul>
+        
+        
+
+
+
+      <!-- Tab panes -->
+
+
+ <!-- Nav tabs -->
+
+
+
+
+    <script>
+        
+        $(document).ready(function () {
+            $('.nav-tabs a:first').tab('show');
+        });
+
+        $('.nav-tabs a')
+            .click(function(e) {
+                e.preventDefault();
+                $(this).tab('show');
+            });
+
+    </script>
+
+
+
+
+
+}

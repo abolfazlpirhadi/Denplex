@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="DentplexDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="DentplexDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Pages">
           <Key>
             <PropertyRef Name="PageID" />
@@ -15,7 +15,7 @@
           <Property Name="PageText" Type="ntext" Nullable="false" />
           <Property Name="PageIsActive" Type="bit" Nullable="false" />
         </EntityType>
-        <EntityType Name="ProductGalleries">
+        <EntityType Name="ProductGallery">
           <Key>
             <PropertyRef Name="ProductGalleryID" />
           </Key>
@@ -82,14 +82,14 @@
           <Property Name="UserEmail" Type="nvarchar" MaxLength="250" Nullable="false" />
           <Property Name="UserIsActive" Type="bit" Nullable="false" />
         </EntityType>
-        <Association Name="FK_ProductGalleries_Products">
+        <Association Name="FK_ProductGallery_Products">
           <End Role="Products" Type="Self.Products" Multiplicity="1" />
-          <End Role="ProductGalleries" Type="Self.ProductGalleries" Multiplicity="*" />
+          <End Role="ProductGallery" Type="Self.ProductGallery" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Products">
               <PropertyRef Name="ProductID" />
             </Principal>
-            <Dependent Role="ProductGalleries">
+            <Dependent Role="ProductGallery">
               <PropertyRef Name="ProductID" />
             </Dependent>
           </ReferentialConstraint>
@@ -144,15 +144,15 @@
         </Association>
         <EntityContainer Name="DentplexDBModelStoreContainer">
           <EntitySet Name="Pages" EntityType="Self.Pages" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="ProductGalleries" EntityType="Self.ProductGalleries" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProductGallery" EntityType="Self.ProductGallery" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ProductGroups" EntityType="Self.ProductGroups" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Products" EntityType="Self.Products" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SliderItems" EntityType="Self.SliderItems" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Sliders" EntityType="Self.Sliders" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK_ProductGalleries_Products" Association="Self.FK_ProductGalleries_Products">
+          <AssociationSet Name="FK_ProductGallery_Products" Association="Self.FK_ProductGallery_Products">
             <End Role="Products" EntitySet="Products" />
-            <End Role="ProductGalleries" EntitySet="ProductGalleries" />
+            <End Role="ProductGallery" EntitySet="ProductGallery" />
           </AssociationSet>
           <AssociationSet Name="FK_ProductGroups_ProductGroups" Association="Self.FK_ProductGroups_ProductGroups">
             <End Role="ProductGroups" EntitySet="ProductGroups" />
@@ -171,25 +171,65 @@
             <End Role="SliderItems" EntitySet="SliderItems" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="DentplexDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Page">
+          <Key>
+            <PropertyRef Name="PageID" />
+          </Key>
+          <Property Name="PageID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PageName" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PageTitle" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PageText" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PageIsActive" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ProductGallery">
+          <Key>
+            <PropertyRef Name="ProductGalleryID" />
+          </Key>
+          <Property Name="ProductGalleryID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProductID" Type="Int32" Nullable="false" />
+          <Property Name="ProductColor" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ProductImageName" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="ProductImageTitle" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Product" Relationship="Self.FK_ProductGallery_Products" FromRole="ProductGallery" ToRole="Products" />
+        </EntityType>
         <EntityType Name="ProductGroup">
           <Key>
             <PropertyRef Name="ProductGroupID" />
           </Key>
-          <Property Name="ProductGroupID" Nullable="false" annotation:StoreGeneratedPattern="Identity" Type="Int32" />
+          <Property Name="ProductGroupID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="ProductParentGroupID" Type="Int32" />
-          <Property Name="ProductGroupTitle" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" Type="String" />
-          <Property Name="ProductGroupName" MaxLength="150" FixedLength="false" Unicode="false" Type="String" />
-          <Property Name="ProductGroupImage" MaxLength="250" FixedLength="false" Unicode="false" Type="String" />
-          <Property Name="ProductGroupBanner" MaxLength="250" FixedLength="false" Unicode="false" Type="String" />
+          <Property Name="ProductGroupTitle" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ProductGroupName" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="ProductGroupImage" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="ProductGroupBanner" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="ProductGroups1" Relationship="Self.FK_ProductGroups_ProductGroups" FromRole="ProductGroups" ToRole="ProductGroups1" />
           <NavigationProperty Name="ProductGroup1" Relationship="Self.FK_ProductGroups_ProductGroups" FromRole="ProductGroups1" ToRole="ProductGroups" />
-          <NavigationProperty Name="Products" Relationship="DentplexDBModel.FK_Products_ProductGroups" FromRole="ProductGroup" ToRole="Product" />
-          <NavigationProperty Name="Products1" Relationship="DentplexDBModel.FK_Products_ProductGroups1" FromRole="ProductGroup" ToRole="Product" />
-          </EntityType>
+          <NavigationProperty Name="Products" Relationship="Self.FK_Products_ProductGroups" FromRole="ProductGroups" ToRole="Products" />
+          <NavigationProperty Name="Products1" Relationship="Self.FK_Products_ProductGroups1" FromRole="ProductGroups" ToRole="Products" />
+        </EntityType>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="ProductID" />
+          </Key>
+          <Property Name="ProductID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProductGroupID" Type="Int32" Nullable="false" />
+          <Property Name="ProductSubGroupID" Type="Int32" Nullable="false" />
+          <Property Name="ProductTitle" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ProductName" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="ProductShortText" Type="String" MaxLength="350" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ProductText" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ProductImage" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ProductIsFavourite" Type="Boolean" Nullable="false" />
+          <Property Name="ProductDateCreate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="ProductGalleries" Relationship="Self.FK_ProductGallery_Products" FromRole="Products" ToRole="ProductGallery" />
+          <NavigationProperty Name="ProductGroup" Relationship="Self.FK_Products_ProductGroups" FromRole="Products" ToRole="ProductGroups" />
+          <NavigationProperty Name="ProductGroup1" Relationship="Self.FK_Products_ProductGroups1" FromRole="Products" ToRole="ProductGroups" />
+        </EntityType>
         <EntityType Name="SliderItem">
           <Key>
             <PropertyRef Name="SlideItemID" />
@@ -200,7 +240,18 @@
           <Property Name="SlideItemImage" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
           <Property Name="SlideItemLink" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
           <Property Name="SlideItemOrder" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Slider" Relationship="DentplexDBModel.FK_SliderItems_Sliders" FromRole="SliderItem" ToRole="Slider" />
+          <NavigationProperty Name="Slider" Relationship="Self.FK_SliderItems_Sliders" FromRole="SliderItems" ToRole="Sliders" />
+        </EntityType>
+        <EntityType Name="Slider">
+          <Key>
+            <PropertyRef Name="SlideID" />
+          </Key>
+          <Property Name="SlideID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SlideTitle" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="SlideImage" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="SlideIsActive" Type="Boolean" Nullable="false" />
+          <Property Name="SlideDesc" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="SliderItems" Relationship="Self.FK_SliderItems_Sliders" FromRole="Sliders" ToRole="SliderItems" />
         </EntityType>
         <EntityType Name="User">
           <Key>
@@ -212,9 +263,21 @@
           <Property Name="UserEmail" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="UserIsActive" Type="Boolean" Nullable="false" />
         </EntityType>
+        <Association Name="FK_ProductGallery_Products">
+          <End Role="Products" Type="Self.Product" Multiplicity="1" />
+          <End Role="ProductGallery" Type="Self.ProductGallery" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Products">
+              <PropertyRef Name="ProductID" />
+            </Principal>
+            <Dependent Role="ProductGallery">
+              <PropertyRef Name="ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_ProductGroups_ProductGroups">
-          <End Type="Self.ProductGroup" Multiplicity="0..1" Role="ProductGroups" />
-          <End Type="Self.ProductGroup" Multiplicity="*" Role="ProductGroups1" />
+          <End Role="ProductGroups" Type="Self.ProductGroup" Multiplicity="0..1" />
+          <End Role="ProductGroups1" Type="Self.ProductGroup" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="ProductGroups">
               <PropertyRef Name="ProductGroupID" />
@@ -224,139 +287,99 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="DentplexDBEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="ProductGroups" EntityType="Self.ProductGroup" />
-          <EntitySet Name="SliderItems" EntityType="Self.SliderItem" />
-          <EntitySet Name="Users" EntityType="Self.User" />
-          <AssociationSet Name="FK_ProductGroups_ProductGroups" Association="Self.FK_ProductGroups_ProductGroups">
-            <End EntitySet="ProductGroups" Role="ProductGroups" />
-            <End EntitySet="ProductGroups" Role="ProductGroups1" />
-          </AssociationSet>
-          <EntitySet Name="Pages" EntityType="DentplexDBModel.Page" />
-          <EntitySet Name="Sliders" EntityType="DentplexDBModel.Slider" />
-          <AssociationSet Name="FK_SliderItems_Sliders" Association="DentplexDBModel.FK_SliderItems_Sliders">
-            <End Role="Slider" EntitySet="Sliders" />
-            <End Role="SliderItem" EntitySet="SliderItems" />
-          </AssociationSet>
-          <EntitySet Name="Products" EntityType="DentplexDBModel.Product" />
-          <AssociationSet Name="FK_Products_ProductGroups" Association="DentplexDBModel.FK_Products_ProductGroups">
-            <End EntitySet="ProductGroups" Role="ProductGroup" />
-            <End EntitySet="Products" Role="Product" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Products_ProductGroups1" Association="DentplexDBModel.FK_Products_ProductGroups1">
-            <End EntitySet="ProductGroups" Role="ProductGroup" />
-            <End EntitySet="Products" Role="Product" />
-          </AssociationSet>
-          <EntitySet Name="ProductGalleries" EntityType="DentplexDBModel.ProductGallery" />
-          <AssociationSet Name="FK_ProductGalleries_Products" Association="DentplexDBModel.FK_ProductGalleries_Products">
-            <End Role="Product" EntitySet="Products" />
-            <End Role="ProductGallery" EntitySet="ProductGalleries" />
-          </AssociationSet>
-        </EntityContainer>
-        <EntityType Name="Page">
-          <Key>
-            <PropertyRef Name="PageID" />
-          </Key>
-          <Property Name="PageID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="PageName" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
-          <Property Name="PageTitle" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
-          <Property Name="PageText" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="PageIsActive" Type="Boolean" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Slider">
-          <Key>
-            <PropertyRef Name="SlideID" />
-          </Key>
-          <Property Name="SlideID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="SlideTitle" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
-          <Property Name="SlideImage" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
-          <Property Name="SlideIsActive" Type="Boolean" Nullable="false" />
-          <Property Name="SlideDesc" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="SliderItems" Relationship="DentplexDBModel.FK_SliderItems_Sliders" FromRole="Slider" ToRole="SliderItem" />
-        </EntityType>
-        <Association Name="FK_SliderItems_Sliders">
-          <End Type="DentplexDBModel.Slider" Role="Slider" Multiplicity="1" />
-          <End Type="DentplexDBModel.SliderItem" Role="SliderItem" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Slider">
-              <PropertyRef Name="SlideID" />
-            </Principal>
-            <Dependent Role="SliderItem">
-              <PropertyRef Name="SlideID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityType Name="Product">
-          <Key>
-            <PropertyRef Name="ProductID" />
-          </Key>
-          <Property Name="ProductID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ProductGroupID" Type="Int32" Nullable="false" />
-          <Property Name="ProductSubGroupID" Type="Int32" Nullable="false" />
-          <Property Name="ProductTitle" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
-          <Property Name="ProductName" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
-          <Property Name="ProductShortText" Type="String" Nullable="false" MaxLength="350" FixedLength="false" Unicode="true" />
-          <Property Name="ProductText" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="ProductImage" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="ProductIsFavourite" Type="Boolean" Nullable="false" />
-          <Property Name="ProductDateCreate" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="ProductGroup" Relationship="DentplexDBModel.FK_Products_ProductGroups" FromRole="Product" ToRole="ProductGroup" />
-          <NavigationProperty Name="ProductGroup1" Relationship="DentplexDBModel.FK_Products_ProductGroups1" FromRole="Product" ToRole="ProductGroup" />
-          <NavigationProperty Name="ProductGalleries" Relationship="DentplexDBModel.FK_ProductGalleries_Products" FromRole="Product" ToRole="ProductGallery" />
-        </EntityType>
         <Association Name="FK_Products_ProductGroups">
-          <End Type="DentplexDBModel.ProductGroup" Multiplicity="1" Role="ProductGroup" />
-          <End Type="DentplexDBModel.Product" Multiplicity="*" Role="Product" />
+          <End Role="ProductGroups" Type="Self.ProductGroup" Multiplicity="1" />
+          <End Role="Products" Type="Self.Product" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="ProductGroup">
+            <Principal Role="ProductGroups">
               <PropertyRef Name="ProductGroupID" />
             </Principal>
-            <Dependent Role="Product">
+            <Dependent Role="Products">
               <PropertyRef Name="ProductGroupID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Products_ProductGroups1">
-          <End Type="DentplexDBModel.ProductGroup" Multiplicity="1" Role="ProductGroup" />
-          <End Type="DentplexDBModel.Product" Multiplicity="*" Role="Product" />
+          <End Role="ProductGroups" Type="Self.ProductGroup" Multiplicity="1" />
+          <End Role="Products" Type="Self.Product" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="ProductGroup">
+            <Principal Role="ProductGroups">
               <PropertyRef Name="ProductGroupID" />
             </Principal>
-            <Dependent Role="Product">
+            <Dependent Role="Products">
               <PropertyRef Name="ProductSubGroupID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="ProductGallery">
-          <Key>
-            <PropertyRef Name="ProductGalleryID" />
-          </Key>
-          <Property Name="ProductGalleryID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ProductID" Type="Int32" Nullable="false" />
-          <Property Name="ProductColor" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="ProductImageName" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
-          <Property Name="ProductImageTitle" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Product" Relationship="DentplexDBModel.FK_ProductGalleries_Products" FromRole="ProductGallery" ToRole="Product" />
-        </EntityType>
-        <Association Name="FK_ProductGalleries_Products">
-          <End Type="DentplexDBModel.Product" Role="Product" Multiplicity="1" />
-          <End Type="DentplexDBModel.ProductGallery" Role="ProductGallery" Multiplicity="*" />
+        <Association Name="FK_SliderItems_Sliders">
+          <End Role="Sliders" Type="Self.Slider" Multiplicity="1" />
+          <End Role="SliderItems" Type="Self.SliderItem" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Product">
-              <PropertyRef Name="ProductID" />
+            <Principal Role="Sliders">
+              <PropertyRef Name="SlideID" />
             </Principal>
-            <Dependent Role="ProductGallery">
-              <PropertyRef Name="ProductID" />
+            <Dependent Role="SliderItems">
+              <PropertyRef Name="SlideID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityContainer Name="DentplexDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Pages" EntityType="Self.Page" />
+          <EntitySet Name="ProductGalleries" EntityType="Self.ProductGallery" />
+          <EntitySet Name="ProductGroups" EntityType="Self.ProductGroup" />
+          <EntitySet Name="Products" EntityType="Self.Product" />
+          <EntitySet Name="SliderItems" EntityType="Self.SliderItem" />
+          <EntitySet Name="Sliders" EntityType="Self.Slider" />
+          <EntitySet Name="Users" EntityType="Self.User" />
+          <AssociationSet Name="FK_ProductGallery_Products" Association="Self.FK_ProductGallery_Products">
+            <End Role="Products" EntitySet="Products" />
+            <End Role="ProductGallery" EntitySet="ProductGalleries" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductGroups_ProductGroups" Association="Self.FK_ProductGroups_ProductGroups">
+            <End Role="ProductGroups" EntitySet="ProductGroups" />
+            <End Role="ProductGroups1" EntitySet="ProductGroups" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Products_ProductGroups" Association="Self.FK_Products_ProductGroups">
+            <End Role="ProductGroups" EntitySet="ProductGroups" />
+            <End Role="Products" EntitySet="Products" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Products_ProductGroups1" Association="Self.FK_Products_ProductGroups1">
+            <End Role="ProductGroups" EntitySet="ProductGroups" />
+            <End Role="Products" EntitySet="Products" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SliderItems_Sliders" Association="Self.FK_SliderItems_Sliders">
+            <End Role="Sliders" EntitySet="Sliders" />
+            <End Role="SliderItems" EntitySet="SliderItems" />
+          </AssociationSet>
+        </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="DentplexDBModelStoreContainer" CdmEntityContainer="DentplexDBEntities">
+          <EntitySetMapping Name="Pages">
+            <EntityTypeMapping TypeName="DentplexDBModel.Page">
+              <MappingFragment StoreEntitySet="Pages">
+                <ScalarProperty Name="PageID" ColumnName="PageID" />
+                <ScalarProperty Name="PageName" ColumnName="PageName" />
+                <ScalarProperty Name="PageTitle" ColumnName="PageTitle" />
+                <ScalarProperty Name="PageText" ColumnName="PageText" />
+                <ScalarProperty Name="PageIsActive" ColumnName="PageIsActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProductGalleries">
+            <EntityTypeMapping TypeName="DentplexDBModel.ProductGallery">
+              <MappingFragment StoreEntitySet="ProductGallery">
+                <ScalarProperty Name="ProductGalleryID" ColumnName="ProductGalleryID" />
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+                <ScalarProperty Name="ProductColor" ColumnName="ProductColor" />
+                <ScalarProperty Name="ProductImageName" ColumnName="ProductImageName" />
+                <ScalarProperty Name="ProductImageTitle" ColumnName="ProductImageTitle" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="ProductGroups">
             <EntityTypeMapping TypeName="DentplexDBModel.ProductGroup">
               <MappingFragment StoreEntitySet="ProductGroups">
@@ -366,6 +389,22 @@
                 <ScalarProperty Name="ProductGroupName" ColumnName="ProductGroupName" />
                 <ScalarProperty Name="ProductGroupImage" ColumnName="ProductGroupImage" />
                 <ScalarProperty Name="ProductGroupBanner" ColumnName="ProductGroupBanner" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Products">
+            <EntityTypeMapping TypeName="DentplexDBModel.Product">
+              <MappingFragment StoreEntitySet="Products">
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+                <ScalarProperty Name="ProductGroupID" ColumnName="ProductGroupID" />
+                <ScalarProperty Name="ProductSubGroupID" ColumnName="ProductSubGroupID" />
+                <ScalarProperty Name="ProductTitle" ColumnName="ProductTitle" />
+                <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+                <ScalarProperty Name="ProductShortText" ColumnName="ProductShortText" />
+                <ScalarProperty Name="ProductText" ColumnName="ProductText" />
+                <ScalarProperty Name="ProductImage" ColumnName="ProductImage" />
+                <ScalarProperty Name="ProductIsFavourite" ColumnName="ProductIsFavourite" />
+                <ScalarProperty Name="ProductDateCreate" ColumnName="ProductDateCreate" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -381,6 +420,17 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Sliders">
+            <EntityTypeMapping TypeName="DentplexDBModel.Slider">
+              <MappingFragment StoreEntitySet="Sliders">
+                <ScalarProperty Name="SlideID" ColumnName="SlideID" />
+                <ScalarProperty Name="SlideTitle" ColumnName="SlideTitle" />
+                <ScalarProperty Name="SlideImage" ColumnName="SlideImage" />
+                <ScalarProperty Name="SlideIsActive" ColumnName="SlideIsActive" />
+                <ScalarProperty Name="SlideDesc" ColumnName="SlideDesc" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Users">
             <EntityTypeMapping TypeName="DentplexDBModel.User">
               <MappingFragment StoreEntitySet="Users">
@@ -389,55 +439,6 @@
                 <ScalarProperty Name="UserPassword" ColumnName="UserPassword" />
                 <ScalarProperty Name="UserEmail" ColumnName="UserEmail" />
                 <ScalarProperty Name="UserIsActive" ColumnName="UserIsActive" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Pages">
-            <EntityTypeMapping TypeName="DentplexDBModel.Page">
-              <MappingFragment StoreEntitySet="Pages">
-                <ScalarProperty Name="PageIsActive" ColumnName="PageIsActive" />
-                <ScalarProperty Name="PageText" ColumnName="PageText" />
-                <ScalarProperty Name="PageTitle" ColumnName="PageTitle" />
-                <ScalarProperty Name="PageName" ColumnName="PageName" />
-                <ScalarProperty Name="PageID" ColumnName="PageID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Sliders">
-            <EntityTypeMapping TypeName="DentplexDBModel.Slider">
-              <MappingFragment StoreEntitySet="Sliders">
-                <ScalarProperty Name="SlideDesc" ColumnName="SlideDesc" />
-                <ScalarProperty Name="SlideIsActive" ColumnName="SlideIsActive" />
-                <ScalarProperty Name="SlideImage" ColumnName="SlideImage" />
-                <ScalarProperty Name="SlideTitle" ColumnName="SlideTitle" />
-                <ScalarProperty Name="SlideID" ColumnName="SlideID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Products">
-            <EntityTypeMapping TypeName="DentplexDBModel.Product">
-              <MappingFragment StoreEntitySet="Products">
-                <ScalarProperty Name="ProductDateCreate" ColumnName="ProductDateCreate" />
-                <ScalarProperty Name="ProductIsFavourite" ColumnName="ProductIsFavourite" />
-                <ScalarProperty Name="ProductImage" ColumnName="ProductImage" />
-                <ScalarProperty Name="ProductText" ColumnName="ProductText" />
-                <ScalarProperty Name="ProductShortText" ColumnName="ProductShortText" />
-                <ScalarProperty Name="ProductName" ColumnName="ProductName" />
-                <ScalarProperty Name="ProductTitle" ColumnName="ProductTitle" />
-                <ScalarProperty Name="ProductSubGroupID" ColumnName="ProductSubGroupID" />
-                <ScalarProperty Name="ProductGroupID" ColumnName="ProductGroupID" />
-                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="ProductGalleries">
-            <EntityTypeMapping TypeName="DentplexDBModel.ProductGallery">
-              <MappingFragment StoreEntitySet="ProductGalleries">
-                <ScalarProperty Name="ProductImageTitle" ColumnName="ProductImageTitle" />
-                <ScalarProperty Name="ProductImageName" ColumnName="ProductImageName" />
-                <ScalarProperty Name="ProductColor" ColumnName="ProductColor" />
-                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
-                <ScalarProperty Name="ProductGalleryID" ColumnName="ProductGalleryID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -462,21 +463,6 @@
       </DesignerInfoPropertySet>
     </Options>
     <!-- Diagram content (shape and connector positions) -->
-    <Diagrams>
-      <Diagram DiagramId="4c3eab4e5f1048688bd0fa42fb99ce1b" Name="Diagram1">
-        <EntityTypeShape EntityType="DentplexDBModel.ProductGroup" PointX="0.75" PointY="1.125" Width="1.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="DentplexDBModel.SliderItem" Width="1.5" PointX="8" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="DentplexDBModel.User" Width="1.5" PointX="0.75" PointY="5.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="DentplexDBModel.Page" Width="1.5" PointX="2.75" PointY="5.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="DentplexDBModel.Slider" Width="1.5" PointX="5.75" PointY="1" IsExpanded="true" />
-        <AssociationConnector ManuallyRouted="false" Association="DentplexDBModel.FK_ProductGroups_ProductGroups" />
-        <AssociationConnector Association="DentplexDBModel.FK_SliderItems_Sliders" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="DentplexDBModel.Product" Width="1.5" PointX="3" PointY="0.875" />
-        <AssociationConnector Association="DentplexDBModel.FK_Products_ProductGroups" />
-        <AssociationConnector Association="DentplexDBModel.FK_Products_ProductGroups1" />
-        <EntityTypeShape EntityType="DentplexDBModel.ProductGallery" Width="1.5" PointX="5.25" PointY="4.5" />
-        <AssociationConnector Association="DentplexDBModel.FK_ProductGalleries_Products" />
-      </Diagram>
-    </Diagrams>
+    <Diagrams></Diagrams>
   </Designer>
 </edmx:Edmx>

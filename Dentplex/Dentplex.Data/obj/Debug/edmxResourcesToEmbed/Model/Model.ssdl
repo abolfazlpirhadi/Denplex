@@ -10,7 +10,7 @@
     <Property Name="PageText" Type="ntext" Nullable="false" />
     <Property Name="PageIsActive" Type="bit" Nullable="false" />
   </EntityType>
-  <EntityType Name="ProductGalleries">
+  <EntityType Name="ProductGallery">
     <Key>
       <PropertyRef Name="ProductGalleryID" />
     </Key>
@@ -77,14 +77,14 @@
     <Property Name="UserEmail" Type="nvarchar" MaxLength="250" Nullable="false" />
     <Property Name="UserIsActive" Type="bit" Nullable="false" />
   </EntityType>
-  <Association Name="FK_ProductGalleries_Products">
+  <Association Name="FK_ProductGallery_Products">
     <End Role="Products" Type="Self.Products" Multiplicity="1" />
-    <End Role="ProductGalleries" Type="Self.ProductGalleries" Multiplicity="*" />
+    <End Role="ProductGallery" Type="Self.ProductGallery" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Products">
         <PropertyRef Name="ProductID" />
       </Principal>
-      <Dependent Role="ProductGalleries">
+      <Dependent Role="ProductGallery">
         <PropertyRef Name="ProductID" />
       </Dependent>
     </ReferentialConstraint>
@@ -139,15 +139,15 @@
   </Association>
   <EntityContainer Name="DentplexDBModelStoreContainer">
     <EntitySet Name="Pages" EntityType="Self.Pages" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="ProductGalleries" EntityType="Self.ProductGalleries" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ProductGallery" EntityType="Self.ProductGallery" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ProductGroups" EntityType="Self.ProductGroups" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Products" EntityType="Self.Products" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="SliderItems" EntityType="Self.SliderItems" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Sliders" EntityType="Self.Sliders" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
-    <AssociationSet Name="FK_ProductGalleries_Products" Association="Self.FK_ProductGalleries_Products">
+    <AssociationSet Name="FK_ProductGallery_Products" Association="Self.FK_ProductGallery_Products">
       <End Role="Products" EntitySet="Products" />
-      <End Role="ProductGalleries" EntitySet="ProductGalleries" />
+      <End Role="ProductGallery" EntitySet="ProductGallery" />
     </AssociationSet>
     <AssociationSet Name="FK_ProductGroups_ProductGroups" Association="Self.FK_ProductGroups_ProductGroups">
       <End Role="ProductGroups" EntitySet="ProductGroups" />

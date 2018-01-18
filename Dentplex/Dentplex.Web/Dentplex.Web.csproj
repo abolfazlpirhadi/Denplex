@@ -1258,8 +1258,7 @@
     <Content Include="Content\theme\css\jbr_banner-rotator.min.css" />
     <Content Include="Content\theme\css\jbr_view.min.css" />
     <Content Include="Content\theme\css\jquery-ui.min.css" />
-    <Content Include="Content\theme\css\style14.css" />
-    <Content Include="Content\theme\css\style15.css" />
+    <Content Include="Content\theme\css\style16.css" />
     <Content Include="Content\theme\css\swiper.min.css" />
     <Content Include="Content\theme\fonts\fontawesome-webfont.svg" />
     <Content Include="Content\theme\img\map_pointer.png" />
@@ -1400,6 +1399,11 @@
     <Content Include="Areas\Admin\Views\ProductGalleries\Details.cshtml" />
     <Content Include="Areas\Admin\Views\ProductGalleries\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\ProductGalleries\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\ProductGalleriesNew\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\ProductGalleriesNew\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\ProductGalleriesNew\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\ProductGalleriesNew\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\ProductGalleriesNew\Index.cshtml" />
     <None Include="Properties\PublishProfiles\Dentplex.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Images\ProductImages\MainImage\7c8ea462332544e0b122f065615271c9.jpg" />
@@ -3333,6 +3337,7 @@
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
     <Compile Include="Areas\Admin\Controllers\PagesController.cs" />
     <Compile Include="Areas\Admin\Controllers\ProductGalleriesController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ProductGalleriesNewController.cs" />
     <Compile Include="Areas\Admin\Controllers\ProductGroupsAjaxController.cs" />
     <Compile Include="Areas\Admin\Controllers\ProductGroupsController.cs" />
     <Compile Include="Areas\Admin\Controllers\ProductsController.cs" />
@@ -3584,6 +3589,7 @@
     <Content Include="Views\Product\_ProductListSubGroups.cshtml" />
     <Content Include="Views\Product\ProductBannerAll.cshtml" />
     <Content Include="Views\Product\ProductAll.cshtml" />
+    <Content Include="Views\Product\ShowProductGallery.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

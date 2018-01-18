@@ -1,6 +1,28 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
   <EntityContainerMapping StorageEntityContainer="DentplexDBModelStoreContainer" CdmEntityContainer="DentplexDBEntities">
+    <EntitySetMapping Name="Pages">
+      <EntityTypeMapping TypeName="DentplexDBModel.Page">
+        <MappingFragment StoreEntitySet="Pages">
+          <ScalarProperty Name="PageID" ColumnName="PageID" />
+          <ScalarProperty Name="PageName" ColumnName="PageName" />
+          <ScalarProperty Name="PageTitle" ColumnName="PageTitle" />
+          <ScalarProperty Name="PageText" ColumnName="PageText" />
+          <ScalarProperty Name="PageIsActive" ColumnName="PageIsActive" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ProductGalleries">
+      <EntityTypeMapping TypeName="DentplexDBModel.ProductGallery">
+        <MappingFragment StoreEntitySet="ProductGallery">
+          <ScalarProperty Name="ProductGalleryID" ColumnName="ProductGalleryID" />
+          <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+          <ScalarProperty Name="ProductColor" ColumnName="ProductColor" />
+          <ScalarProperty Name="ProductImageName" ColumnName="ProductImageName" />
+          <ScalarProperty Name="ProductImageTitle" ColumnName="ProductImageTitle" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="ProductGroups">
       <EntityTypeMapping TypeName="DentplexDBModel.ProductGroup">
         <MappingFragment StoreEntitySet="ProductGroups">
@@ -10,6 +32,22 @@
           <ScalarProperty Name="ProductGroupName" ColumnName="ProductGroupName" />
           <ScalarProperty Name="ProductGroupImage" ColumnName="ProductGroupImage" />
           <ScalarProperty Name="ProductGroupBanner" ColumnName="ProductGroupBanner" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Products">
+      <EntityTypeMapping TypeName="DentplexDBModel.Product">
+        <MappingFragment StoreEntitySet="Products">
+          <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+          <ScalarProperty Name="ProductGroupID" ColumnName="ProductGroupID" />
+          <ScalarProperty Name="ProductSubGroupID" ColumnName="ProductSubGroupID" />
+          <ScalarProperty Name="ProductTitle" ColumnName="ProductTitle" />
+          <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+          <ScalarProperty Name="ProductShortText" ColumnName="ProductShortText" />
+          <ScalarProperty Name="ProductText" ColumnName="ProductText" />
+          <ScalarProperty Name="ProductImage" ColumnName="ProductImage" />
+          <ScalarProperty Name="ProductIsFavourite" ColumnName="ProductIsFavourite" />
+          <ScalarProperty Name="ProductDateCreate" ColumnName="ProductDateCreate" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -25,6 +63,17 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="Sliders">
+      <EntityTypeMapping TypeName="DentplexDBModel.Slider">
+        <MappingFragment StoreEntitySet="Sliders">
+          <ScalarProperty Name="SlideID" ColumnName="SlideID" />
+          <ScalarProperty Name="SlideTitle" ColumnName="SlideTitle" />
+          <ScalarProperty Name="SlideImage" ColumnName="SlideImage" />
+          <ScalarProperty Name="SlideIsActive" ColumnName="SlideIsActive" />
+          <ScalarProperty Name="SlideDesc" ColumnName="SlideDesc" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="Users">
       <EntityTypeMapping TypeName="DentplexDBModel.User">
         <MappingFragment StoreEntitySet="Users">
@@ -33,55 +82,6 @@
           <ScalarProperty Name="UserPassword" ColumnName="UserPassword" />
           <ScalarProperty Name="UserEmail" ColumnName="UserEmail" />
           <ScalarProperty Name="UserIsActive" ColumnName="UserIsActive" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Pages">
-      <EntityTypeMapping TypeName="DentplexDBModel.Page">
-        <MappingFragment StoreEntitySet="Pages">
-          <ScalarProperty Name="PageIsActive" ColumnName="PageIsActive" />
-          <ScalarProperty Name="PageText" ColumnName="PageText" />
-          <ScalarProperty Name="PageTitle" ColumnName="PageTitle" />
-          <ScalarProperty Name="PageName" ColumnName="PageName" />
-          <ScalarProperty Name="PageID" ColumnName="PageID" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Sliders">
-      <EntityTypeMapping TypeName="DentplexDBModel.Slider">
-        <MappingFragment StoreEntitySet="Sliders">
-          <ScalarProperty Name="SlideDesc" ColumnName="SlideDesc" />
-          <ScalarProperty Name="SlideIsActive" ColumnName="SlideIsActive" />
-          <ScalarProperty Name="SlideImage" ColumnName="SlideImage" />
-          <ScalarProperty Name="SlideTitle" ColumnName="SlideTitle" />
-          <ScalarProperty Name="SlideID" ColumnName="SlideID" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Products">
-      <EntityTypeMapping TypeName="DentplexDBModel.Product">
-        <MappingFragment StoreEntitySet="Products">
-          <ScalarProperty Name="ProductDateCreate" ColumnName="ProductDateCreate" />
-          <ScalarProperty Name="ProductIsFavourite" ColumnName="ProductIsFavourite" />
-          <ScalarProperty Name="ProductImage" ColumnName="ProductImage" />
-          <ScalarProperty Name="ProductText" ColumnName="ProductText" />
-          <ScalarProperty Name="ProductShortText" ColumnName="ProductShortText" />
-          <ScalarProperty Name="ProductName" ColumnName="ProductName" />
-          <ScalarProperty Name="ProductTitle" ColumnName="ProductTitle" />
-          <ScalarProperty Name="ProductSubGroupID" ColumnName="ProductSubGroupID" />
-          <ScalarProperty Name="ProductGroupID" ColumnName="ProductGroupID" />
-          <ScalarProperty Name="ProductID" ColumnName="ProductID" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="ProductGalleries">
-      <EntityTypeMapping TypeName="DentplexDBModel.ProductGallery">
-        <MappingFragment StoreEntitySet="ProductGalleries">
-          <ScalarProperty Name="ProductImageTitle" ColumnName="ProductImageTitle" />
-          <ScalarProperty Name="ProductImageName" ColumnName="ProductImageName" />
-          <ScalarProperty Name="ProductColor" ColumnName="ProductColor" />
-          <ScalarProperty Name="ProductID" ColumnName="ProductID" />
-          <ScalarProperty Name="ProductGalleryID" ColumnName="ProductGalleryID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

@@ -21,11 +21,13 @@
                             <img src="/Images/ProductImages/ThumbImage/@item.ProductImage" class="thumbnail" style="max-width: 30px" />
                         </text>);
                     columns.Bound(item => @item.ProductID).Title("دستورات").Filterable(false).Groupable(false)
-                .Template(@<text>
-                    <a href="@Url.Action("Create","ProductGalleries",new { id = @item.ProductID})" class="btn btn-xs btn-warning"><i class="glyphicon glyphicon-edit"></i>گالری تصاویر</a>                
-                    <a href="@Url.Action("Edit","Products",new { id = @item.ProductID})" class="btn btn-xs btn-success"><i class="glyphicon glyphicon-edit"></i>ویرایش</a>
-                    <a href="@Url.Action("Delete","Products",new { id = @item.ProductID})" class="btn btn-xs btn-danger"><i class="glyphicon glyphicon-trash"></i>حذف</a>
-                </text>).Width(150);
+                        .Template(@<text>
+                                      <a href="@Url.Action("Create", "ProductGalleries", new {id = @item.ProductID})" class="btn btn-xs btn-warning"><i class="glyphicon glyphicon-picture"></i> گالری تصاویر
+                                    (@item.ProductGalleries.Count(y => y.ProductID == item.ProductID))     
+                                        </a>
+                                      <a href="@Url.Action("Edit", "Products", new {id = @item.ProductID})" class="btn btn-xs btn-success"><i class="glyphicon glyphicon-edit"></i> ویرایش</a>
+                                      <a href="@Url.Action("Delete", "Products", new {id = @item.ProductID})" class="btn btn-xs btn-danger"><i class="glyphicon glyphicon-trash"></i> حذف</a>
+                                   </text>).Width(150);
                 })
                 .ToolBar(toolbar =>
                 {

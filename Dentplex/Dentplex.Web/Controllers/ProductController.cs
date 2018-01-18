@@ -133,6 +133,14 @@ namespace Dentplex.Web.Controllers
 
             return View(product);
         }
+
+        public PartialViewResult ShowProductGallery(int id)
+        {
+            var listProductGallery = db.ProductGalleries.Where(p => p.ProductID == id);
+
+            return PartialView("ShowProductGallery",listProductGallery);
+        }
+
         public PartialViewResult RelatedProducts(int id)
         {
             var product = db.Products.Find(id);
@@ -140,5 +148,9 @@ namespace Dentplex.Web.Controllers
 
             return PartialView(listProductRelated);
         }
+
+
+
+
     }
 }
