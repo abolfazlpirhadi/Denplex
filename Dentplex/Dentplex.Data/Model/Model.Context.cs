@@ -31,6 +31,6 @@ namespace Dentplex.Data.Model
         public virtual DbSet<Page> Pages { get; set; }
         public virtual DbSet<Slider> Sliders { get; set; }
         public virtual DbSet<Product> Products { get; set; }
-        public virtual DbSet<ProductImage> ProductImages { get; set; }
+        public virtual DbSet<ProductGallery> ProductGalleries { get; set; }
     }
 }
